@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#181360;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:opacity .25s ease,color .25s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case study header" style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,3.5vw,40px);background:rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(24,19,96,.14);font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:-.01em;text-transform:uppercase">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="Asia Alrashed Portfolio Simple.dc.html" style="width:30px;height:30px;border:1px solid currentColor;border-radius:6px;display:grid;place-items:center;font-size:11px;letter-spacing:.02em">AA</a>
+    <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="letter-spacing:.1em">← All projects</a>
+  </div>
+  <span style="letter-spacing:.14em;color:#5F5F7A">Case study</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="letter-spacing:.12em">Contact me</a>
+</header>
+<section data-screen-label="Case study hero" style="padding:clamp(60px,9vh,110px) clamp(20px,3.5vw,40px) clamp(46px,7vh,76px)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:20px">Ocean Gate Line · Conversational AI · 2025 – 2026</div>
+    <h1 data-splitchars="1" style="margin:0;font-family:Arial, Helvetica, sans-serif;font-weight:700;font-size:clamp(2.4rem,7vw,5.6rem);line-height:.98;letter-spacing:-.045em;color:#181360;max-width:20ch">LLM-Powered Conversational AI &amp; Fine-Tuning</h1>
+    <p data-reveal="80" style="margin:30px 0 0;font-weight:700;font-size:clamp(1.3rem,2.5vw,2rem);line-height:1.22;letter-spacing:-.025em;max-width:34ch">A support assistant that answers from company knowledge, in the customer&rsquo;s own dialect.</p>
+    <p data-reveal="120" style="margin:20px 0 0;color:#3A3A55;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6;max-width:64ch">I developed and deployed an LLM-powered conversational AI assistant for customer and operational support. The model was fine-tuned with Hugging Face Transformers, Trainer, and Datasets, adapted efficiently with Parameter-Efficient Fine-Tuning, then connected to a Retrieval-Augmented Generation pipeline so every answer is grounded in company knowledge rather than the model&rsquo;s own guesses.</p>
+    <div data-reveal="160" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:18px;margin-top:clamp(38px,6vh,58px);padding-top:28px;border-top:1px solid rgba(24,19,96,.14)">
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">My role</div><div style="font-size:.98rem;line-height:1.5">Fine-tuning, RAG pipeline, dataset preparation, and deployment</div></div>
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Stack</div><div style="font-size:.98rem;line-height:1.5">Hugging Face, PyTorch, LangChain, FastAPI, vector retrieval</div></div>
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Focus</div><div style="font-size:.98rem;line-height:1.5">Arabic NLP and Iraqi dialect adaptation</div></div>
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Sections</div><div style="display:flex;flex-wrap:wrap;gap:6px;font-family:Arial, Helvetica, sans-serif;font-size:11px;text-transform:uppercase"><a href="#problem" style="color:#11CBCB">Problem</a><span style="color:#5F5F7A">/</span><a href="#approach" style="color:#11CBCB">Approach</a><span style="color:#5F5F7A">/</span><a href="#tuning" style="color:#11CBCB">Fine-tuning</a><span style="color:#5F5F7A">/</span><a href="#rag" style="color:#11CBCB">RAG</a><span style="color:#5F5F7A">/</span><a href="#data" style="color:#11CBCB">Datasets</a></div></div>
+    </div>
+  </div>
+</section>
+<section id="problem" data-screen-label="The problem" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 01 ) The problem</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">A general model answers fluently, and often wrongly</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Support conversations needed answers tied to the company&rsquo;s own services, policies, and operational reality. A general-purpose model produces confident text but has no access to that knowledge, and it does not speak the dialect customers actually write in. Full fine-tuning of a large model for every update was not practical either, in compute or in time.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:clamp(24px,4vh,36px)">
+      <div data-reveal="0" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Knowledge gap</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Answers had to come from company knowledge, not from whatever the base model happened to have learned.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Dialect gap</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Customers write informal Arabic, including Iraqi dialect, so tone and phrasing needed adaptation, not just translation.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Cost gap</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Adapting a large model repeatedly with full fine-tuning is expensive, so the update path had to be lighter.</p></div>
+    </div>
+  </div>
+</section>
+<section id="approach" data-screen-label="Approach" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 02 ) Approach</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Fine-tune for voice, retrieve for facts</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">The system separates two jobs. Fine-tuning teaches the model how to speak: tone, intent coverage, and dialect. Retrieval supplies what to say: the approved company content pulled at answer time. That split keeps knowledge updates out of the training loop.</p>
+    </div>
+    
+    <div data-reveal="80" style="margin-top:clamp(26px,4vh,42px);border:1px solid rgba(24,19,96,.14);border-radius:16px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">01</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Prepared and refined the conversational dataset</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">tone consistency, intent coverage, dialect-specific phrasing</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">data</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">02</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Tokenized and configured training with Hugging Face Trainer and Datasets</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">training configuration, evaluation, hyperparameter tuning</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">training</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">03</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Applied Parameter-Efficient Fine-Tuning with LoRA and QLoRA</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">fewer trainable parameters, lower compute requirements</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">peft</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">04</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Built the retrieval layer with embeddings and vector search</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">company knowledge indexed for answer-time lookup</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">rag</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">05</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Composed the pipeline in LangChain</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">retrieve, then generate with the retrieved context</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">orchestration</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">06</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Served the assistant through FastAPI</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">deployed as an API into operational workflows</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">deployment</span></div>
+    </div>
+  </div>
+</section>
+<section id="tuning" data-screen-label="Fine-tuning" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 03 ) Fine-tuning</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">LoRA and QLoRA, so adaptation stays affordable</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Parameter-Efficient Fine-Tuning adapts a pre-trained model by training a small set of additional parameters instead of rewriting the whole network. QLoRA adds quantization on top, lowering the memory needed to train.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:clamp(24px,4vh,36px)">
+      <div data-reveal="0" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">What was trained</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">A small adapter on top of a pre-trained language model, using Hugging Face Trainer and Datasets, with tokenization and training configuration managed explicitly.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Why it matters here</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Fewer trainable parameters and lower compute means the model can be re-adapted as tone and intent requirements change, without a full training run each time.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">What was measured</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Evaluation and hyperparameter tuning were part of the loop, with model optimization applied before the adapter was promoted.</p></div>
+    </div>
+  </div>
+</section>
+<section id="rag" data-screen-label="Retrieval" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 04 ) Retrieval</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Answers grounded in retrieved company context</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Rather than trusting the model&rsquo;s memory, the pipeline retrieves relevant company content for each question and passes it to the model as context. Updating knowledge becomes a content task, not a training task.</p>
+    </div>
+    
+    <div data-reveal="60" style="margin-top:clamp(24px,4vh,36px);border-radius:16px;background:linear-gradient(140deg,#181360,#241C86 55%,#11CBCB);padding:clamp(24px,3vw,38px);color:#FFFFFF">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#181360;margin-bottom:20px">Request path, schematic</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB;width:22px">01</span><span style="flex:1;padding:11px 14px;border:1px solid rgba(17,203,203,.4);border-radius:8px;font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase">Customer message arrives at the FastAPI endpoint</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB;width:22px">02</span><span style="flex:1;padding:11px 14px;border:1px solid rgba(17,203,203,.4);border-radius:8px;font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase">Embedded and matched against the vector index</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB;width:22px">03</span><span style="flex:1;padding:11px 14px;border:1px solid rgba(17,203,203,.4);border-radius:8px;font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase">Retrieved company context assembled by LangChain</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB;width:22px">04</span><span style="flex:1;padding:11px 14px;border:1px solid rgba(17,203,203,.4);border-radius:8px;font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase">Fine-tuned model writes the reply in the right voice</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB;width:22px">05</span><span style="flex:1;padding:11px 14px;border:1px solid rgba(17,203,203,.6);border-radius:8px;background:rgba(17,203,203,.16);font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase">Context-aware answer returned to the conversation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="data" data-screen-label="Datasets and language" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 05 ) Datasets and language</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">The dataset is the product</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Most of the quality came from dataset work: preparing and refining conversational data so replies land naturally, hold a consistent tone, cover the intents customers actually raise, and respect dialect-specific phrasing.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:clamp(24px,4vh,36px)">
+      <div data-reveal="0" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Naturalness</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Conversational data was refined so responses read as human replies rather than template output.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Intent coverage</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">The dataset was extended to cover the range of intents seen in real customer engagement.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Dialect adaptation</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Arabic NLP work focused on Iraqi dialect, so the assistant matches how customers write.</p></div>
+    </div>
+    <div data-reveal="60" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(24px,4vh,36px);padding-top:22px;border-top:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Hugging Face Transformers</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Trainer &amp; Datasets</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">PEFT</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">LoRA</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">QLoRA</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">LangChain</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">RAG</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Embeddings</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Vector Retrieval</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">FastAPI</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">PyTorch</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Arabic NLP</span></div>
+  </div>
+</section>
+<footer data-screen-label="Case study footer" style="background:#181360;color:#FFFFFF;padding:clamp(56px,9vh,96px) clamp(20px,3.5vw,40px) 44px;margin-top:clamp(40px,6vh,70px)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-weight:700;font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.03em;color:#FFFFFF">← Back to all projects</a>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <a href="ETA Prediction Pipeline.dc.html" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#11CBCB">Next: Logistics Data &amp; ETA Prediction →</a>
+        <a href="mailto:asiaalrashed57@gmail.com" style="display:inline-flex;align-items:center;gap:10px;font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#181360;background:#FFFFFF;border-radius:999px;padding:12px 22px;transition:background .3s ease" style-hover="background:#11CBCB;color:#181360">Get in touch</a>
+      </div>
+    </div>
+    <div style="margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.03em;color:rgba(255,255,255,.6)">
+      <span>© 2026 Asia Alrashed · Ajman, UAE</span>
+      <span>Diagrams are schematic. No client screenshots are shown.</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    this.initSmoothScroll();
+    document.querySelectorAll('[data-splitchars]').forEach((el) => this.splitChars(el));
+    this.initReveals();
+  }
+
+  componentWillUnmount() {
+    if (this.observers) this.observers.forEach((o) => o.disconnect());
+    if (this.sweeps) this.sweeps.forEach((fn) => window.removeEventListener('scroll', fn));
+    if (this.teardownScroll) this.teardownScroll();
+  }
+
+  initSmoothScroll() {
+    const doc = document.documentElement;
+    let target = window.scrollY, current = window.scrollY, raf = null;
+    const clamp = (v) => Math.max(0, Math.min(doc.scrollHeight - window.innerHeight, v));
+    const step = () => {
+      current += (target - current) * 0.085;
+      if (Math.abs(target - current) < 0.6) { current = target; window.scrollTo({ top: current, behavior: 'instant' }); raf = null; return; }
+      window.scrollTo({ top: current, behavior: 'instant' });
+      raf = requestAnimationFrame(step);
+    };
+    const nested = (start, dx, dy) => {
+      let n = start; const horiz = Math.abs(dx) > Math.abs(dy);
+      while (n && n !== document.body && n !== doc) {
+        if (n.nodeType === 1) {
+          const cs = getComputedStyle(n);
+          if (horiz && /(auto|scroll)/.test(cs.overflowX) && n.scrollWidth > n.clientWidth + 2) return true;
+          if (!horiz && /(auto|scroll)/.test(cs.overflowY) && n.scrollHeight > n.clientHeight + 2) return true;
+        }
+        n = n.parentNode;
+      }
+      return false;
+    };
+    const onWheel = (e) => {
+      if (e.ctrlKey || e.metaKey || e.defaultPrevented) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (nested(e.target, e.deltaX, e.deltaY)) return;
+      e.preventDefault();
+      const dy = e.deltaMode === 1 ? e.deltaY * 33 : (e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY);
+      target = clamp(target + dy);
+      if (raf === null) raf = requestAnimationFrame(step);
+    };
+    const onNative = () => { if (raf === null) { target = window.scrollY; current = window.scrollY; } };
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('scroll', onNative, { passive: true });
+    this.teardownScroll = () => { window.removeEventListener('wheel', onWheel); window.removeEventListener('scroll', onNative); if (raf !== null) cancelAnimationFrame(raf); };
+  }
+
+  watch(els, show, threshold) {
+    if (!els.length) return;
+    const pending = new Set(els);
+    const fire = (el) => { if (!pending.has(el)) return; pending.delete(el); show(el); };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); fire(e.target); } });
+    }, { threshold: threshold });
+    els.forEach((el) => io.observe(el));
+    const sweep = () => {
+      if (!pending.size) { window.removeEventListener('scroll', sweep); return; }
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) { io.unobserve(el); fire(el); }
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(sweep));
+    window.addEventListener('scroll', sweep, { passive: true });
+    this.sweeps = this.sweeps || []; this.sweeps.push(sweep);
+    this.observers = this.observers || []; this.observers.push(io);
+    setTimeout(() => { Array.from(pending).forEach((el) => { io.unobserve(el); fire(el); }); }, 6000);
+  }
+
+  initReveals() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(30px) scale(.99)'; });
+    this.watch(els, (el) => {
+      const delay = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity 1s cubic-bezier(.22,1,.36,1) ' + delay + 'ms, transform 1s cubic-bezier(.22,1,.36,1) ' + delay + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    }, 0.1);
+  }
+
+  splitChars(el) {
+    const text = el.textContent.trim();
+    el.setAttribute('aria-label', text);
+    el.innerHTML = '';
+    const spans = [];
+    const words = text.split(/\s+/);
+    words.forEach((word, wi) => {
+      const wrap = document.createElement('span');
+      wrap.style.cssText = 'display:inline-block;white-space:nowrap';
+      for (const ch of word) {
+        const outer = document.createElement('span');
+        outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.22em;margin-bottom:-.22em';
+        const inner = document.createElement('span');
+        inner.style.cssText = 'display:inline-block;transform:translateY(130%);transition:transform .9s cubic-bezier(.22,1,.36,1)';
+        inner.textContent = ch;
+        outer.appendChild(inner);
+        wrap.appendChild(outer);
+        spans.push(inner);
+      }
+      el.appendChild(wrap);
+      if (wi < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+    this.watch([el], () => {
+      spans.forEach((s, i) => { s.style.transitionDelay = (i * 34) + 'ms'; s.style.transform = 'translateY(0)'; });
+    }, 0.15);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

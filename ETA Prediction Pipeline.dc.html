@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case header" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-size:12.5px;letter-spacing:.04em;color:#FFFFFF" style-hover="color:#11CBCB">← Back to projects</a>
+  <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)">Data Science · ML · Deep Learning</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="font-size:12.5px;letter-spacing:.04em;color:#11CBCB">Contact</a>
+</header>
+
+<section data-screen-label="Title" style="padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) clamp(34px,5vh,54px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Machine Learning · Predictive Modeling · Logistics</div>
+    <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:22ch">Delivery ETA Prediction</h1>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:52ch">A supervised model that estimates when a shipment will actually arrive, learned from what past shipments did rather than from a fixed transit-time table.</p>
+    <div data-reveal="120" style="margin-top:clamp(26px,4vh,40px);padding:18px 20px;background:#F4F4FA;border:1px solid rgba(17,203,203,.2);border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px">
+      <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Data foundation</span>
+      <span style="font-size:.96rem;line-height:1.5">This model trains on the reconciled dataset produced by a separate data engineering project.</span>
+      <a href="Logistics Data Migration.dc.html" style="font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700;white-space:nowrap">Multi-Year Logistics Data Migration →</a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Challenge" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( A ) The problem</div>
+      <h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">A promised date that ignores how shipments really behave</h2>
+    </div>
+    <div data-reveal="80">
+      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Customers want to know when a shipment will arrive, and operations needs the same answer to plan. A static transit estimate per route gives one number regardless of what is actually happening, so it is confidently wrong for exactly the shipments that need attention.</p>
+      <p style="margin:0;font-size:1.02rem;line-height:1.65">The historical data contained the answer: thousands of past shipments and how long each one really took. That makes it a supervised regression problem, where the useful work is choosing which features carry signal about delay.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Approach" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( B ) The workflow</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Prepare, engineer, train, evaluate, predict</h2>
+    <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(22px,3vw,34px)">
+      <div style="display:flex;flex-direction:column;gap:7px;max-width:560px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Historical shipment records</span>
+        <span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Data preparation and validation</span>
+        <span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Feature engineering</span>
+        <span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Model training</span>
+        <span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Evaluation and tuning</span>
+        <span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700">Predicted arrival time</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px;margin-top:22px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Feature engineering</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">The core of the work. Signal about delivery time lives in the shape of the shipment and its context, so features were derived from the historical record rather than fed in raw.</p>
+      </div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Training</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Trained with Scikit-learn on the prepared dataset, with the target being the observed delivery duration of each completed shipment.</p>
+      </div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Evaluation</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Assessed on held-out shipments and compared against the naive baseline of a fixed per-route estimate, which is the bar it has to clear to be worth using.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Decisions" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( C ) Modeling decisions</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Why it was built this way</h2>
+    <div style="display:flex;flex-direction:column">
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Regression, not classification</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Operations needs a duration, not a late or on-time flag. Predicting the value keeps the decision about what counts as late with the business.</p>
+      </div>
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Baseline first</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">The fixed per-route estimate was measured before any model was trained. Without that comparison there is no way to tell whether the model earns its complexity.</p>
+      </div>
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Only completed shipments</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Training used shipments with a known outcome. In-flight records have no label, and including them would leak an assumption into the target.</p>
+      </div>
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12);border-bottom:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Interpretable models first</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Started with models whose behavior can be explained to operations. A prediction people cannot reason about does not get used, however good the error metric.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Impact" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( D ) Impact</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">What it enables</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">Proactive communication.</b> An expected arrival time can be shared before a customer has to ask.</p></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">Better planning.</b> Operations can sequence work against predicted durations rather than a flat assumption.</p></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">Predictive workflows became possible.</b> A trained model is the prerequisite for anything that acts on a forecast.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
+      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">No error metric is published for this model, so none is claimed here. The data engineering behind the training set is a separate case study and is not repeated on this page.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Python</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pandas</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Scikit-learn</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Feature Engineering</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Model Evaluation</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Machine Learning</span></div>
+  </div>
+</section>
+
+<footer data-screen-label="Case footer" style="background:#181360;color:#FFFFFF;padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) 40px">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:18px">You may also like</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px">
+      <a href="Logistics Data Migration.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Data Engineering</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Multi-Year Data Migration</div></a>
+      <a href="Accident Detection.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Deep Learning</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Video-Based Accident Detection</div></a>
+      <a href="Medical Imaging AI.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Deep Learning</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Medical Image Analysis</div></a>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(36px,6vh,60px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">← Back to projects</a>
+      <a href="Accident Detection.dc.html" style="color:#11CBCB">Next case study →</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

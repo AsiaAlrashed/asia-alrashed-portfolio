@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case header" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-size:12.5px;letter-spacing:.04em;color:#FFFFFF" style-hover="color:#11CBCB">← Back to projects</a>
+  <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)">Data Science · ML · Deep Learning</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="font-size:12.5px;letter-spacing:.04em;color:#11CBCB">Contact</a>
+</header>
+
+<section data-screen-label="Title" style="padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) clamp(34px,5vh,54px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Deep Learning · Computer Vision · Video Analytics</div>
+    <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Video-Based Accident Detection</h1>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">A computer vision workflow that recognizes accident related events in video, by reading change across frames rather than judging any single one.</p>
+  </div>
+</section>
+
+<section data-screen-label="Challenge" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( A ) The problem</div>
+      <h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">An accident is a change over time, not a single frame</h2>
+    </div>
+    <div data-reveal="80">
+      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Detecting an accident from video is not an image classification problem. A single frame of two vehicles close together is ambiguous. What identifies the event is what happens across a short sequence: the change in motion, the abruptness, the aftermath.</p>
+      <p style="margin:0;font-size:1.02rem;line-height:1.65">So the model has to consume temporal information, which changes how the data is prepared, how examples are sampled, and how the model is evaluated compared with a still-image task.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Approach" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( B ) Approach</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Working with temporal visual information</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Data preparation</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Video decoded into frame sequences and sampled into windows, so an example carries motion rather than a single moment.</p>
+      </div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Model development</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Deep learning applied to the sequence for automated event recognition, with iteration on how much temporal context each example should span.</p>
+      </div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Evaluation</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Assessed on held-out video, where the useful question is whether the event is caught at all, not whether every frame is labeled correctly.</p>
+      </div>
+    </div>
+    <div data-reveal="0" style="margin-top:22px;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:26px 24px">
+      <div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:14px">Frame window</div>
+      <div style="display:flex;gap:6px;align-items:stretch">
+        <div style="flex:1;height:54px;border:1px solid rgba(24,19,96,.14);border-radius:6px;background:#F4F4FA"></div>
+        <div style="flex:1;height:54px;border:1px solid rgba(24,19,96,.14);border-radius:6px;background:#F4F4FA"></div>
+        <div style="flex:1;height:54px;border:1px solid rgba(17,203,203,.55);border-radius:6px;background:rgba(17,203,203,.18)"></div>
+        <div style="flex:1;height:54px;border:1px solid rgba(17,203,203,.55);border-radius:6px;background:rgba(17,203,203,.18)"></div>
+        <div style="flex:1;height:54px;border:1px solid rgba(24,19,96,.14);border-radius:6px;background:#F4F4FA"></div>
+        <div style="flex:1;height:54px;border:1px solid rgba(24,19,96,.14);border-radius:6px;background:#F4F4FA"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5F5F7A"><span>Sequence in</span><span style="color:#181360;font-weight:700">Event region recognized</span></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="My role" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( C ) My role</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Model development end to end</h2>
+    <div data-reveal="80" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Data preparation</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Frame sampling</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Model development</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Experimentation</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Evaluation</span></div>
+  </div>
+</section>
+
+<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
+      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">This is a model development project. No accuracy, dataset size, or deployment claim is made here, because none has been verified for publication. If you would like those details, they can be added once confirmed.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Python</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Deep Learning</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Computer Vision</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Video Analytics</span></div>
+  </div>
+</section>
+
+<footer data-screen-label="Case footer" style="background:#181360;color:#FFFFFF;padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) 40px">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:18px">You may also like</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px">
+      <a href="Medical Imaging AI.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Deep Learning</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Medical Image Analysis</div></a>
+      <a href="ETA Prediction Pipeline.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Machine Learning</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Delivery ETA Prediction</div></a>
+      <a href="LLM Conversational AI.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Applied AI</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Production Conversational AI</div></a>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(36px,6vh,60px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">← Back to projects</a>
+      <a href="Medical Imaging AI.dc.html" style="color:#11CBCB">Next case study →</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

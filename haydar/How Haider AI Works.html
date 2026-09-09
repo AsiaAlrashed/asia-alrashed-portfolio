@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How Haider AI Works — OceanGate Line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#15262F;
+    --ink-soft:#3C525E;
+    --ink-faint:#6B7E88;
+    --ocean:#0E6E84;
+    --ocean-deep:#0A4D5E;
+    --ocean-wash:#E7F1F2;
+    --sand:#C0813B;
+    --sand-wash:#F7EEDF;
+    --paper:#FAF6EF;
+    --paper-2:#F2ECE1;
+    --card:#FFFFFF;
+    --line:#E4DCCF;
+    --line-strong:#D3C8B5;
+    --red:#B23A2E;
+    --red-wash:#FBEDEA;
+    --red-line:#E9C3BC;
+    --green:#2C7A52;
+    --green-wash:#EAF3EC;
+    --green-line:#C2DEC9;
+    --shadow-sm:0 1px 2px rgba(21,38,47,.04), 0 2px 6px rgba(21,38,47,.05);
+    --shadow-md:0 2px 4px rgba(21,38,47,.05), 0 10px 28px rgba(21,38,47,.08);
+    --shadow-lg:0 8px 18px rgba(21,38,47,.07), 0 24px 56px rgba(21,38,47,.11);
+    --r-sm:8px; --r-md:14px; --r-lg:22px;
+    --serif:"Newsreader", Georgia, serif;
+    --sans:"Public Sans", system-ui, -apple-system, sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, monospace;
+    --ar:"IBM Plex Sans Arabic", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.68;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:
+      radial-gradient(1200px 520px at 78% -8%, rgba(14,110,132,.07), transparent 60%),
+      radial-gradient(900px 480px at 5% 110%, rgba(192,129,59,.07), transparent 55%);
+    pointer-events:none; z-index:0;
+  }
+  .ar{ font-family:var(--ar); direction:rtl; unicode-bidi:isolate; font-weight:500; }
+  .wrap{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    position:relative; overflow:hidden;
+    background:
+      linear-gradient(155deg, #0C2730 0%, #0E3743 48%, #0A4D5E 100%);
+    color:#EAF2F1;
+    border-bottom:1px solid #07343f;
+  }
+  header.hero::after{
+    content:""; position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 64px);
+    mask-image:radial-gradient(900px 540px at 80% 30%, #000 0%, transparent 75%);
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:30px 28px 64px; }
+  .topbar{ display:flex; align-items:center; gap:14px; padding-top:6px; }
+  .mark{
+    width:42px; height:42px; border-radius:11px; flex:0 0 auto;
+    background:linear-gradient(160deg,#1FA0B4,#0A4D5E);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 6px 16px rgba(0,0,0,.3);
+    display:grid; place-items:center;
+  }
+  .brand{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand b{ font-family:var(--serif); font-weight:600; font-size:18px; letter-spacing:.2px; }
+  .brand span{ font-size:12.5px; color:#9FC2C6; letter-spacing:.16em; text-transform:uppercase; }
+  .topbar .spacer{ flex:1; }
+  .topbar .pill{
+    font-size:12.5px; color:#BFE0E2; border:1px solid rgba(159,194,198,.4);
+    padding:6px 13px; border-radius:999px; letter-spacing:.02em;
+  }
+  .hero h1{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(38px,6.2vw,72px); line-height:1.02; letter-spacing:-.015em;
+    margin:46px 0 0; max-width:17ch;
+  }
+  .hero h1 em{ font-style:italic; color:#5FD0DE; }
+  .hero .lede{
+    margin:22px 0 0; max-width:62ch; font-size:clamp(17px,2.1vw,21px);
+    color:#CDE0E1; line-height:1.6;
+  }
+  .hero .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+  .hero .chip{
+    display:inline-flex; align-items:center; gap:9px;
+    background:rgba(255,255,255,.06); border:1px solid rgba(159,194,198,.28);
+    padding:9px 15px; border-radius:999px; font-size:14px; color:#E3F0F0;
+    backdrop-filter:blur(2px);
+  }
+  .hero .chip b{ color:#5FD0DE; font-weight:600; }
+
+  /* ---------- Layout ---------- */
+  main{ padding:0 0 90px; }
+  .layout{ display:grid; grid-template-columns:248px 1fr; gap:54px; align-items:start; padding-top:56px; }
+  @media(max-width:920px){ .layout{ grid-template-columns:1fr; gap:0; } }
+
+  /* TOC */
+  nav.toc{ position:sticky; top:26px; align-self:start; }
+  @media(max-width:920px){ nav.toc{ position:static; margin-bottom:18px; } }
+  .toc .toc-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r-md);
+    padding:20px 20px 16px; box-shadow:var(--shadow-sm);
+  }
+  .toc h4{ margin:0 0 12px; font-family:var(--sans); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); }
+  .toc ol{ list-style:none; margin:0; padding:0; counter-reset:toc; }
+  .toc li{ counter-increment:toc; }
+  .toc a{
+    display:grid; grid-template-columns:24px 1fr; gap:8px; align-items:baseline;
+    padding:7px 8px; margin:0 -8px; border-radius:8px;
+    color:var(--ink-soft); text-decoration:none; font-size:14.5px; line-height:1.35;
+    transition:background .15s, color .15s;
+  }
+  .toc a::before{ content:counter(toc,decimal-leading-zero); font-family:var(--mono); font-size:11.5px; color:var(--ocean); }
+  .toc a:hover{ background:var(--ocean-wash); color:var(--ink); }
+  .toc a.active{ background:var(--ocean-wash); color:var(--ink); font-weight:600; }
+
+  /* Article */
+  article{ min-width:0; max-width:760px; }
+  section{ scroll-margin-top:24px; margin-bottom:60px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ocean); margin-bottom:14px;
+  }
+  .eyebrow .num{
+    display:inline-grid; place-items:center; width:25px; height:25px; border-radius:7px;
+    background:var(--ocean); color:#fff; font-size:12px; font-weight:600;
+  }
+  h2{ font-family:var(--serif); font-weight:500; font-size:clamp(28px,3.6vw,38px); line-height:1.1; letter-spacing:-.012em; margin:0 0 14px; }
+  h3{ font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.25; margin:34px 0 10px; }
+  h4.mini{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 12px; }
+  p{ margin:0 0 16px; }
+  p.lead{ font-size:20px; line-height:1.6; color:var(--ink-soft); }
+  a.inline{ color:var(--ocean-deep); text-decoration-color:var(--line-strong); text-underline-offset:3px; }
+  strong{ font-weight:700; color:var(--ink); }
+  .term{ font-weight:600; color:var(--ocean-deep); }
+  .ghost{ color:var(--ink-faint); }
+  hr.rule{ border:0; border-top:1px solid var(--line); margin:0 0 54px; }
+
+  /* Cards & callouts */
+  .card{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); box-shadow:var(--shadow-sm); }
+  .pad{ padding:24px 26px; }
+
+  .callout{ border-radius:var(--r-md); padding:18px 20px 18px 52px; position:relative; margin:22px 0; font-size:15.5px; line-height:1.6; }
+  .callout .ic{ position:absolute; left:18px; top:18px; width:22px; height:22px; }
+  .callout b.lbl{ display:block; font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px; }
+  .callout.safety{ background:var(--red-wash); border:1px solid var(--red-line); color:#5C231C; }
+  .callout.safety b.lbl{ color:var(--red); }
+  .callout.tip{ background:var(--green-wash); border:1px solid var(--green-line); color:#1E4733; }
+  .callout.tip b.lbl{ color:var(--green); }
+  .callout.note{ background:var(--ocean-wash); border:1px solid #C9E1E3; color:#163C44; }
+  .callout.note b.lbl{ color:var(--ocean-deep); }
+
+  /* Example message bubbles */
+  .msg{
+    display:inline-block; max-width:100%; background:#DCF3D6; border:1px solid #BFE3B6;
+    border-radius:14px 14px 14px 4px; padding:9px 14px; font-size:16px; color:#1c331a;
+    box-shadow:var(--shadow-sm);
+  }
+  .msg.cust{ background:#fff; border:1px solid var(--line-strong); border-radius:14px 14px 4px 14px; }
+  .msg .en{ display:block; font-size:12.5px; color:var(--ink-faint); margin-top:3px; direction:ltr; font-family:var(--sans); }
+
+  code.k{ font-family:var(--mono); font-size:.86em; background:var(--paper-2); border:1px solid var(--line); padding:1px 6px; border-radius:6px; color:var(--ocean-deep); }
+
+  /* Tables */
+  table{ width:100%; border-collapse:collapse; font-size:15px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-sm); }
+  thead th{ background:var(--paper-2); text-align:left; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); padding:11px 16px; border-bottom:1px solid var(--line); font-weight:700; }
+  tbody td{ padding:12px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tbody tr:last-child td{ border-bottom:0; }
+  tbody tr:nth-child(even) td{ background:rgba(242,236,225,.34); }
+  .tag{ display:inline-block; font-size:12px; font-weight:600; padding:3px 9px; border-radius:999px; white-space:nowrap; }
+  .tag.answer{ background:var(--ocean-wash); color:var(--ocean-deep); }
+  .tag.handoff{ background:var(--red-wash); color:var(--red); }
+  .tag.ask{ background:var(--sand-wash); color:#8a5a16; }
+  .tag.yes{ background:var(--green-wash); color:var(--green); }
+  .tag.no{ background:var(--red-wash); color:var(--red); }
+
+  /* Score bars */
+  .scorebar{ display:grid; grid-template-columns:1fr; gap:10px; margin:14px 0 4px; }
+  .sb-row{ display:grid; grid-template-columns:160px 1fr 56px; gap:12px; align-items:center; font-size:14px; }
+  .sb-row .lab{ color:var(--ink-soft); }
+  .sb-track{ height:12px; background:var(--paper-2); border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+  .sb-fill{ height:100%; border-radius:999px; }
+  .sb-fill.win{ background:linear-gradient(90deg,#1FA0B4,#0A4D5E); }
+  .sb-fill.lose{ background:linear-gradient(90deg,#D8B98C,#C0813B); }
+  .sb-fill.dim{ background:#CBBfa9; }
+  .sb-val{ font-family:var(--mono); font-size:13px; text-align:right; color:var(--ink); }
+
+  /* Pipeline diagram */
+  .pipe{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin:8px 0 4px; }
+  @media(max-width:680px){ .pipe{ grid-template-columns:1fr 1fr; row-gap:14px; } }
+  .pipe .step{ position:relative; text-align:center; padding:0 10px; }
+  .pipe .step .dot{
+    width:54px; height:54px; margin:0 auto 12px; border-radius:14px; display:grid; place-items:center;
+    background:var(--card); border:1px solid var(--line-strong); box-shadow:var(--shadow-sm); color:var(--ocean-deep);
+  }
+  .pipe .step b{ display:block; font-size:14px; margin-bottom:2px; }
+  .pipe .step span{ font-size:12.5px; color:var(--ink-faint); line-height:1.4; display:block; }
+  .pipe .step:not(:last-child)::after{
+    content:"→"; position:absolute; top:18px; right:-9px; color:var(--line-strong); font-size:20px;
+  }
+  @media(max-width:680px){ .pipe .step::after{ display:none; } }
+
+  /* Meaning map */
+  .map{ position:relative; height:230px; background:
+      radial-gradient(circle at 30% 70%, rgba(14,110,132,.06), transparent 60%);
+    border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; }
+  .map .grid{ position:absolute; inset:0; background-image:
+      repeating-linear-gradient(0deg, var(--line) 0 1px, transparent 1px 38px),
+      repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 38px);
+    opacity:.5; }
+  .map .pt{ position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:5px; }
+  .map .pt .d{ width:14px; height:14px; border-radius:50%; box-shadow:0 0 0 4px rgba(255,255,255,.7); }
+  .map .pt small{ font-size:11.5px; background:var(--card); border:1px solid var(--line); padding:2px 7px; border-radius:6px; white-space:nowrap; box-shadow:var(--shadow-sm); }
+
+  /* Funnel */
+  .funnel{ display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:14px; }
+  @media(max-width:720px){ .funnel{ grid-template-columns:1fr; gap:18px; text-align:center; } }
+  .funnel .arrow{ color:var(--line-strong); font-size:26px; text-align:center; }
+  @media(max-width:720px){ .funnel .arrow{ transform:rotate(90deg); } }
+  .stage{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:18px; box-shadow:var(--shadow-sm); }
+  .stage h5{ margin:0 0 4px; font-family:var(--sans); font-size:14px; font-weight:700; }
+  .stage p{ margin:0; font-size:13px; color:var(--ink-faint); line-height:1.45; }
+  .stage .count{ font-family:var(--serif); font-size:32px; color:var(--ocean-deep); line-height:1; margin-bottom:6px; }
+  .dots20{ display:flex; flex-wrap:wrap; gap:5px; margin-top:12px; }
+  .dots20 i{ width:9px; height:9px; border-radius:50%; background:var(--line-strong); }
+  .dots20 i.hot{ background:var(--ocean); }
+
+  /* Flowchart */
+  .flow{ counter-reset:flow; display:flex; flex-direction:column; gap:0; }
+  .flow .node{ position:relative; padding-left:64px; padding-bottom:22px; }
+  .flow .node:last-child{ padding-bottom:0; }
+  .flow .node::before{ /* number */
+    counter-increment:flow; content:counter(flow); position:absolute; left:0; top:0;
+    width:38px; height:38px; border-radius:11px; display:grid; place-items:center;
+    font-family:var(--mono); font-weight:600; font-size:15px; color:#fff; background:var(--ink); z-index:2;
+  }
+  .flow .node::after{ /* connector line */
+    content:""; position:absolute; left:18px; top:38px; bottom:-2px; width:2px; background:var(--line-strong); z-index:0;
+  }
+  .flow .node:last-child::after{ display:none; }
+  .flow .node.safety::before{ background:var(--red); }
+  .fcard{ border:1px solid var(--line); border-left:4px solid var(--line-strong); border-radius:var(--r-md); background:var(--card); padding:15px 18px; box-shadow:var(--shadow-sm); }
+  .fcard.r-handoff{ border-left-color:var(--red); }
+  .fcard.r-answer{ border-left-color:var(--ocean); }
+  .fcard.r-ask{ border-left-color:var(--sand); }
+  .fcard.r-greet{ border-left-color:var(--ink-faint); }
+  .fcard .cond{ font-weight:600; margin-bottom:4px; }
+  .fcard .cond .q{ color:var(--ink-faint); font-weight:400; }
+  .fcard .res{ display:inline-flex; align-items:center; gap:7px; font-size:13.5px; margin-top:6px; }
+  .fcard .res .ar{ font-size:14px; }
+  .firstmatch{ display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:#EAF2F1; font-size:12.5px; padding:6px 13px; border-radius:999px; margin-bottom:20px; font-family:var(--mono); letter-spacing:.02em; }
+
+  /* Scenario mini-flow */
+  .scn{ margin:26px 0; }
+  .scn .head{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .scn .badge{ width:34px; height:34px; border-radius:10px; display:grid; place-items:center; font-family:var(--serif); font-weight:600; font-size:18px; color:#fff; flex:0 0 auto; }
+  .scn.a .badge{ background:var(--ocean); }
+  .scn.b .badge{ background:var(--sand); }
+  .scn.c .badge{ background:#6a7a82; }
+  .scn .head h3{ margin:0; font-size:19px; }
+  .miniflow{ display:flex; align-items:stretch; gap:0; flex-wrap:wrap; }
+  .miniflow .mf{ flex:1 1 120px; min-width:120px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); padding:11px 13px; position:relative; box-shadow:var(--shadow-sm); }
+  .miniflow .mf + .mf{ margin-left:26px; }
+  .miniflow .mf + .mf::before{ content:"→"; position:absolute; left:-21px; top:50%; transform:translateY(-50%); color:var(--line-strong); font-size:17px; }
+  .miniflow .mf .s{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); display:block; margin-bottom:3px; }
+  .miniflow .mf .v{ font-size:13.5px; font-weight:600; line-height:1.35; }
+  .miniflow .mf.term-handoff{ border-color:var(--red-line); background:var(--red-wash); }
+  .miniflow .mf.term-answer{ border-color:#C9E1E3; background:var(--ocean-wash); }
+  .miniflow .mf.term-ask{ border-color:#EAD6B3; background:var(--sand-wash); }
+
+  /* numbered rule list */
+  ol.rules{ counter-reset:rl; list-style:none; padding:0; margin:18px 0; display:grid; gap:10px; }
+  ol.rules li{ counter-increment:rl; position:relative; padding:12px 16px 12px 50px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); font-size:15px; box-shadow:var(--shadow-sm); }
+  ol.rules li::before{ content:counter(rl); position:absolute; left:12px; top:11px; width:26px; height:26px; border-radius:8px; background:var(--red-wash); color:var(--red); display:grid; place-items:center; font-weight:700; font-size:13px; }
+  ol.rules.neutral li::before{ background:var(--ocean-wash); color:var(--ocean-deep); }
+
+  .itemchips{ display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
+  .itemchips .ix{ display:flex; flex-direction:column; align-items:center; gap:2px; background:var(--card); border:1px solid var(--line-strong); border-radius:var(--r-sm); padding:11px 16px; box-shadow:var(--shadow-sm); min-width:96px; }
+  .itemchips .ix .ar{ font-size:17px; font-weight:600; }
+  .itemchips .ix small{ font-size:12px; color:var(--ink-faint); }
+  .itemchips .ix.open{ border-style:dashed; background:var(--paper-2); }
+
+  /* report card */
+  .report{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; }
+  .report .rc{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:16px; box-shadow:var(--shadow-sm); }
+  .report .rc .pct{ font-family:var(--serif); font-size:34px; color:var(--green); line-height:1; }
+  .report .rc .nm{ font-size:13px; color:var(--ink-soft); margin-top:4px; }
+  .report .rc.warn .pct{ color:var(--sand); }
+
+  footer.foot{ border-top:1px solid var(--line); margin-top:30px; padding-top:26px; color:var(--ink-faint); font-size:14px; }
+  footer.foot b{ color:var(--ink-soft); }
+
+  .kbd{ font-family:var(--mono); font-size:12.5px; background:var(--ink); color:#CDE6E8; padding:2px 8px; border-radius:6px; }
+
+  /* three-step pipeline + facts form */
+  .pipe.three{ grid-template-columns:repeat(3,1fr); }
+  .steps3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin:22px 0; }
+  @media(max-width:720px){ .steps3{ grid-template-columns:1fr; } }
+  .stp{ background:var(--card); border:1px solid var(--line); border-radius:var(--r-md); padding:18px 18px 16px; box-shadow:var(--shadow-sm); border-top:3px solid var(--ocean); }
+  .stp.mid{ border-top-color:var(--sand); }
+  .stp.end{ border-top-color:var(--green); }
+  .stp .n{ font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .stp h5{ margin:5px 0 7px; font-family:var(--serif); font-weight:600; font-size:19px; }
+  .stp p{ margin:0; font-size:14px; color:var(--ink-soft); line-height:1.5; }
+  .stp .who{ display:inline-block; margin-top:11px; font-size:11px; padding:3px 9px; border-radius:999px; background:var(--paper-2); color:var(--ink-faint); font-weight:600; letter-spacing:.02em; }
+  .stp .who.llm{ background:var(--ocean-wash); color:var(--ocean-deep); }
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:0 26px; margin:6px 0 2px; }
+  @media(max-width:560px){ .facts{ grid-template-columns:1fr; } }
+  .facts .f{ display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+  .facts .f b{ color:var(--ink-soft); font-weight:600; }
+  .facts .f span{ font-family:var(--mono); font-size:12.5px; color:var(--ocean-deep); }
+  .fcard.r-firm{ border-left-color:#7a2118; }
+  .tag.firm{ background:#f3d7d2; color:#7a2118; }
+
+  ::selection{ background:#bfe6ea; color:#0A2A32; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="topbar">
+      <div class="mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v10M12 13l7-2.2M12 13l-7-2.2M5 10.5l-1.4 6.2a1 1 0 0 0 .58 1.12C6.2 19 9 19.6 12 19.6s5.8-.6 7.82-1.78a1 1 0 0 0 .58-1.12L19 10.5M9 5.6h6" stroke="#EAF6F7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="brand">
+        <b>OceanGate&nbsp;Line</b>
+        <span>Shipping &amp; Logistics</span>
+      </div>
+      <div class="spacer"></div>
+      <div class="pill">A plain-language guide</div>
+    </div>
+
+    <h1>How <em>Haider AI</em> reads, thinks, and answers your customers.</h1>
+    <p class="lede">Haider AI is the AI assistant that chats with customers on WhatsApp — in Iraqi Arabic, or English when they write English. This guide explains how he decides what to say, in language any business owner can follow. No code required.</p>
+
+    <div class="chips">
+      <div class="chip"><b>Talks on</b> WhatsApp</div>
+      <div class="chip"><b>Speaks</b> العربية &amp; English</div>
+      <div class="chip"><b>Three steps</b> Understand · Decide · Write</div>
+      <div class="chip"><b>Knows when</b> to call a human</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+<div class="layout">
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-card">
+      <h4>On this page</h4>
+      <ol>
+        <li><a href="#intro">What Haider AI is</a></li>
+        <li><a href="#two-jobs">The three steps</a></li>
+        <li><a href="#cosine">Cosine similarity</a></li>
+        <li><a href="#reranker">The reranker</a></li>
+        <li><a href="#eval">The golden test</a></li>
+        <li><a href="#flow">The decision flow</a></li>
+        <li><a href="#scenarios">Three real examples</a></li>
+        <li><a href="#safety">Safety &amp; cargo rules</a></li>
+        <li><a href="#restricted">Restricted items</a></li>
+        <li><a href="#nuance">Restricted vs. FAQ</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <article>
+
+    <!-- 1. INTRO -->
+    <section id="intro">
+      <span class="eyebrow"><span class="num">1</span> The big picture</span>
+      <h2>What Haider AI actually is</h2>
+      <p class="lead">Think of Haider AI as a very fast new employee who has memorized your company's answer book — and who knows to fetch a human the moment a question goes beyond it.</p>
+      <p>Your team writes <strong>Question → Answer</strong> entries inside Odoo: real questions customers ask, and the exact reply you want given. That collection is the <span class="term">Knowledge Base (KB)</span> — Haider AI's answer book.</p>
+      <p>Behind the scenes those entries are stored in a way that lets Haider AI search by <em>meaning</em>, not just by matching words. This approach has a name — <span class="term">RAG</span> (<span class="ghost">Retrieval-Augmented Generation</span>): first <strong>retrieve</strong> the most relevant saved answer, then use it to <strong>generate</strong> a natural reply. So Haider AI never "makes things up" — he answers from what your team wrote.</p>
+
+      <div class="card pad" style="margin:24px 0 6px;">
+        <h4 class="mini">For every customer message</h4>
+        <div class="pipe three">
+          <div class="step">
+            <div class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 5h16M4 12h10M4 19h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+            <b>Understand</b><span>An AI reads the whole chat and notes the facts: cargo, route, quantity, language.</span>
+          </div>
+          <div class="step">
+            <div class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v5c0 4.4 3.2 7.5 8 9 4.8-1.5 8-4.6 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <b>Decide</b><span>A fixed rulebook picks one action: answer, ask one detail, or hand off to a human.</span>
+          </div>
+          <div class="step">
+            <div class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+            <b>Write</b><span>A second AI phrases the reply in the customer's language — short and direct.</span>
+          </div>
+        </div>
+      </div>
+      <p class="ghost" style="font-size:14px;">The plumbing, in one line: a <strong>FastAPI</strong> backend turns each saved answer into a list of numbers (a "vector") and stores them in <strong>Pinecone</strong>, a database built for searching by meaning. You never touch any of that — your team just writes Q&amp;A in Odoo.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 2. THREE STEPS -->
+    <section id="two-jobs">
+      <span class="eyebrow"><span class="num">2</span> The three steps</span>
+      <h2>Understand the whole chat, decide by the rulebook, then write</h2>
+      <p>Every message runs through the same three steps. The clever part is the split: an <strong>AI</strong> handles the fuzzy human work at the start and end, while a <strong>fixed rulebook</strong> makes the actual decision in the middle — so the bot's behaviour stays predictable and safe.</p>
+
+      <div class="steps3">
+        <div class="stp">
+          <div class="n">Step 1</div>
+          <h5>Understand</h5>
+          <p>An AI reads the <strong>entire</strong> conversation and fills in a small facts form — what the customer wants, and everything they've said so far.</p>
+          <span class="who llm">Done by an AI</span>
+        </div>
+        <div class="stp mid">
+          <div class="n">Step 2</div>
+          <h5>Decide</h5>
+          <p>Plain, fixed rules read that form (and the answer book) and pick <strong>one</strong> action: answer, ask one detail, or hand off. Same facts always give the same decision.</p>
+          <span class="who">Done by rules</span>
+        </div>
+        <div class="stp end">
+          <div class="n">Step 3</div>
+          <h5>Write</h5>
+          <p>A second AI turns that decision into a short, natural reply in the customer's language — Iraqi Arabic or English.</p>
+          <span class="who llm">Done by an AI</span>
+        </div>
+      </div>
+
+      <h3>The facts form (the bot's working memory)</h3>
+      <p>Step 1 always produces the same little form. Here's what it looks like after the customer says <span class="msg cust ar" style="font-size:15px;">أريد شحن ملابس من الصين للعراق<span class="en">“I want to ship clothes from China to Iraq.”</span></span></p>
+      <div class="card pad" style="margin:16px 0;">
+        <div class="facts">
+          <div class="f"><b>cargo</b><span>clothes</span></div>
+          <div class="f"><b>quantity</b><span>(not given yet)</span></div>
+          <div class="f"><b>from</b><span>China</span></div>
+          <div class="f"><b>to</b><span>Iraq</span></div>
+          <div class="f"><b>method</b><span>(not given yet)</span></div>
+          <div class="f"><b>language</b><span>Arabic</span></div>
+          <div class="f"><b>question or request?</b><span>request</span></div>
+          <div class="f"><b>restricted item?</b><span>no</span></div>
+        </div>
+      </div>
+      <div class="callout note">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0A4D5E" stroke-width="1.7"/><path d="M12 11v5M12 8h.01" stroke="#0A4D5E" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <b class="lbl">Why read the whole chat every time?</b>
+        Because the form is rebuilt fresh from the <em>entire</em> conversation on every message, Haider AI never forgets a detail the customer already gave — and never re-asks for it. Searching the answer book (the next sections) is how the “Decide” step answers questions.
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 3. COSINE -->
+    <section id="cosine">
+      <span class="eyebrow"><span class="num">3</span> Concept · the fast pass</span>
+      <h2>Cosine similarity: a quick “closeness of meaning” score</h2>
+      <p class="lead">Cosine similarity is a number from <strong>0 to 1</strong> that rates how close two sentences are in meaning. <strong>1</strong> means “basically the same idea.” <strong>0</strong> means “totally unrelated.”</p>
+      <p>Here's the mental model. Haider AI turns every sentence into a single point on a giant <strong>“map of meaning”</strong> — sentences about the same topic land near each other; unrelated ones land far apart. Cosine simply measures how close two points sit on that map.</p>
+
+      <div class="card pad" style="margin:22px 0;">
+        <h4 class="mini">A map of meaning (illustration)</h4>
+        <div class="map">
+          <div class="grid"></div>
+          <div class="pt" style="left:30%;top:62%;"><span class="d" style="background:#0E6E84;"></span><small>“What container types do you have?”</small></div>
+          <div class="pt" style="left:46%;top:40%;"><span class="d" style="background:#1FA0B4;"></span><small>“Container sizes (20ft / 40ft)”</small></div>
+          <div class="pt" style="left:78%;top:30%;"><span class="d" style="background:#C0813B;"></span><small>“Do you ship to Egypt?”</small></div>
+          <div class="pt" style="left:84%;top:74%;"><span class="d" style="background:#B23A2E;"></span><small>“Office working hours”</small></div>
+        </div>
+        <p class="ghost" style="font-size:13.5px;margin:12px 0 0;">Points about containers cluster together; “working hours” sits far away. Cosine is the distance between any two of these dots, scored 0 → 1.</p>
+      </div>
+
+      <h3>What it's good at — and where it wobbles</h3>
+      <p>Cosine is excellent at <strong>“same general topic.”</strong> It reliably pulls the <strong>~20 closest</strong> saved questions out of hundreds. But it's shaky at <strong>“which exact one is right.”</strong> Its top pick can be only <em>barely</em> ahead of a wrong one.</p>
+
+      <div class="card pad" style="margin:18px 0;">
+        <h4 class="mini">A shaky lead — cosine alone</h4>
+        <div class="scorebar">
+          <div class="sb-row"><span class="lab">Right answer</span><span class="sb-track"><span class="sb-fill win" style="width:73%;"></span></span><span class="sb-val">0.73</span></div>
+          <div class="sb-row"><span class="lab">A wrong answer</span><span class="sb-track"><span class="sb-fill lose" style="width:55%;"></span></span><span class="sb-val">0.55</span></div>
+        </div>
+        <p class="ghost" style="font-size:13.5px;margin:10px 0 0;">0.73 vs 0.55 — the right answer leads, but not by much. Close enough that a small wording change could flip them. We don't want to bet a customer reply on a lead this thin. That's exactly why a second, smarter judge exists.</p>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 4. RERANKER -->
+    <section id="reranker">
+      <span class="eyebrow"><span class="num">4</span> Concept · the careful pass</span>
+      <h2>The reranker: a slower expert who actually reads</h2>
+      <p class="lead">The reranker re-reads the customer's question <strong>side-by-side with each candidate answer</strong> and scores how well each one <em>truly</em> answers it — not just whether it's on the same topic.</p>
+
+      <div class="callout tip">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M5 19V5a1 1 0 0 1 1-1h11l2 2v13M7 4v15M9 8h6M9 11h6" stroke="#2C7A52" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b class="lbl">The librarian &amp; the expert</b>
+        <strong>Cosine is the librarian</strong> who quickly grabs ~20 books from roughly the right shelf. <strong>The reranker is the subject expert</strong> who reads those books and picks the one that genuinely answers your question. Haider AI trusts the <strong>expert</strong> for the final decision.
+      </div>
+
+      <h3>The funnel: 20 candidates in, the best 1–3 out</h3>
+      <div class="funnel" style="margin:20px 0;">
+        <div class="stage">
+          <div class="count">~20</div>
+          <h5>Candidates</h5>
+          <p>Cosine casts a wide net over the whole answer book.</p>
+          <div class="dots20">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage" style="border-color:#C9E1E3;background:var(--ocean-wash);">
+          <h5 style="color:var(--ocean-deep);">Reranker</h5>
+          <p>Re-reads each one against the real question and re-scores it for true relevance.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+          <div class="count">1–3</div>
+          <h5>Best matches</h5>
+          <p>The clear winner (plus a runner-up or two) is what Haider AI acts on.</p>
+          <div class="dots20">
+            <i class="hot"></i><i class="hot"></i><i class="hot"></i>
+          </div>
+        </div>
+      </div>
+
+      <h3>When the two disagree, the reranker wins</h3>
+      <p>This is the most important teaching point. The reranker understands <strong>meaning</strong>; cosine can be fooled by <strong>shared words</strong>. So when they disagree on the #1 pick, Haider AI goes with the reranker.</p>
+
+      <p style="margin-bottom:10px;">Customer asks:</p>
+      <p style="margin:0 0 18px;"><span class="msg cust ar">كم تكلفة شحن حاوية؟<span class="en">“How much does it COST to ship a container?”</span></span></p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="two-up">
+        <div class="card pad">
+          <h4 class="mini">Cosine's pick <span style="color:var(--red);">✕ fooled</span></h4>
+          <p style="margin:0 0 6px;font-size:15px;">Sees the word <strong>“container”</strong> and grabs the <em>“container types”</em> FAQ.</p>
+          <div class="scorebar" style="margin-top:10px;">
+            <div class="sb-row" style="grid-template-columns:1fr 56px;"><span class="lab">Container types FAQ</span><span class="sb-val">0.73</span></div>
+            <div class="sb-row" style="grid-template-columns:1fr 56px;"><span class="lab">Prices FAQ</span><span class="sb-val">0.55</span></div>
+          </div>
+        </div>
+        <div class="card pad" style="border-color:#C9E1E3;">
+          <h4 class="mini" style="color:var(--ocean-deep);">Reranker's pick <span style="color:var(--green);">✓ correct</span></h4>
+          <p style="margin:0 0 6px;font-size:15px;">Understands the customer asked about <strong>cost</strong>, and picks the <em>prices</em> FAQ — confidently.</p>
+          <div class="scorebar" style="margin-top:10px;">
+            <div class="sb-row" style="grid-template-columns:1fr 56px;"><span class="lab">Prices FAQ</span><span class="sb-val">0.97</span></div>
+            <div class="sb-row" style="grid-template-columns:1fr 56px;"><span class="lab">Container types FAQ</span><span class="sb-val">0.12</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="ghost" style="font-size:14px;margin-top:14px;">Notice the gap. Cosine was unsure (0.73 vs 0.55). The reranker is <strong>certain</strong> (0.97 vs 0.12). That confidence is what Haider AI uses to decide it's safe to answer.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 5. EVAL -->
+    <section id="eval">
+      <span class="eyebrow"><span class="num">5</span> Quality control</span>
+      <h2>The “golden” test: a practice exam with an answer key</h2>
+      <p class="lead">Before any change to Haider AI goes live, he has to re-sit an exam — so a tweak that fixes one thing can't quietly break another.</p>
+      <p>The exam is a file of about <strong>22 real example conversations</strong>. Each one comes with the <strong>correct expected outcome</strong> written down: Should he answer or hand off? In which language? Did he avoid re-asking something the customer already said? A script replays all of them and prints a <strong>report card</strong>.</p>
+
+      <div class="report">
+        <div class="rc"><div class="pct">100%</div><div class="nm">Right language</div></div>
+        <div class="rc"><div class="pct">100%</div><div class="nm">Correct hand-offs</div></div>
+        <div class="rc"><div class="pct">100%</div><div class="nm">No wrong re-asks</div></div>
+        <div class="rc warn"><div class="pct">✓</div><div class="nm">Answers judged correct</div></div>
+      </div>
+
+      <p>The exam covers the tricky paths on purpose: greetings, illegal-cargo refusals, safety hand-offs (Egypt, shipping out of Iraq, city-to-city inside Iraq), restricted items, full-car requests, China&rarr;Iraq inbound routes, FAQ answers, and multi-turn chats where Haider AI must <em>not</em> re-ask a detail the customer already gave.</p>
+
+      <div class="callout tip">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#2C7A52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b class="lbl">The growth rule</b>
+        Every real customer mistake becomes a <strong>permanent new exam question</strong> before the fix ships. The exam only ever gets stronger — so the same mistake can never silently come back.
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 6. FLOW -->
+    <section id="flow">
+      <span class="eyebrow"><span class="num">6</span> The centerpiece</span>
+      <h2>Haider AI's decision flow, top to bottom</h2>
+      <p class="lead">Once the message is understood, the reply is decided by a fixed rulebook. It's <strong>ordered</strong> — Haider AI takes the first rule that matches and stops. Illegal-cargo and banned-route checks sit at the very top, so <strong>no saved answer can ever override them.</strong></p>
+
+      <div class="firstmatch">⬇ first match wins — checked top to bottom</div>
+
+      <div class="flow">
+        <div class="node">
+          <div class="fcard">
+            <div class="cond">Understand the message <span class="q">— fill in the facts form</span></div>
+            <p style="margin:0;font-size:14.5px;color:var(--ink-soft);">An AI notes cargo, origin, destination, quantity, language — and the key fork: is this a <strong>question</strong>, or an <strong>active shipping request</strong> (the customer gave a full route or a quantity)?</p>
+          </div>
+        </div>
+
+        <div class="node safety">
+          <div class="fcard r-firm">
+            <div class="cond">Clearly-illegal cargo? <span class="q">drugs, weapons, explosives</span></div>
+            <p style="margin:0 0 4px;font-size:14.5px;color:var(--ink-soft);">Say firmly we cannot ship it — no transfer, no price. Highest priority of all; never overridable by a saved answer.</p>
+            <span class="res"><span class="tag firm">Firm refusal</span></span>
+          </div>
+        </div>
+
+        <div class="node safety">
+          <div class="fcard r-handoff">
+            <div class="cond">Banned route? <span class="q">can NEVER be overridden by a saved answer</span></div>
+            <p style="margin:0 0 4px;font-size:14.5px;color:var(--ink-soft);"><strong>Egypt</strong> (any direction), shipping <strong>OUT of Iraq</strong>, or <strong>INSIDE Iraq</strong> (city-to-city) &rarr; unavailable.</p>
+            <span class="res"><span class="tag handoff">Hand off to a human</span></span>
+          </div>
+        </div>
+
+        <div class="node">
+          <div class="fcard r-answer">
+            <div class="cond">A QUESTION with a confident saved answer? <span class="q">(not mid-request)</span></div>
+            <p style="margin:0 0 4px;font-size:14.5px;color:var(--ink-soft);">Answer from the Knowledge Base. <span class="ghost">But if the saved “answer” is really a “let me transfer you” note &rarr; treat it as a proper hand-off, not an answer.</span></p>
+            <span class="res"><span class="tag answer">Answer from KB</span></span>
+          </div>
+        </div>
+
+        <div class="node">
+          <div class="fcard r-ask">
+            <div class="cond">An active shipping REQUEST? <span class="q">(gave a route or a quantity)</span></div>
+            <p style="margin:0 0 4px;font-size:14.5px;color:var(--ink-soft);">Ask the <strong>one</strong> missing detail — cargo, quantity, route, or method (one question per message) — then hand off once the request is complete.</p>
+            <span class="res"><span class="tag ask">Ask one detail &rarr; hand off</span></span>
+          </div>
+        </div>
+
+        <div class="node">
+          <div class="fcard r-greet">
+            <div class="cond">Anything else <span class="q">— greeting, restricted item, full car, price…</span></div>
+            <p style="margin:0 0 4px;font-size:14.5px;color:var(--ink-soft);">Greet and wait · answer an FAQ or the SHEIN case · “spare parts only” for a full car · collect cargo + route then hand off to the pricing team · politely hand off a restricted item.</p>
+            <span class="res"><span class="tag" style="background:var(--paper-2);color:var(--ink-soft);">Greet · answer · or hand off</span></span>
+          </div>
+        </div>
+      </div>
+
+      <h3>The three guardrails before Haider AI answers</h3>
+      <p>Even when something looks like a confident question, Haider AI must clear <strong>all three</strong> of these before sending a saved answer. If <em>any</em> one fails, he doesn't guess — he hands off.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0;" class="three-up">
+        <div class="card pad" style="text-align:center;">
+          <div style="font-family:var(--mono);font-size:24px;color:var(--ocean-deep);">≥ 0.5</div>
+          <h4 class="mini" style="margin:8px 0 4px;">Confident</h4>
+          <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">The reranker's score for the winner is high enough.</p>
+        </div>
+        <div class="card pad" style="text-align:center;">
+          <div style="font-family:var(--mono);font-size:24px;color:var(--ocean-deep);">≥ 0.45</div>
+          <h4 class="mini" style="margin:8px 0 4px;">Topically sane</h4>
+          <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">The winner's cosine clears a floor — it's at least on-topic.</p>
+        </div>
+        <div class="card pad" style="text-align:center;">
+          <div style="font-family:var(--mono);font-size:24px;color:var(--ocean-deep);">≥ 0.15</div>
+          <h4 class="mini" style="margin:8px 0 4px;">Clear win</h4>
+          <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">It beats the runner-up by a real margin — not a coin-toss.</p>
+        </div>
+      </div>
+      <p class="ghost" style="font-size:14px;">In plain terms: <strong>be confident, be on-topic, and win clearly.</strong> Anything less, and a human takes over.</p>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 7. SCENARIOS -->
+    <section id="scenarios">
+      <span class="eyebrow"><span class="num">7</span> Walkthroughs</span>
+      <h2>Three real conversations, step by step</h2>
+      <p class="lead">The same routine, three different outcomes. Watch how the <strong>same cargo word</strong> can go down completely different paths.</p>
+
+      <!-- Scenario A -->
+      <div class="scn a">
+        <div class="head"><div class="badge">A</div><h3>A question → Haider AI answers</h3></div>
+        <p style="margin:0 0 10px;"><span class="msg cust ar">شنو أنواع الحاويات عندكم؟<span class="en">“What container types do you have?”</span></span></p>
+        <div class="miniflow">
+          <div class="mf"><span class="s">Understand</span><span class="v">No route, no quantity → a QUESTION</span></div>
+          <div class="mf"><span class="s">Safety</span><span class="v">No Egypt / Iraq-out → clear</span></div>
+          <div class="mf"><span class="s">Reranker</span><span class="v">Confident: 0.97</span></div>
+          <div class="mf term-answer"><span class="s">Result</span><span class="v">Answers from the KB</span></div>
+        </div>
+        <table style="margin-top:14px;">
+          <thead><tr><th>Check</th><th>Reading</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td>Question or request?</td><td>No route, no quantity</td><td><span class="tag answer">Question</span></td></tr>
+            <tr><td>Reranker confidence</td><td>0.97 (well over 0.5)</td><td><span class="tag yes">Pass</span></td></tr>
+            <tr><td>All three guardrails</td><td>Confident · on-topic · clear win</td><td><span class="tag yes">Pass</span></td></tr>
+            <tr><td><strong>Outcome</strong></td><td>Sends the saved container-types answer</td><td><span class="tag answer">Answer</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Scenario B -->
+      <div class="scn b">
+        <div class="head"><div class="badge">B</div><h3>A complete request → Haider AI hands off</h3></div>
+        <p style="margin:0 0 10px;"><span class="msg cust ar">أريد شحن أثاث من الامارات للعراق، الكمية ٣ طن<span class="en">“I want to ship furniture from the UAE to Iraq, quantity 3 tons.”</span></span></p>
+        <div class="miniflow">
+          <div class="mf"><span class="s">Understand</span><span class="v">Route + quantity → a REQUEST</span></div>
+          <div class="mf"><span class="s">Safety</span><span class="v">UAE → Iraq is allowed</span></div>
+          <div class="mf"><span class="s">Complete?</span><span class="v">Nothing missing</span></div>
+          <div class="mf term-handoff"><span class="s">Result</span><span class="v">Hands off for a quote</span></div>
+        </div>
+        <div class="callout note" style="margin:14px 0;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5" stroke="#0A4D5E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b class="lbl">Same word, different path</b>
+          “Furniture” appeared in a <em>question</em> it would get an answer. Here it came with a <strong>route + a quantity</strong>, so it's a real shipping request — and those go to a person for a quote, not to the answer book.
+        </div>
+        <table>
+          <thead><tr><th>Check</th><th>Reading</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td>Question or request?</td><td>Has a route AND a quantity</td><td><span class="tag ask">Request</span></td></tr>
+            <tr><td>Anything missing?</td><td>Cargo ✓ · route ✓ · quantity ✓</td><td><span class="tag yes">Complete</span></td></tr>
+            <tr><td><strong>Outcome</strong></td><td>A human prepares the quote</td><td><span class="tag handoff">Hand off</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Scenario C -->
+      <div class="scn c">
+        <div class="head"><div class="badge">C</div><h3>No good answer → Haider AI admits it and hands off</h3></div>
+        <p style="margin:0 0 10px;"><span class="msg cust ar">هل في تأمين إذا انكسرت البضاعة؟<span class="en">“Is there insurance if the goods break?”</span></span></p>
+        <div class="miniflow">
+          <div class="mf"><span class="s">Understand</span><span class="v">A QUESTION</span></div>
+          <div class="mf"><span class="s">Find</span><span class="v">Best match only 0.30</span></div>
+          <div class="mf"><span class="s">Confident?</span><span class="v">Below 0.5 → no</span></div>
+          <div class="mf term-handoff"><span class="s">Result</span><span class="v">Hands off — doesn't guess</span></div>
+        </div>
+        <table style="margin-top:14px;">
+          <thead><tr><th>Check</th><th>Reading</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td>Is there a matching FAQ?</td><td>No real insurance entry exists</td><td><span class="tag no">None</span></td></tr>
+            <tr><td>Reranker confidence</td><td>0.30 (under the 0.5 bar)</td><td><span class="tag no">Fail</span></td></tr>
+            <tr><td><strong>Outcome</strong></td><td>Transfers instead of inventing an answer</td><td><span class="tag handoff">Hand off</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout tip" style="margin-top:14px;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3a6 6 0 0 0-3 11.2V17h6v-2.8A6 6 0 0 0 12 3ZM9.5 20h5M10 17v3M14 17v3" stroke="#2C7A52" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b class="lbl">Being smart includes knowing when you don't know</b>
+          Haider AI would rather pass a question to a person than guess. And the day your team adds an <strong>insurance</strong> entry to the Knowledge Base, he automatically starts answering it — no code change needed.
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 8. SAFETY -->
+    <section id="safety">
+      <span class="eyebrow"><span class="num">8</span> Guardrails</span>
+      <h2>Safety rules that override everything else</h2>
+
+      <div class="callout safety">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3 2.5 20h19L12 3Z" stroke="#B23A2E" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="#B23A2E" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <b class="lbl">Hard rules — enforced in code, un-overridable</b>
+        These are facts about what the company does <strong>not</strong> do. No saved answer — even an accidental one — can switch them off. They run <em>before</em> Haider AI ever looks at the answer book.
+      </div>
+
+      <h3>Iraq is destination-only</h3>
+      <p>We ship <strong>into</strong> Iraq from abroad — China, the UAE, the Gulf. Three route situations are refused:</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0;" class="three-up">
+        <div class="card pad">
+          <h4 class="mini" style="color:var(--red);">Egypt — any direction</h4>
+          <p style="margin:0 0 8px;font-size:14.5px;">From <strong>or</strong> to Egypt &rarr; hand off.</p>
+          <span class="msg cust ar" style="font-size:15px;">من مصر للعراق<span class="en">“From Egypt to Iraq.”</span></span>
+        </div>
+        <div class="card pad">
+          <h4 class="mini" style="color:var(--red);">Out of Iraq</h4>
+          <p style="margin:0 0 8px;font-size:14.5px;">Iraq &rarr; outside &rarr; “unavailable” + hand off.</p>
+          <span class="msg cust ar" style="font-size:15px;">من بغداد إلى الامارات<span class="en">“Baghdad to the UAE.”</span></span>
+        </div>
+        <div class="card pad">
+          <h4 class="mini" style="color:var(--red);">Inside Iraq</h4>
+          <p style="margin:0 0 8px;font-size:14.5px;">City-to-city (e.g. Baghdad&rarr;Basra) &rarr; “unavailable” + hand off.</p>
+          <span class="msg cust ar" style="font-size:15px;">من بغداد للبصرة<span class="en">“Baghdad to Basra.”</span></span>
+        </div>
+      </div>
+      <div class="callout tip">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M3 13h4l2-3 3 7 2.5-5 1.5 2h5" stroke="#2C7A52" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b class="lbl">What changed — air freight is back</b>
+        Air shipping used to be paused; it's now offered as a <strong>normal method</strong> alongside sea and land. From <strong>China</strong> the options are air or sea (via container); a full container ships by sea or land. Delivering imported goods to a door <em>inside</em> Iraq is still fine — it's domestic city-to-city routes we don't run.
+      </div>
+
+      <h3>The eight non-negotiable rules</h3>
+      <p>Beyond the route bans, Haider AI follows a broader safety policy. These are the lines he never crosses:</p>
+      <ol class="rules">
+        <li><strong>Two cargo tiers.</strong> Clearly-illegal goods (drugs, weapons, explosives) get a <strong>firm refusal</strong> — no transfer; sensitive-but-legal items get a <strong>polite hand-off</strong>.</li>
+        <li><strong>Iraq is destination-only</strong> — no shipping out of Iraq, and no city-to-city inside Iraq.</li>
+        <li><strong>Egypt — any direction.</strong> Always hand off.</li>
+        <li><strong>Whole cars are not shipped</strong> — only car spare parts.</li>
+        <li><strong>Restricted items &rarr; hand off.</strong> Never tell the customer an item is “banned” (<span class="ar">ممنوع</span>) or “restricted” — just transfer politely.</li>
+        <li><strong>Never quote prices</strong> (except the one approved SHEIN case).</li>
+        <li><strong>Never ask about the payment method.</strong></li>
+        <li><strong>Don't collect recipient details</strong> before the price or service is confirmed.</li>
+      </ol>
+      <div class="callout safety">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#B23A2E" stroke-width="1.7"/><path d="M9 12h6" stroke="#B23A2E" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <b class="lbl">Tone matters</b>
+        When a hand-off happens, Haider AI transfers <strong>politely</strong> and says nothing more — no summaries, no working hours, and never the word “restricted.” The customer just gets a smooth pass to a person.
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 9. RESTRICTED ITEMS -->
+    <section id="restricted">
+      <span class="eyebrow"><span class="num">9</span> The list</span>
+      <h2>Restricted items, by name</h2>
+      <p>These items are legal but <strong>sensitive</strong>, so Haider AI politely hands them off to a person (and never names them as “restricted”). Note the last chip: the list is <strong>open-ended</strong>.</p>
+      <div class="callout safety">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 3 2.5 20h19L12 3Z" stroke="#B23A2E" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="#B23A2E" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <b class="lbl">Two tiers, two reactions</b>
+        Don't confuse these with <strong>illegal</strong> goods. Drugs, weapons, and explosives get a <strong>firm refusal</strong> — “we can't ship that,” no transfer. The items below are <strong>legal but sensitive</strong>, so they get a <strong>polite hand-off</strong> to a person instead.
+      </div>
+      <div class="itemchips">
+        <div class="ix"><span class="ar">ذهب</span><small>Gold</small></div>
+        <div class="ix"><span class="ar">أدوية</span><small>Medicine</small></div>
+        <div class="ix"><span class="ar">هواتف / ايفونات</span><small>Phones / iPhones</small></div>
+        <div class="ix"><span class="ar">فيب</span><small>Vapes</small></div>
+        <div class="ix"><span class="ar">ستارلينك</span><small>Starlink</small></div>
+        <div class="ix open"><span class="ar">وغيرها</span><small>…and others</small></div>
+      </div>
+      <div class="callout note">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0A4D5E" stroke-width="1.7"/><path d="M12 11v5M12 8h.01" stroke="#0A4D5E" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <b class="lbl">“And others” means it uses judgment too</b>
+        Beyond the named items, Haider AI also flags similar sensitive things — like cash or other high-value goods — by judgment. To make a specific item <strong>always</strong> restricted, your team simply adds it to the policy.
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- 10. NUANCE -->
+    <section id="nuance">
+      <span class="eyebrow"><span class="num">10</span> The nuance</span>
+      <h2>Restricted items vs. a real FAQ answer</h2>
+      <p class="lead">Here's the subtle part. A sensitive-type item is only handed off when the Knowledge Base has <strong>no</strong> confident answer for it. If your team <em>has</em> written a real, nuanced answer — that answer wins.</p>
+
+      <p>Take the <strong>plants</strong> example. Ornamental plants, refrigerated cargo, and agricultural materials sound sensitive, but Sales <em>has</em> written a genuine answer for them (“depends on the type — send photos, full containers only…”). So Haider AI <strong>answers</strong>. Gold and medicine have no such answer, so he <strong>hands off</strong>.</p>
+
+      <table style="margin-top:18px;">
+        <thead><tr><th>Item</th><th>Has a real FAQ answer?</th><th>What Haider AI does</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ar">نباتات الزينة</span> <span class="ghost">· Ornamental plants</span></td><td><span class="tag yes">Yes</span></td><td><span class="tag answer">Answers</span></td></tr>
+          <tr><td><span class="ar">الشحن المبرد</span> <span class="ghost">· Refrigerated</span></td><td><span class="tag yes">Yes</span></td><td><span class="tag answer">Answers</span></td></tr>
+          <tr><td><span class="ar">المواد الزراعية</span> <span class="ghost">· Agricultural</span></td><td><span class="tag yes">Yes</span></td><td><span class="tag answer">Answers</span></td></tr>
+          <tr><td><span class="ar">ذهب</span> <span class="ghost">· Gold</span></td><td><span class="tag no">No</span></td><td><span class="tag handoff">Hands off</span></td></tr>
+          <tr><td><span class="ar">أدوية</span> <span class="ghost">· Medicine</span></td><td><span class="tag no">No</span></td><td><span class="tag handoff">Hands off</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout tip" style="margin-top:20px;">
+        <svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M5 13c5 0 7-3 7-9 0 0-7 1-7 9ZM12 22c0-6 3-9 7-9 0 6-3 9-7 9Z" stroke="#2C7A52" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <b class="lbl">Your answer book is the steering wheel</b>
+        This is the recurring theme: Haider AI's behavior is driven by what your team writes in Odoo. Add a good answer and he starts using it. Leave a gap, and he safely defers to a human. You're always in control — no engineer required.
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p><b>OceanGate Line</b> · A plain-language guide to how the Haider AI assistant works. Numbers shown — the 0.5 confidence bar, the 0.45 topic floor, the 0.15 margin, the ~20-candidate net — are the real settings the system runs on.</p>
+    </footer>
+
+  </article>
+</div>
+</div>
+</main>
+
+<script>
+  // Active TOC highlighting
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+    var map = {};
+    links.forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if(el) map[id] = a;
+    });
+    var sections = Object.keys(map).map(function(id){ return document.getElementById(id); });
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){ l.classList.remove('active'); });
+          var a = map[e.target.id];
+          if(a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-20% 0px -70% 0px', threshold:0 });
+    sections.forEach(function(s){ if(s) obs.observe(s); });
+  })();
+</script>
+</body>
+</html>

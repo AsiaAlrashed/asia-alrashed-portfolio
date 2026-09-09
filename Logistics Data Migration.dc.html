@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case header" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-size:12.5px;letter-spacing:.04em;color:#FFFFFF" style-hover="color:#11CBCB">← Back to projects</a>
+  <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)">Transformation · Data Engineering</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="font-size:12.5px;letter-spacing:.04em;color:#11CBCB">Contact</a>
+</header>
+
+<section data-screen-label="Title" style="padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) clamp(34px,5vh,54px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Data Transformation · ETL · System Migration</div>
+    <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Multi-Year Logistics Data Migration</h1>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">Three years of operational history reconstructed from third-party APIs and several business sources, then reconciled into one relational foundation.</p>
+  </div>
+</section>
+
+<section data-screen-label="Challenge" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( A ) The challenge</div>
+      <h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">The history existed, but not in a usable form</h2>
+    </div>
+    <div data-reveal="80">
+      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Three years of operational data sat behind third-party web APIs and across several business sources. Pulling it was the easy part. The difficulty was that the same customer, shipment, or driver appeared differently in each source, with missing values, duplicates, and inconsistent identifiers, and the relationships between records were not preserved on the way out.</p>
+      <p style="margin:0;font-size:1.02rem;line-height:1.65">Until that was resolved there was no reliable base for analytics or for machine learning. This is a data engineering problem, and it had to be finished before any modeling could be taken seriously.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Snapshot" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="background:#181360;border-radius:14px;padding:clamp(28px,4vw,44px);color:#FFFFFF;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:clamp(24px,4vw,44px);align-items:end">
+      <div>
+        <div style="font-size:clamp(2.4rem,6vw,3.8rem);font-weight:700;line-height:.92;letter-spacing:-.04em;color:#11CBCB">3 years</div>
+        <div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:10px;max-width:26ch">Of historical operational data reconstructed</div>
+      </div>
+      <div>
+        <div style="font-size:clamp(2.4rem,6vw,3.8rem);font-weight:700;line-height:.92;letter-spacing:-.04em">6</div>
+        <div style="font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:10px;max-width:28ch">Domains unified: customers, orders, shipments, drivers, collections, accounting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Pipeline" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( B ) The pipeline</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">From API responses to a relational foundation</h2>
+    <div data-reveal="80" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.2);border-radius:14px;padding:clamp(22px,3vw,34px)">
+      <div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:14px">Migration flow</div>
+      <div style="display:flex;flex-direction:column;gap:7px;max-width:560px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Third-party web APIs and business sources</span><span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Extraction with checkpointing</span><span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Cleaning: missing values, duplicates, inconsistent identifiers</span><span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Reconciliation across sources</span><span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF">Relational data model design</span><span style="text-align:center;color:#11CBCB;font-size:13px">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700">Migration into PostgreSQL, ready for analytics and ML</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px;margin-top:22px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Orchestration</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Automated ETL with Apache Airflow and Spark, with Python and FastAPI components, so the process was repeatable and validated rather than a one-off script run.</p>
+      </div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Reconciliation</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Cross-source relationship issues resolved with Pandas and SQL, so an entity has one identity and its links to other domains survive the migration.</p>
+      </div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Modeling</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">A relational model designed for the cleaned data, which is what turned a pile of exports into a structured dataset that downstream work can depend on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Decisions" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( C ) Engineering decisions</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Why it was built this way</h2>
+    <div style="display:flex;flex-direction:column">
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Batch, not streaming</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">This is historical reconstruction, so correctness matters more than latency. Batch processing allows validation between stages and a rerun when a rule changes.</p>
+      </div>
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Relational, deliberately</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">The value of this data is in how the domains relate. A relational model enforces those links instead of leaving them to be rediscovered by every consumer.</p>
+      </div>
+      <div data-reveal="0" style="display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:12px 26px;padding:22px 0;border-top:1px solid rgba(24,19,96,.12);border-bottom:1px solid rgba(24,19,96,.12)">
+        <div style="font-size:12.5px;font-weight:700;color:#181360;letter-spacing:-.01em">Separate from the ML work</div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">This migration and the ETA model share a data foundation but are different competencies. Keeping them separate makes it clear which problem each one solved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Impact" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">( D ) Impact</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">What it made possible</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">An ML-ready dataset.</b> Structured, reconciled history is what the ETA model was trained on.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">Cross-domain questions became answerable.</b> Links between domains survive in the model.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">Repeatable process.</b> Orchestrated pipelines can be rerun rather than redone by hand.</p></div>
+      <div data-reveal="180" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><p style="margin:0;font-size:.96rem;line-height:1.6"><b style="color:#181360">Improved traceability.</b> Records carry consistent identity across sources.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Python</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pandas</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">SQL</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Apache Airflow</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Apache Spark</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">FastAPI</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">PostgreSQL</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">ETL</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Data Modeling</span></div>
+  </div>
+</section>
+
+<footer data-screen-label="Case footer" style="background:#181360;color:#FFFFFF;padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) 40px">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:18px">You may also like</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px">
+      <a href="ETA Prediction Pipeline.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Machine Learning</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Delivery ETA Prediction</div></a>
+      <a href="Logistics Platform.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Transformation</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Logistics Platform</div></a>
+      <a href="Operations Intelligence.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Transformation</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Operations Intelligence</div></a>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(36px,6vh,60px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">← Back to projects</a>
+      <a href="ETA Prediction Pipeline.dc.html" style="color:#11CBCB">Next case study →</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

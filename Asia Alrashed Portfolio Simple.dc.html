@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (min-width:760px){header nav{order:1 !important;flex:0 1 auto !important}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<!-- ============ HEADER ============ -->
+<header data-screen-label="Header" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 20px;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="#top" style="font-size:15px;font-weight:700;letter-spacing:-.02em;order:1;color:#FFFFFF">Asia Alrashed</a>
+  <nav style="display:flex;align-items:center;flex-wrap:wrap;gap:8px clamp(12px,2vw,26px);font-size:12.5px;letter-spacing:.02em;order:3;flex:1 1 100%;color:rgba(255,255,255,.78)">
+    <a href="#projects" style-hover="color:#FFFFFF">Projects</a>
+    <a href="#experience" style-hover="color:#FFFFFF">Experience</a>
+    <a href="#expertise" style-hover="color:#FFFFFF">Expertise</a>
+    <a href="#about" style-hover="color:#FFFFFF">About</a>
+  </nav>
+  <a href="#contact" style="font-size:13px;letter-spacing:.02em;color:#181360;background:#11CBCB;border-radius:8px;padding:10px 18px;white-space:nowrap;order:2" style-hover="background:#FFFFFF;color:#181360">Contact</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" data-screen-label="Hero" style="padding:clamp(120px,15vh,168px) clamp(20px,5vw,64px) clamp(50px,8vh,90px)">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(32px,5vw,72px);align-items:center">
+    <div data-reveal="0">
+      <div style="display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.04em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:7px 14px;margin-bottom:26px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#11CBCB"></span>
+        <span>Ajman, United Arab Emirates · Open to work</span>
+      </div>
+      <h1 style="margin:0;font-size:clamp(2.5rem,6.5vw,4.4rem);font-weight:700;line-height:1.02;letter-spacing:-.035em;color:#181360">Asia Alrashed</h1>
+      <p style="margin:16px 0 0;font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.35;color:#181360;font-weight:700;letter-spacing:-.015em">Applied AI Engineer<span style="color:#5F5F7A;font-weight:400"> | </span>Machine Learning, LLMs &amp; Intelligent Systems</p>
+      <p style="margin:20px 0 0;font-size:1.02rem;line-height:1.65;max-width:52ch">I design and build production AI systems, from data and machine learning models to LLM applications and intelligent business workflows. My work combines AI engineering with real business transformation, turning operational problems into scalable intelligent systems.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:26px 0 0;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#5F5F7A">
+        <span style="color:#181360;font-weight:700">Data</span><span style="color:#11CBCB">→</span>
+        <span style="color:#181360;font-weight:700">Modeling</span><span style="color:#11CBCB">→</span>
+        <span style="color:#181360;font-weight:700">LLM / AI</span><span style="color:#11CBCB">→</span>
+        <span style="color:#181360;font-weight:700">Deployment</span><span style="color:#11CBCB">→</span>
+        <span style="color:#181360;font-weight:700">Business applications</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:32px">
+        <a href="#projects" style="font-size:13px;letter-spacing:.02em;color:#FFFFFF;background:#181360;border-radius:8px;padding:13px 22px" style-hover="background:#11CBCB;color:#181360">View projects</a>
+        <a href="#transformation" style="font-size:13px;letter-spacing:.02em;color:#181360;background:#FFFFFF;border:1px solid rgba(24,19,96,.22);border-radius:8px;padding:13px 22px" style-hover="border-color:#11CBCB;color:#181360">Explore AI Transformation</a>
+        <a href="https://www.linkedin.com/in/asia-alrashed-071967288/" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:.02em;color:#181360;background:#FFFFFF;border:1px solid rgba(24,19,96,.22);border-radius:8px;padding:13px 22px" style-hover="border-color:#11CBCB">LinkedIn ↗</a>
+        <a href="https://github.com/AsiaAlrashed" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:.02em;color:#181360;background:#FFFFFF;border:1px solid rgba(24,19,96,.22);border-radius:8px;padding:13px 22px" style-hover="border-color:#11CBCB">GitHub ↗</a>
+      </div>
+    </div>
+    <div data-reveal="120" style="display:flex;justify-content:center">
+      <img src="assets/asia-photo.jpeg" alt="Asia Alrashed at her workstation" style="width:min(320px,78vw);aspect-ratio:1;object-fit:cover;border-radius:18px;border:1px solid rgba(17,203,203,.34);display:block">
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PROJECTS ============ -->
+<section id="projects" data-screen-label="Featured projects" style="background:#F4F4FA;padding:clamp(60px,9vh,110px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div data-reveal="0" style="margin-bottom:clamp(28px,4vh,40px)">
+      <div style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">Selected work</div>
+      <h2 style="margin:0;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.032em;color:#181360;max-width:22ch;text-wrap:balance">Engineering AI from Models to Business Impact</h2>
+      <p style="margin:16px 0 0;font-size:1rem;line-height:1.6;max-width:56ch;color:#5F5F7A">Selected work across machine learning, production AI systems, and technology-driven business transformation.</p>
+    </div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(34px,5vh,52px);padding-bottom:clamp(20px,3vh,28px);border-bottom:1px solid rgba(24,19,96,.12)">
+      <button data-filter="all" onClick="{{ setAll }}" style="font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid #181360;background:#181360;color:#FFFFFF">All</button>
+      <button data-filter="ml" onClick="{{ setMl }}" style="font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid rgba(24,19,96,.22);background:#FFFFFF;color:#181360">Data &amp; ML</button>
+      <button data-filter="applied" onClick="{{ setApplied }}" style="font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid rgba(24,19,96,.22);background:#FFFFFF;color:#181360">Applied AI</button>
+      <button data-filter="transform" onClick="{{ setTransform }}" style="font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid rgba(24,19,96,.22);background:#FFFFFF;color:#181360">Transformation</button>
+    </div>
+
+    <!-- ===== TRACK 01 ===== -->
+    <div data-track="ml">
+      <div data-reveal="0" style="margin-bottom:clamp(26px,4vh,38px)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;font-weight:700">01</span>
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A">Data Science · Analytics · ML · Deep Learning</span>
+          <span style="flex:1;height:1px;background:rgba(17,203,203,.4)"></span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;letter-spacing:-.028em;color:#181360">Data Intelligence &amp; Model Development</h3>
+        <p style="margin:10px 0 0;font-size:1rem;line-height:1.6;max-width:64ch">Building analytical and predictive systems across healthcare, NLP, computer vision, logistics, sustainability, and engineering applications.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <a href="ICD Coding.dc.html" data-reveal="0" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:16px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="padding:clamp(26px,3.5vw,38px);display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Clinical NLP · Deep Learning · Graph Neural Networks</div>
+            <h4 style="margin:0;font-size:clamp(1.3rem,2.6vw,1.85rem);font-weight:700;line-height:1.15;letter-spacing:-.025em;color:#181360">Hierarchical Automated ICD Coding</h4>
+            <p style="margin:0;font-size:.97rem;line-height:1.62">Developed a hierarchical multi-label deep learning architecture for automated ICD coding from clinical discharge notes, with a specific focus on improving prediction of rare and low-frequency medical codes. The system combines BioClinicalBERT label representations, multi-scale CNN-based clinical text encoding, CAML-style label-conditioned attention, and bidirectional Hyperbolic Graph Convolutional Networks to exploit the hierarchical structure of ICD codes.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:10px">
+              <div style="background:#181360;border-radius:10px;padding:16px 20px;color:#FFFFFF"><div style="font-size:1.9rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#11CBCB">97.4%</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:7px">Micro-AUC</div></div>
+              <div style="border:1px solid rgba(17,203,203,.4);border-radius:10px;padding:16px 20px"><div style="font-size:1.4rem;font-weight:700;line-height:1;letter-spacing:-.02em;color:#181360">+157%</div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-top:7px">Tail-F1 improvement</div><div style="font-size:10px;color:#5F5F7A;margin-top:3px">vs. CAML-only baseline</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">BioClinicalBERT</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">HGCN</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">CAML</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">CNN</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Clinical NLP</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">MIMIC-III</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Deep Learning</span></div>
+            <span style="margin-top:4px;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+          <div style="padding:clamp(22px,3vw,32px);background:#F4F4FA;display:flex;flex-direction:column;justify-content:center;gap:6px;border-top:1px solid rgba(17,203,203,.22)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:2px">Text path</div>
+                <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Clinical discharge notes</span>
+                <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+                <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Multi-scale CNN</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:2px">Label path</div>
+                <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">ICD code descriptions</span>
+                <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+                <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">BioClinicalBERT</span>
+                <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+                <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">Hyperbolic GCN, pass 1</span>
+              </div>
+            </div>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">Label-conditioned attention</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">Hyperbolic GCN, pass 2</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">ICD predictions</span>
+            <div style="font-size:9.5px;line-height:1.55;color:#5F5F7A;margin-top:8px;padding-top:10px;border-top:1px solid rgba(24,19,96,.12)">Hierarchy propagation runs on both sides of attention, so label structure informs the match and refines the prediction.</div>
+          </div>
+        </a>
+
+        <a href="CBCT Segmentation.dc.html" data-reveal="80" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:16px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="padding:clamp(26px,3.5vw,38px);display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">3D Deep Learning · Computer Vision · Medical Imaging</div>
+            <h4 style="margin:0;font-size:clamp(1.3rem,2.6vw,1.85rem);font-weight:700;line-height:1.15;letter-spacing:-.025em;color:#181360">Neural Canal Segmentation from 3D CBCT</h4>
+            <p style="margin:0;font-size:.97rem;line-height:1.62">Developed a 3D deep learning pipeline for neural canal detection and segmentation from dental CBCT imaging. The workflow covered DICOM processing and 3D volume construction, manual annotation using 3D Slicer, training and hyperparameter optimization of a 3D U-Net/nnU-Net segmentation model, model evaluation, and development of an inference pipeline for new CBCT volumes.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:10px">
+              <div style="background:#181360;border-radius:10px;padding:16px 20px;color:#FFFFFF"><div style="font-size:1.9rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#11CBCB">~92%</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:7px">Model performance</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">3D U-Net / nnU-Net</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">3D Slicer</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">DICOM</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">3D Segmentation</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Deep Learning</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Medical Imaging</span></div>
+            <span style="margin-top:4px;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+          <div style="padding:clamp(22px,3vw,32px);background:#F4F4FA;display:flex;flex-direction:column;justify-content:center;gap:6px;border-top:1px solid rgba(17,203,203,.22)">
+            <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:4px">Volume pipeline</div>
+            <div style="display:flex;gap:5px;margin-bottom:6px">
+              <div style="flex:1;aspect-ratio:1;border:1px solid rgba(24,19,96,.16);border-radius:4px;background:#FFFFFF"></div>
+              <div style="flex:1;aspect-ratio:1;border:1px solid rgba(24,19,96,.16);border-radius:4px;background:#FFFFFF"></div>
+              <div style="flex:1;aspect-ratio:1;border:1px solid rgba(17,203,203,.55);border-radius:4px;background:rgba(17,203,203,.18)"></div>
+              <div style="flex:1;aspect-ratio:1;border:1px solid rgba(17,203,203,.55);border-radius:4px;background:rgba(17,203,203,.18)"></div>
+              <div style="flex:1;aspect-ratio:1;border:1px solid rgba(24,19,96,.16);border-radius:4px;background:#FFFFFF"></div>
+              <div style="flex:1;aspect-ratio:1;border:1px solid rgba(24,19,96,.16);border-radius:4px;background:#FFFFFF"></div>
+            </div>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">CBCT DICOM series</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">3D volume construction</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Manual segmentation, 3D Slicer</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">3D U-Net / nnU-Net</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">Neural canal segmentation</span>
+            <div style="font-size:9.5px;line-height:1.55;color:#5F5F7A;margin-top:8px;padding-top:10px;border-top:1px solid rgba(24,19,96,.12)">Highlighted slices mark the canal region carried through annotation, training, and inference.</div>
+          </div>
+        </a>
+
+        <a href="Smart Campus Optimization.dc.html" data-reveal="0" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:16px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="padding:clamp(26px,3.5vw,38px);display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Machine Learning · Optimization · Sustainability</div>
+            <h4 style="margin:0;font-size:clamp(1.3rem,2.6vw,1.85rem);font-weight:700;line-height:1.15;letter-spacing:-.025em;color:#181360">Smart Campus Occupancy &amp; Sustainability Optimization</h4>
+            <p style="margin:0;font-size:.97rem;line-height:1.62">Developed an intelligent campus sustainability system that predicts building occupancy from academic schedules, calendar variables, events, and weather conditions using CatBoost. The predictions drive downstream waste estimation, capacity-aware bin collection, vehicle-route optimization, and campus transport scheduling, connecting predictive machine learning with operational optimization and environmental impact analysis.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:10px">
+              <div style="background:#181360;border-radius:10px;padding:16px 20px;color:#FFFFFF"><div style="font-size:1.5rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#11CBCB">High</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:7px">Predictive performance</div></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">CatBoost</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Scikit-learn</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">OR-Tools</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">NetworkX</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Streamlit</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Folium</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Optimization</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Sustainability</span></div>
+            <span style="margin-top:4px;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+          <div style="padding:clamp(22px,3vw,32px);background:#F4F4FA;display:flex;flex-direction:column;justify-content:center;gap:6px;border-top:1px solid rgba(17,203,203,.22)">
+            <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:2px">Prediction → optimization → impact</div>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Calendar + weather + lectures</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">Occupancy prediction, CatBoost</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Building occupancy</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px">
+              <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+              <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+              <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Waste demand</span>
+              <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Transport demand</span>
+              <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+              <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+              <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Bin selection</span>
+              <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Trip scheduling</span>
+              <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+              <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+              <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">CVRP routing, OR-Tools</span>
+              <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:8px 10px;text-align:center;display:block;font-weight:700">Energy analysis</span>
+            </div>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Energy, cost, and emissions</span>
+            <span style="text-align:center;color:#11CBCB;font-size:12px;line-height:1.1;display:block">↓</span>
+            <span style="font-size:10.5px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:8px 10px;text-align:center;display:block">Streamlit dashboard + interactive map</span>
+          </div>
+        </a>
+      </div>
+
+      <div data-reveal="0" style="margin-top:clamp(34px,5vh,50px)">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A;margin-bottom:18px">Selected Data &amp; ML projects</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px">
+
+          <a href="ETA Prediction Pipeline.dc.html" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+            <div style="padding:18px 20px;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Historical data</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Features</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Model</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:5px;padding:6px 9px;font-weight:700">Predicted ETA</span>
+            </div>
+            <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:12px;flex:1">
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Predictive ML · Logistics</div>
+              <h4 style="margin:0;font-size:clamp(1.1rem,2vw,1.32rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Delivery ETA Prediction</h4>
+              <p style="margin:0;font-size:.94rem;line-height:1.58">Developed an end-to-end machine learning workflow using historical logistics data to estimate shipment delivery times. The project covered data preparation, feature engineering, model development, evaluation, and prediction to support proactive logistics planning and customer communication.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Python</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Pandas</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Scikit-learn</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Feature Engineering</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Regression</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Logistics</span></div>
+              <span style="margin-top:auto;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+            </div>
+          </a>
+
+          <div style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+            <div style="padding:18px 20px;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">News</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">DistilBERT</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Sentiment</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Weighted score</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:5px;padding:6px 9px;font-weight:700">Stock ranking</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">FastAPI</span>
+            </div>
+            <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:12px;flex:1">
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Financial NLP · Transformers · Sentiment Analysis</div>
+              <h4 style="margin:0;font-size:clamp(1.1rem,2vw,1.32rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Financial News Sentiment &amp; Stock Ranking</h4>
+              <p style="margin:0;font-size:.94rem;line-height:1.58">Developed an NLP-based financial intelligence pipeline that analyzes stock-market news using DistilBERT, classifies financial sentiment, and aggregates sentiment signals into weighted stock-ranking scores. Built the workflow as an end-to-end ML pipeline with automated processing and FastAPI-based serving for downstream integration.</p>
+              <div style="display:flex;align-items:baseline;gap:10px;padding:12px 14px;border:1px solid rgba(17,203,203,.4);border-radius:10px">
+                <span style="font-size:1.35rem;font-weight:700;line-height:1;letter-spacing:-.02em;color:#181360">89%</span>
+                <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A">Classification performance</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">DistilBERT</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Transformers</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">NLP</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Sentiment Analysis</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">FastAPI</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Pandas</span></div>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:auto">
+                <a href="Stock Sentiment Analysis.dc.html" style="font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</a>
+                <a href="https://github.com/AsiaAlrashed/stock_news_analysis" target="_blank" rel="noopener" style="font-size:11.5px;letter-spacing:.04em;color:#181360;border:1px solid rgba(24,19,96,.22);border-radius:8px;padding:7px 13px" style-hover="border-color:#11CBCB">GitHub ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="Construction Cost Prediction.dc.html" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+            <div style="padding:18px 20px;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Project data</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Analysis</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Regression</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Arrival time</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:5px;padding:6px 9px;font-weight:700">Cost + materials</span><span style="color:#11CBCB;font-size:11px">→</span>
+              <span style="font-size:10px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:5px;padding:6px 9px">Interface</span>
+            </div>
+            <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:12px;flex:1">
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Data Science · Regression · Civil Engineering</div>
+              <h4 style="margin:0;font-size:clamp(1.1rem,2vw,1.32rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Construction Order Arrival &amp; Activity Cost Prediction</h4>
+              <p style="margin:0;font-size:.94rem;line-height:1.58">Developed a regression-based predictive workflow for construction planning, covering data analysis and preprocessing, regression model development and evaluation, order-arrival time prediction, activity cost estimation, material quantity calculations, and an interactive user interface for planning and decision support.</p>
+              <div style="display:flex;align-items:baseline;gap:10px;padding:12px 14px;border:1px solid rgba(17,203,203,.4);border-radius:10px">
+                <span style="font-size:1.15rem;font-weight:700;line-height:1;letter-spacing:-.02em;color:#181360">Low</span>
+                <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A">Prediction error</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Regression</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Python</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Data Analysis</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Predictive Modeling</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Cost Estimation</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Civil Engineering</span></div>
+              <span style="margin-top:auto;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TRACK 02 ===== -->
+    <div data-track="applied" style="margin-top:clamp(50px,8vh,80px)">
+      <div data-reveal="0" style="margin-bottom:clamp(26px,4vh,38px)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;font-weight:700">02</span>
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A">Applied AI Engineering</span>
+          <span style="flex:1;height:1px;background:rgba(17,203,203,.4)"></span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;letter-spacing:-.028em;color:#181360">Production AI Systems</h3>
+        <p style="margin:10px 0 0;font-size:1rem;line-height:1.6;max-width:60ch">Engineering AI applications that combine model adaptation, retrieval, orchestration, APIs, and production integration.</p>
+      </div>
+      <a href="LLM Conversational AI.dc.html" data-reveal="0" style="display:block;background:#181360;border-radius:16px;overflow:hidden;color:#FFFFFF;transition:transform .2s ease" style-hover="transform:translateY(-3px);color:#FFFFFF">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr))">
+          <div style="padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#11CBCB">Generative AI · NLP · Fine-Tuning · Production AI</div>
+            <h4 style="margin:0;font-size:clamp(1.5rem,3.2vw,2.3rem);font-weight:700;line-height:1.12;letter-spacing:-.03em">Production Conversational AI</h4>
+            <div style="display:flex;flex-wrap:wrap;gap:7px">
+              <span style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#11CBCB;border-radius:999px;padding:6px 12px;font-weight:700">Fine-Tuning</span>
+              <span style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#11CBCB;border-radius:999px;padding:6px 12px;font-weight:700">Arabic NLP</span>
+              <span style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#11CBCB;border-radius:999px;padding:6px 12px;font-weight:700">RAG</span>
+              <span style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#11CBCB;border-radius:999px;padding:6px 12px;font-weight:700">Production AI</span>
+            </div>
+            <p style="margin:0;font-size:1rem;line-height:1.62;color:rgba(255,255,255,.86)">Fine-tuned and deployed an Arabic conversational AI system for omnichannel customer engagement, combining LoRA and QLoRA based model adaptation, RAG, retrieval pipelines, and production APIs. Worked on Iraqi Arabic conversational data to improve dialect adaptation, response naturalness, tone consistency, and intent coverage, then integrated the system across WhatsApp, Instagram, and Messenger.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px">
+              <span style="font-size:11px;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:5px 11px">Hugging Face</span>
+              <span style="font-size:11px;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:5px 11px">LoRA / QLoRA</span>
+              <span style="font-size:11px;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:5px 11px">RAG</span>
+              <span style="font-size:11px;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:5px 11px">LangChain</span>
+              <span style="font-size:11px;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:5px 11px">FastAPI</span>
+              <span style="font-size:11px;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:5px 11px">Arabic NLP</span>
+            </div>
+            <span style="margin-top:6px;font-size:12.5px;letter-spacing:.04em;color:#11CBCB;font-weight:700">View case study →</span>
+          </div>
+          <div style="padding:clamp(28px,4vw,44px);border-left:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;justify-content:center;gap:9px">
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px">System architecture</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.9);padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Conversational dataset preparation</div>
+            <div style="text-align:center;color:#11CBCB;font-size:12px">↓</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.9);padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Arabic NLP &amp; Iraqi dialect adaptation</div>
+            <div style="text-align:center;color:#11CBCB;font-size:12px">↓</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:#FFFFFF;padding:10px 13px;border:1px solid rgba(17,203,203,.6);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700">Model adaptation, LoRA / QLoRA</div>
+            <div style="text-align:center;color:#11CBCB;font-size:12px">↓</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:#FFFFFF;padding:10px 13px;border:1px solid rgba(17,203,203,.6);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700">RAG &amp; retrieval architecture</div>
+            <div style="text-align:center;color:#11CBCB;font-size:12px">↓</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.9);padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Orchestration layer</div>
+            <div style="text-align:center;color:#11CBCB;font-size:12px">↓</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.9);padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">FastAPI, production integration</div>
+            <div style="text-align:center;color:#11CBCB;font-size:12px">↓</div>
+            <div style="font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.7);padding:10px 13px;border:1px dashed rgba(255,255,255,.25);border-radius:8px">Omnichannel deployment</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ===== TRACK 03 ===== -->
+    <div id="transformation" data-track="transform" style="margin-top:clamp(50px,8vh,80px);scroll-margin-top:110px">
+      <div data-reveal="0" style="margin-bottom:clamp(26px,4vh,38px)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;font-weight:700">03</span>
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A">AI · Automation · Business Transformation</span>
+          <span style="flex:1;height:1px;background:rgba(17,203,203,.4)"></span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;letter-spacing:-.028em;color:#181360">AI-Enabled Business Transformation</h3>
+        <p style="margin:10px 0 0;font-size:1rem;line-height:1.6;max-width:60ch">Redesigning operational workflows through AI, automation, data integration, and connected business systems. Only the layers that genuinely use AI are described as AI.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:16px">
+
+        <a href="Intelligent Pricing Workflow.dc.html" data-reveal="0" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="aspect-ratio:16/9;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);padding:20px;display:flex;flex-direction:column;justify-content:center;gap:8px">
+            <div style="display:flex;gap:14px;align-items:stretch">
+              <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Before</div>
+                <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5F5F7A;background:#FFFFFF;border:1px dashed rgba(24,19,96,.25);border-radius:6px;padding:7px 10px">Chat request</span>
+                <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5F5F7A;background:#FFFFFF;border:1px dashed rgba(24,19,96,.25);border-radius:6px;padding:7px 10px">Vendor emails</span>
+                <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5F5F7A;background:#FFFFFF;border:1px dashed rgba(24,19,96,.25);border-radius:6px;padding:7px 10px">Manual follow-up</span>
+              </div>
+              <div style="display:flex;align-items:center;color:#11CBCB;font-size:14px">→</div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">After</div>
+                <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Structured request</span>
+                <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Centralized workflow</span>
+                <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:7px 10px;font-weight:700">Quotation to CRM</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:13px;flex:1">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">AI Transformation · Workflow Automation · System Integration</div>
+            <h4 style="margin:0;font-size:clamp(1.15rem,2.1vw,1.45rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Intelligent Pricing Workflow</h4>
+            <p style="margin:0;font-size:.96rem;line-height:1.6">Redesigned the freight pricing workflow connecting Sales, Pricing, and operational processes. Structured incoming pricing requests, automated information flow and vendor communication, and reduced reliance on fragmented chat and email based coordination.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Process Automation</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Odoo</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Email Integration</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Workflow Design</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">AI</span></div>
+            <span style="margin-top:auto;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+        </a>
+
+        <a href="Marketing and CRM Intelligence.dc.html#attribution" data-reveal="80" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="aspect-ratio:16/9;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);padding:20px;display:flex;flex-direction:column;justify-content:center;gap:8px">
+            <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Attribution chain</div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Campaign</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Lead</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">CRM</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Qualified</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:7px 10px;font-weight:700">Won / Lost</span>
+            </div>
+          </div>
+          <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:13px;flex:1">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Business Intelligence · CRM · Data Integration</div>
+            <h4 style="margin:0;font-size:clamp(1.15rem,2.1vw,1.45rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Marketing &amp; CRM Intelligence</h4>
+            <p style="margin:0;font-size:.96rem;line-height:1.6">Connected advertising and CRM data to evaluate campaign performance based on actual sales outcomes rather than lead volume alone. Linked campaign activity with qualified, won, and lost opportunities to create a more meaningful view of marketing effectiveness.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Odoo CRM</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Marketing Attribution</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Data Integration</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Analytics</span></div>
+            <span style="margin-top:auto;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+        </a>
+
+        <a href="Logistics Platform.dc.html" data-reveal="0" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="aspect-ratio:16/9;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);padding:20px;display:flex;flex-direction:column;justify-content:center;gap:8px">
+            <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Connected operational domains</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Shipments</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Customers</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Drivers</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Warehouses</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Fulfillment</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">COD</span>
+            </div>
+            <div style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#181360;font-weight:700;text-align:center">One platform, one data model</div>
+          </div>
+          <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:13px;flex:1">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Digital Transformation · Logistics Systems · Data</div>
+            <h4 style="margin:0;font-size:clamp(1.15rem,2.1vw,1.45rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Logistics Platform &amp; Operational Transformation</h4>
+            <p style="margin:0;font-size:.96rem;line-height:1.6">Contributed to the transformation of logistics operations from fragmented and third-party workflows into a connected operational platform spanning shipments, customers, drivers, warehouses, fulfillment, COD collections, and accounting related processes.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Logistics Systems</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Django REST</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">PostgreSQL</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Process Design</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Data</span></div>
+            <span style="margin-top:auto;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+        </a>
+
+        <a href="Logistics Data Migration.dc.html" data-reveal="80" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .2s ease" style-hover="border-color:#11CBCB;transform:translateY(-3px)">
+          <div style="aspect-ratio:16/9;background:#F4F4FA;border-bottom:1px solid rgba(17,203,203,.22);padding:20px;display:flex;flex-direction:column;justify-content:center;gap:8px">
+            <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Migration pipeline</div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Third-party APIs</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Clean &amp; reconcile</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:6px;padding:7px 10px">Relational model</span><span style="color:#11CBCB;font-size:12px">→</span>
+              <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:6px;padding:7px 10px;font-weight:700">PostgreSQL</span>
+            </div>
+            <div style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#5F5F7A">Three years · customers, shipments, drivers, collections, accounting</div>
+          </div>
+          <div style="padding:24px 22px 26px;display:flex;flex-direction:column;gap:13px;flex:1">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360">Data Transformation · ETL · System Migration</div>
+            <h4 style="margin:0;font-size:clamp(1.15rem,2.1vw,1.45rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;color:#181360">Multi-Year Logistics Data Migration</h4>
+            <p style="margin:0;font-size:.96rem;line-height:1.6">Reconstructed and unified three years of operational logistics data from third-party APIs and multiple business sources. Cleaned, reconciled, modeled, and migrated customer, shipment, driver, collection, and accounting data into a relational PostgreSQL foundation for analytics and operational systems.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:7px"><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Python</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Pandas</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">ETL</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">APIs</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">PostgreSQL</span><span style="font-size:11px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:5px 11px">Data Modeling</span></div>
+            <span style="margin-top:auto;font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">View case study →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRODUCTION AI BAND -->
+    <div data-reveal="0" style="margin-top:clamp(50px,8vh,80px);background:#181360;border-radius:14px;padding:clamp(26px,4vw,40px);color:#FFFFFF">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:12px">Production AI</div>
+      <p style="margin:0 0 18px;font-size:clamp(1.1rem,2.2vw,1.5rem);font-weight:700;line-height:1.3;letter-spacing:-.02em;max-width:34ch">I build AI systems that move beyond experimentation and into real applications.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">FastAPI</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">Docker</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">Kubernetes</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">MLflow</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">CI / CD</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">REST APIs</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">AWS</span>
+        <span style="font-size:11px;letter-spacing:.02em;color:#FFFFFF;background:rgba(17,203,203,.16);border:1px solid rgba(17,203,203,.4);border-radius:999px;padding:6px 12px">Microsoft Azure</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" data-screen-label="Experience" style="background:#F4F4FA;padding:clamp(60px,9vh,110px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1180px;margin:0 auto">
+    <h2 data-reveal="0" style="margin:0 0 clamp(30px,4vh,44px);font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:700;letter-spacing:-.03em;color:#181360">Experience</h2>
+    <div data-reveal="0" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:16px">
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase"><span style="color:#181360;font-weight:700">Ocean Gate Line Company · UAE</span><span style="color:#5F5F7A">Nov 2025 – Present</span></div>
+        <h3 style="margin:0;font-size:1.35rem;font-weight:700;letter-spacing:-.02em;color:#181360">AI Engineer | Data Scientist</h3>
+        <p style="margin:0;font-size:.97rem;line-height:1.6">Building production AI, data, and intelligent business systems across commercial and operational workflows, working directly with Sales, Pricing, Marketing, E-commerce, Accounting, and Logistics teams.</p>
+        <a href="#projects" style="font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">Explore related work →</a>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase"><span style="color:#181360;font-weight:700">SHAI FOR AI · Freelance</span><span style="color:#5F5F7A">Feb 2024 – Aug 2025</span></div>
+        <h3 style="margin:0;font-size:1.35rem;font-weight:700;letter-spacing:-.02em;color:#181360">AI Engineer | ML | Data Scientist</h3>
+        <p style="margin:0;font-size:.97rem;line-height:1.6">End to end machine learning and deep learning work: NLP and transformers, fine-tuning with PEFT, computer vision, and serving trained models through FastAPI and Docker.</p>
+        <a href="#projects" style="font-size:12.5px;letter-spacing:.04em;color:#181360;font-weight:700">Explore projects →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERTISE ============ -->
+<section id="expertise" data-screen-label="Technical expertise" style="padding:clamp(60px,9vh,110px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div data-reveal="0" style="margin-bottom:clamp(32px,5vh,50px)">
+      <h2 style="margin:0;font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:700;letter-spacing:-.03em;color:#181360">Expertise</h2>
+      <p style="margin:12px 0 0;font-size:1.02rem;line-height:1.6;max-width:58ch">Grouped by discipline rather than by tool. The technologies below support the expertise, they do not define it.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px">
+      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;gap:16px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;font-weight:700">01</span>
+            <span style="flex:1;height:1px;background:rgba(17,203,203,.4)"></span>
+          </div>
+          <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Model &amp; Data</div>
+          <h3 style="margin:0;font-size:clamp(1.15rem,2vw,1.4rem);font-weight:700;letter-spacing:-.02em;color:#181360">Developing and evaluating models</h3>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Machine Learning</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Deep Learning</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Computer Vision</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">NLP</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Feature Engineering</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Model Evaluation</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Data Science</span>
+        </div>
+      </div>
+      <div data-reveal="80" style="border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;gap:16px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;font-weight:700">02</span>
+            <span style="flex:1;height:1px;background:rgba(17,203,203,.4)"></span>
+          </div>
+          <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Applied AI Engineering</div>
+          <h3 style="margin:0;font-size:clamp(1.15rem,2vw,1.4rem);font-weight:700;letter-spacing:-.02em;color:#181360">Taking models into production</h3>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">LLM Fine-Tuning</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">LoRA / QLoRA</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">RAG</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">AI Agents</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">LangChain</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Vector Retrieval</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">FastAPI</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Production AI</span>
+        </div>
+      </div>
+      <div data-reveal="160" style="border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:28px 26px;display:flex;flex-direction:column;gap:16px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;font-weight:700">03</span>
+            <span style="flex:1;height:1px;background:rgba(17,203,203,.4)"></span>
+          </div>
+          <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Transformation &amp; Systems</div>
+          <h3 style="margin:0;font-size:clamp(1.15rem,2vw,1.4rem);font-weight:700;letter-spacing:-.02em;color:#181360">Changing how the business runs</h3>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">AI Transformation</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Workflow Automation</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">CRM &amp; Odoo</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Data Integration</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">ETL / ELT</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">API Integration</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Process Design</span>
+          <span style="font-size:11.5px;letter-spacing:.02em;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Logistics Systems</span>
+        </div>
+      </div>
+    </div>
+    <div data-reveal="0" style="margin-top:20px;padding:24px 26px;background:#F4F4FA;border:1px solid rgba(17,203,203,.2);border-radius:14px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5F5F7A;white-space:nowrap">Engineering foundation</div>
+      <div style="font-size:13px;letter-spacing:.02em;color:#181360;line-height:1.9">Python · SQL · PostgreSQL · PyTorch · TensorFlow · Docker · AWS · Git</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" data-screen-label="About" style="background:#F4F4FA;padding:clamp(60px,9vh,110px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(28px,4vw,56px);align-items:start">
+    <div data-reveal="0">
+      <h2 style="margin:0 0 20px;font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:700;letter-spacing:-.03em;color:#181360">How I work</h2>
+      <p style="margin:0 0 16px;font-size:1.05rem;line-height:1.65">I am an AI engineer focused on building systems that move beyond experimentation and into real applications. My work sits at the intersection of machine learning, generative AI, data, and business transformation.</p>
+      <p style="margin:0;font-size:1rem;line-height:1.65">Most of the difficulty is rarely in the model. It is in fragmented, imperfect business data, and in understanding a process well enough to know what should be automated. So I start with the process and the data, and I stay involved after training, through deployment and integration, until the system is actually being used.</p>
+    </div>
+    <div data-reveal="100" style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:20px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:8px">Fine-tuning or RAG</div>
+        <p style="margin:0;font-size:.95rem;line-height:1.6">I fine-tune when the model's behavior, tone, or language needs to change. I use RAG when the knowledge should stay grounded and updateable without retraining.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:20px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:8px">Data before modeling</div>
+        <p style="margin:0;font-size:.95rem;line-height:1.6">Missing values, duplicates, inconsistent identifiers, and broken cross-source relationships get resolved first. A model trained on unreconciled data produces confident nonsense.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:20px 22px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:8px">Systems, not notebooks</div>
+        <p style="margin:0;font-size:.95rem;line-height:1.6">A model matters once it is serving something. That means APIs, containers, tracked experiments, and a real integration into the application people use.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:20px 22px">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px"><span>Education</span><span style="color:#5F5F7A">2016 – 2022</span></div>
+        <p style="margin:0 0 12px;font-size:.95rem;line-height:1.6"><b style="color:#181360">Damascus University</b>, Faculty of IT Engineering. Bachelor's in Information Technology Engineering, specialization in Artificial Intelligence.</p>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:.92rem;color:#5F5F7A;padding-top:12px;border-top:1px solid rgba(24,19,96,.1)">
+          <span><b style="color:#181360">Arabic</b> Native</span>
+          <span><b style="color:#181360">English</b> Intermediate</span>
+          <span><b style="color:#181360">Ajman</b> UAE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact" data-screen-label="Contact" style="background:#181360;color:#FFFFFF;padding:clamp(70px,11vh,130px) clamp(20px,5vw,64px) 44px">
+  <div style="max-width:1180px;margin:0 auto">
+    <div data-reveal="0">
+      <div style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:18px">Open to AI engineering, machine learning, and AI transformation roles</div>
+      <h2 style="margin:0;font-size:clamp(2rem,5.5vw,3.6rem);font-weight:700;line-height:1.05;letter-spacing:-.035em;max-width:24ch">Let's build something intelligent.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
+        <a href="mailto:asiaalrashed57@gmail.com" style="font-size:13px;letter-spacing:.02em;color:#181360;background:#11CBCB;border-radius:8px;padding:14px 24px" style-hover="background:#FFFFFF;color:#181360">asiaalrashed57@gmail.com</a>
+        <a href="tel:+971507709375" style="font-size:13px;letter-spacing:.02em;color:#FFFFFF;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:14px 24px" style-hover="border-color:#11CBCB;color:#FFFFFF">+971 50 770 9375</a>
+        <a href="https://www.linkedin.com/in/asia-alrashed-071967288/" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:.02em;color:#FFFFFF;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:14px 24px" style-hover="border-color:#11CBCB;color:#FFFFFF">LinkedIn ↗</a>
+        <a href="https://github.com/AsiaAlrashed" target="_blank" rel="noopener" style="font-size:13px;letter-spacing:.02em;color:#FFFFFF;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:14px 24px" style-hover="border-color:#11CBCB;color:#FFFFFF">GitHub ↗</a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(44px,7vh,70px);padding-top:24px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
+      <span>© 2026 Asia Alrashed · Ajman, UAE</span>
+      <a href="#top" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || (this.props.reduceMotion ?? false)) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+  }
+
+  applyFilter(key) {
+    document.querySelectorAll('[data-track]').forEach((el) => {
+      el.style.display = (key === 'all' || el.getAttribute('data-track') === key) ? '' : 'none';
+    });
+    document.querySelectorAll('[data-filter]').forEach((btn) => {
+      const on = btn.getAttribute('data-filter') === key;
+      btn.style.background = on ? '#181360' : '#FFFFFF';
+      btn.style.color = on ? '#FFFFFF' : '#181360';
+      btn.style.borderColor = on ? '#181360' : 'rgba(24,19,96,.22)';
+    });
+    if (this.sweep) requestAnimationFrame(this.sweep);
+  }
+
+  renderVals() {
+    return {
+      setAll: () => this.applyFilter('all'),
+      setMl: () => this.applyFilter('ml'),
+      setApplied: () => this.applyFilter('applied'),
+      setTransform: () => this.applyFilter('transform')
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#181360;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:opacity .25s ease,color .25s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case study header" style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,3.5vw,40px);background:rgba(255,255,255,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(24,19,96,.14);font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:-.01em;text-transform:uppercase">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="Asia Alrashed Portfolio Simple.dc.html" style="width:30px;height:30px;border:1px solid currentColor;border-radius:6px;display:grid;place-items:center;font-size:11px;letter-spacing:.02em">AA</a>
+    <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="letter-spacing:.1em">← All projects</a>
+  </div>
+  <span style="letter-spacing:.14em;color:#5F5F7A">Case study</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="letter-spacing:.12em">Contact me</a>
+</header>
+<section data-screen-label="Case study hero" style="padding:clamp(60px,9vh,110px) clamp(20px,3.5vw,40px) clamp(46px,7vh,76px)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:20px">SHAI FOR AI · Computer vision · 2024 – 2025</div>
+    <h1 data-splitchars="1" style="margin:0;font-family:Arial, Helvetica, sans-serif;font-weight:700;font-size:clamp(2.4rem,7vw,5.6rem);line-height:.98;letter-spacing:-.045em;color:#181360;max-width:20ch">Medical Imaging AI System</h1>
+    <p data-reveal="80" style="margin:30px 0 0;font-weight:700;font-size:clamp(1.3rem,2.5vw,2rem);line-height:1.22;letter-spacing:-.025em;max-width:34ch">Deep learning across two very different kinds of medical image: flat X-rays and 3D CBCT volumes.</p>
+    <p data-reveal="120" style="margin:20px 0 0;color:#3A3A55;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6;max-width:64ch">I trained and evaluated deep learning models for medical image analysis and classification, working with 2D X-ray images and 3D CBCT scans. The work covered the full computer vision cycle: preparing and augmenting imaging data, building classification and segmentation models, then evaluating and tuning them.</p>
+    <div data-reveal="160" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:18px;margin-top:clamp(38px,6vh,58px);padding-top:28px;border-top:1px solid rgba(24,19,96,.14)">
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">My role</div><div style="font-size:.98rem;line-height:1.5">Data preparation, model development, evaluation, and tuning</div></div>
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Stack</div><div style="font-size:.98rem;line-height:1.5">PyTorch, TensorFlow, Python</div></div>
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Modalities</div><div style="font-size:.98rem;line-height:1.5">2D X-ray images and 3D CBCT volumes</div></div>
+      <div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Sections</div><div style="display:flex;flex-wrap:wrap;gap:6px;font-family:Arial, Helvetica, sans-serif;font-size:11px;text-transform:uppercase"><a href="#problem" style="color:#11CBCB">Problem</a><span style="color:#5F5F7A">/</span><a href="#data" style="color:#11CBCB">Data</a><span style="color:#5F5F7A">/</span><a href="#models" style="color:#11CBCB">Models</a><span style="color:#5F5F7A">/</span><a href="#evaluation" style="color:#11CBCB">Evaluation</a></div></div>
+    </div>
+  </div>
+</section>
+<section id="problem" data-screen-label="The problem" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 01 ) The problem</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Two modalities that do not behave the same way</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">X-ray and CBCT are not interchangeable inputs. An X-ray is a single projection; a CBCT scan is a volume, which changes how data is loaded, augmented, and fed to a network, and it changes what the model can learn. Medical imaging data is also limited and sensitive, so preparation matters as much as architecture.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:clamp(24px,4vh,36px)">
+      <div data-reveal="0" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">2D versus 3D</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">A flat projection and a reconstructed volume need different input handling and different model treatment.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Limited data</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Medical imaging datasets are small compared to general vision datasets, which makes preparation and augmentation decisive.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Two tasks</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Classification answers what is present; segmentation answers where it is. Both were part of the work.</p></div>
+    </div>
+  </div>
+</section>
+<section id="data" data-screen-label="Data preparation" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 02 ) Data preparation</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Preparation before architecture</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Before any training, imaging data was prepared and augmented so the models saw consistent, usable inputs across both modalities.</p>
+    </div>
+    
+    <div data-reveal="80" style="margin-top:clamp(26px,4vh,42px);border:1px solid rgba(24,19,96,.14);border-radius:16px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">01</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Prepared the imaging datasets for both modalities</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">2D X-ray images and 3D CBCT volumes</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">preparation</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">02</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Applied augmentation to widen limited medical data</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">more variation without new acquisitions</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">augmentation</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">03</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Built classification models</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">identifying what a scan contains</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">classification</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">04</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Built segmentation models</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">locating structures within the image</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">segmentation</span></div>
+      <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px 18px;align-items:center;padding:15px 20px;"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#11CBCB">05</span><div><div style="font-size:.98rem;font-weight:700;letter-spacing:-.01em">Evaluated and tuned</div><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;margin-top:3px">evaluation metrics and hyperparameter tuning</div></div><span style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;color:#5F5F7A;text-transform:uppercase">evaluation</span></div>
+    </div>
+  </div>
+</section>
+<section id="models" data-screen-label="Models" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 03 ) Models</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Classification and segmentation, in PyTorch and TensorFlow</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Model work spanned both frameworks, with deep learning architectures trained for image classification and for segmentation, as part of a broader computer vision practice that also covered multimodal applications.</p>
+    </div>
+    
+    <div data-reveal="60" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px;margin-top:clamp(24px,4vh,36px)">
+      <div style="border-radius:14px;background:linear-gradient(140deg,#181360,#1E2A7A 65%,#11CBCB);padding:26px 22px;color:#FFFFFF;display:flex;flex-direction:column;gap:14px">
+        <div style="font-weight:700;font-size:1.9rem;letter-spacing:-.03em">2D</div>
+        <div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#11CBCB">X-ray images</div>
+        <p style="margin:0;font-size:.93rem;line-height:1.6;color:rgba(255,255,255,.82)">Single-projection images used for classification, with augmentation to widen a limited dataset.</p>
+      </div>
+      <div style="border-radius:14px;background:linear-gradient(140deg,#241C86,#11CBCB 65%,#11CBCB);padding:26px 22px;color:#FFFFFF;display:flex;flex-direction:column;gap:14px">
+        <div style="font-weight:700;font-size:1.9rem;letter-spacing:-.03em">3D</div>
+        <div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#181360">CBCT volumes</div>
+        <p style="margin:0;font-size:.93rem;line-height:1.6;color:rgba(255,255,255,.9)">Reconstructed volumes, which change how data is loaded and what the network can learn from spatial context.</p>
+      </div>
+      <div style="border:1px solid rgba(24,19,96,.14);border-radius:14px;padding:26px 22px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-weight:700;font-size:1.9rem;letter-spacing:-.03em">2</div>
+        <div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#11CBCB">Tasks trained</div>
+        <p style="margin:0;font-size:.93rem;line-height:1.6;color:#3A3A55">Classification for what a scan shows, segmentation for where it is, evaluated and tuned in both frameworks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="evaluation" data-screen-label="Evaluation" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="max-width:780px">
+      <div style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 04 ) Evaluation</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Trained and evaluated, with the limits stated plainly</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">These models were trained and evaluated as part of applied computer vision work. This case study describes the approach and the modalities; it does not publish clinical performance figures, because accuracy claims on medical imaging require validation and dataset context that belong with the owning organization.</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px;margin-top:clamp(24px,4vh,36px)">
+      <div data-reveal="0" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">What is claimed</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Deep learning models were built, trained, evaluated, and tuned for X-ray and 3D CBCT analysis and classification.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">What is not claimed</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">No diagnostic accuracy figure or clinical outcome is presented here.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:20px;transition:background .3s ease" style-hover="background:#F2FAFA"><div style="font-family:Arial, Helvetica, sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:10px">Where it sits</div><p style="margin:0;color:#3A3A55;font-size:.95rem;line-height:1.6">Part of broader computer vision work including image classification, segmentation, and multimodal applications.</p></div>
+    </div>
+    <div data-reveal="60" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(24px,4vh,36px);padding-top:22px;border-top:1px solid rgba(24,19,96,.14)"><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">PyTorch</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">TensorFlow</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Python</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Computer Vision</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Image Classification</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Segmentation</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Data Augmentation</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Model Evaluation</span><span style="font-family:Arial, Helvetica, sans-serif;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Hyperparameter Tuning</span></div>
+  </div>
+</section>
+<footer data-screen-label="Case study footer" style="background:#181360;color:#FFFFFF;padding:clamp(56px,9vh,96px) clamp(20px,3.5vw,40px) 44px;margin-top:clamp(40px,6vh,70px)">
+  <div style="max-width:1280px;margin:0 auto">
+    <div data-reveal="0" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-weight:700;font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.03em;color:#FFFFFF">← Back to all projects</a>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <a href="Stock Sentiment Analysis.dc.html" style="font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#11CBCB">Next: Stock Market Sentiment Analysis →</a>
+        <a href="mailto:asiaalrashed57@gmail.com" style="display:inline-flex;align-items:center;gap:10px;font-family:Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#181360;background:#FFFFFF;border-radius:999px;padding:12px 22px;transition:background .3s ease" style-hover="background:#11CBCB;color:#181360">Get in touch</a>
+      </div>
+    </div>
+    <div style="margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:Arial, Helvetica, sans-serif;font-size:11.5px;letter-spacing:.03em;color:rgba(255,255,255,.6)">
+      <span>© 2026 Asia Alrashed · Ajman, UAE</span>
+      <span>Diagrams are schematic. No client screenshots are shown.</span>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    this.initSmoothScroll();
+    document.querySelectorAll('[data-splitchars]').forEach((el) => this.splitChars(el));
+    this.initReveals();
+  }
+
+  componentWillUnmount() {
+    if (this.observers) this.observers.forEach((o) => o.disconnect());
+    if (this.sweeps) this.sweeps.forEach((fn) => window.removeEventListener('scroll', fn));
+    if (this.teardownScroll) this.teardownScroll();
+  }
+
+  initSmoothScroll() {
+    const doc = document.documentElement;
+    let target = window.scrollY, current = window.scrollY, raf = null;
+    const clamp = (v) => Math.max(0, Math.min(doc.scrollHeight - window.innerHeight, v));
+    const step = () => {
+      current += (target - current) * 0.085;
+      if (Math.abs(target - current) < 0.6) { current = target; window.scrollTo({ top: current, behavior: 'instant' }); raf = null; return; }
+      window.scrollTo({ top: current, behavior: 'instant' });
+      raf = requestAnimationFrame(step);
+    };
+    const nested = (start, dx, dy) => {
+      let n = start; const horiz = Math.abs(dx) > Math.abs(dy);
+      while (n && n !== document.body && n !== doc) {
+        if (n.nodeType === 1) {
+          const cs = getComputedStyle(n);
+          if (horiz && /(auto|scroll)/.test(cs.overflowX) && n.scrollWidth > n.clientWidth + 2) return true;
+          if (!horiz && /(auto|scroll)/.test(cs.overflowY) && n.scrollHeight > n.clientHeight + 2) return true;
+        }
+        n = n.parentNode;
+      }
+      return false;
+    };
+    const onWheel = (e) => {
+      if (e.ctrlKey || e.metaKey || e.defaultPrevented) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (nested(e.target, e.deltaX, e.deltaY)) return;
+      e.preventDefault();
+      const dy = e.deltaMode === 1 ? e.deltaY * 33 : (e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY);
+      target = clamp(target + dy);
+      if (raf === null) raf = requestAnimationFrame(step);
+    };
+    const onNative = () => { if (raf === null) { target = window.scrollY; current = window.scrollY; } };
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('scroll', onNative, { passive: true });
+    this.teardownScroll = () => { window.removeEventListener('wheel', onWheel); window.removeEventListener('scroll', onNative); if (raf !== null) cancelAnimationFrame(raf); };
+  }
+
+  watch(els, show, threshold) {
+    if (!els.length) return;
+    const pending = new Set(els);
+    const fire = (el) => { if (!pending.has(el)) return; pending.delete(el); show(el); };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { io.unobserve(e.target); fire(e.target); } });
+    }, { threshold: threshold });
+    els.forEach((el) => io.observe(el));
+    const sweep = () => {
+      if (!pending.size) { window.removeEventListener('scroll', sweep); return; }
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) { io.unobserve(el); fire(el); }
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(sweep));
+    window.addEventListener('scroll', sweep, { passive: true });
+    this.sweeps = this.sweeps || []; this.sweeps.push(sweep);
+    this.observers = this.observers || []; this.observers.push(io);
+    setTimeout(() => { Array.from(pending).forEach((el) => { io.unobserve(el); fire(el); }); }, 6000);
+  }
+
+  initReveals() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(30px) scale(.99)'; });
+    this.watch(els, (el) => {
+      const delay = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity 1s cubic-bezier(.22,1,.36,1) ' + delay + 'ms, transform 1s cubic-bezier(.22,1,.36,1) ' + delay + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    }, 0.1);
+  }
+
+  splitChars(el) {
+    const text = el.textContent.trim();
+    el.setAttribute('aria-label', text);
+    el.innerHTML = '';
+    const spans = [];
+    const words = text.split(/\s+/);
+    words.forEach((word, wi) => {
+      const wrap = document.createElement('span');
+      wrap.style.cssText = 'display:inline-block;white-space:nowrap';
+      for (const ch of word) {
+        const outer = document.createElement('span');
+        outer.style.cssText = 'display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.22em;margin-bottom:-.22em';
+        const inner = document.createElement('span');
+        inner.style.cssText = 'display:inline-block;transform:translateY(130%);transition:transform .9s cubic-bezier(.22,1,.36,1)';
+        inner.textContent = ch;
+        outer.appendChild(inner);
+        wrap.appendChild(outer);
+        spans.push(inner);
+      }
+      el.appendChild(wrap);
+      if (wi < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+    this.watch([el], () => {
+      spans.forEach((s, i) => { s.style.transitionDelay = (i * 34) + 'ms'; s.style.transform = 'translateY(0)'; });
+    }, 0.15);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

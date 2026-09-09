@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case header" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-size:12.5px;letter-spacing:.04em;color:#FFFFFF" style-hover="color:#11CBCB">← Back to projects</a>
+  <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)">Data &amp; ML · Case study</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="font-size:12.5px;letter-spacing:.04em;color:#11CBCB">Contact</a>
+</header>
+
+<section data-screen-label="Title" style="padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) clamp(34px,5vh,54px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Clinical NLP · Deep Learning · Graph Neural Networks</div>
+    <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Hierarchical Automated ICD Coding</h1>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">A hierarchy-aware architecture for extreme multi-label clinical coding, built specifically to improve the rare codes that aggregate metrics tend to hide.</p>
+    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)"><div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#11CBCB">97.4%</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Micro-AUC</div></div><div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 24px"><div style="font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#181360">+157%</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">Tail-F1 improvement</div><div style="font-size:10.5px;color:#5F5F7A;margin-top:4px">vs. CAML-only baseline</div></div></div>
+  </div>
+</section>
+
+<section data-screen-label="01 — Problem" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Problem</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">Thousands of clinically meaningful codes appear only a few times</h2></div>
+    <div data-reveal="80"><p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Automated ICD coding is an extreme multi-label classification problem: a single clinical discharge note can correspond to many diagnosis codes. The difficulty is the long-tail distribution of ICD labels. Frequent codes have substantial training data, while thousands of clinically meaningful codes occur only a few times.</p>
+<p style="margin:0;font-size:1.02rem;line-height:1.65"><b style="color:#181360">Objective.</b> Develop a hierarchy-aware clinical NLP architecture that improves representation and prediction of rare ICD codes, rather than optimizing only aggregate performance.</p></div>
+  </div>
+</section>
+
+<section data-screen-label="02 — Data" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Data</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">MIMIC-III discharge notes and ICD-9 codes</h2></div>
+    <div data-reveal="80"><p style="margin:0;font-size:1.02rem;line-height:1.65">MIMIC-III clinical discharge notes paired with their ICD-9 diagnosis codes. The label space itself carries structure: ICD codes sit in a hierarchy where related diagnoses are neighbours, and that structure is the signal the architecture is designed to exploit.</p></div>
+  </div>
+</section>
+
+<section data-screen-label="03 — Architecture" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — Model architecture</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Two encoders, joined by label-conditioned attention</h2>
+    <div data-reveal="80" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:clamp(16px,3vw,34px);align-items:start">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:2px">Label path</div>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">ICD descriptions</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">BioClinicalBERT</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">HGCN-1</span>
+          <div style="font-size:9.5px;color:#5F5F7A;text-align:center;line-height:1.5">Hierarchy-aware label queries</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:2px">Text path</div>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Clinical notes</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Word embeddings</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Multi-scale CNN</span>
+        </div>
+      </div>
+      <div style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2;margin:16px 0">↓</div>
+      <div style="max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Label-conditioned attention</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Text-conditioned label representations</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">HGCN-2</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">ICD multi-label predictions</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 — Engineering detail" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Engineering detail</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The hierarchy is propagated twice, on purpose</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">HGCN-1, before attention</div><p style="margin:0;font-size:.96rem;line-height:1.6">Operates on the BioClinicalBERT label embeddings to create hierarchy-aware label queries, so a rare code arrives at attention already informed by its neighbours in the ICD tree.</p></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">HGCN-2, after attention</div><p style="margin:0;font-size:.96rem;line-height:1.6">Refines the text-conditioned representations using relationships among related ICD codes, so evidence found for one code can support its structural siblings.</p></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Imbalance-aware training</div><p style="margin:0;font-size:.96rem;line-height:1.6">Rare-code-aware training and frequency-sensitive evaluation, because a model tuned on aggregate metrics will quietly abandon the tail.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="05 — Results" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">05 — Evaluation</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The ablation is the argument</h2>
+    <p data-reveal="0" style="margin:0 0 14px;font-size:1.02rem;line-height:1.65;max-width:62ch">97.4% Micro-AUC across the label space. The more meaningful result is the tail: Tail-F1 rose from 0.0134 with CAML-only to 0.0344 with the full architecture, roughly a 157% improvement, and each hierarchy pass contributes.</p>
+    <div data-reveal="80" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px;margin-top:clamp(22px,3vh,34px)">
+      <div style="border:1px solid rgba(24,19,96,.14);border-radius:12px;padding:22px 20px;background:#FFFFFF">
+        <div style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-bottom:12px">CAML-only</div>
+        <div style="font-size:1.8rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#5F5F7A">0.0134</div>
+        <div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5F5F7A;margin-top:8px">Tail-F1</div>
+        <div style="height:5px;border-radius:3px;background:rgba(24,19,96,.12);margin-top:14px"><div style="width:39%;height:100%;border-radius:3px;background:rgba(24,19,96,.3)"></div></div>
+      </div>
+      <div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 20px;background:#FFFFFF">
+        <div style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-bottom:12px">HGCN-1 + CAML</div>
+        <div style="font-size:1.8rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#181360">0.0265</div>
+        <div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5F5F7A;margin-top:8px">Tail-F1</div>
+        <div style="height:5px;border-radius:3px;background:rgba(24,19,96,.12);margin-top:14px"><div style="width:77%;height:100%;border-radius:3px;background:#11CBCB"></div></div>
+      </div>
+      <div style="border:1px solid rgba(17,203,203,.55);border-radius:12px;padding:22px 20px;background:rgba(17,203,203,.1)">
+        <div style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#181360;margin-bottom:12px;font-weight:700">HGCN-CAML-HGCN</div>
+        <div style="font-size:1.8rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#181360">0.0344</div>
+        <div style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#5F5F7A;margin-top:8px">Tail-F1</div>
+        <div style="height:5px;border-radius:3px;background:rgba(24,19,96,.12);margin-top:14px"><div style="width:100%;height:100%;border-radius:3px;background:#181360"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
+      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">97.4% is Micro-AUC, not accuracy. The Tail-F1 figures are the measured ablation values. No dataset size or additional metric is claimed beyond what is stated here.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">BioClinicalBERT</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">HGCN</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">CAML</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">CNN</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Clinical NLP</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">MIMIC-III</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Deep Learning</span></div>
+  </div>
+</section>
+
+<footer data-screen-label="Case footer" style="background:#181360;color:#FFFFFF;padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) 40px">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:18px">You may also like</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px">
+      <a href="CBCT Segmentation.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Medical Imaging</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Neural Canal Segmentation</div></a>
+      <a href="Stock Sentiment Analysis.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Financial NLP</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">News Sentiment &amp; Ranking</div></a>
+      <a href="Smart Campus Optimization.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">ML · Optimization</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Smart Campus Optimization</div></a>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(36px,6vh,60px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">← Back to projects</a>
+      <a href="CBCT Segmentation.dc.html" style="color:#11CBCB">Next case study →</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

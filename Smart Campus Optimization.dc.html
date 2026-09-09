@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Case header" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="font-size:12.5px;letter-spacing:.04em;color:#FFFFFF" style-hover="color:#11CBCB">← Back to projects</a>
+  <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)">Data &amp; ML · Case study</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="font-size:12.5px;letter-spacing:.04em;color:#11CBCB">Contact</a>
+</header>
+
+<section data-screen-label="Title" style="padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) clamp(34px,5vh,54px)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Machine Learning · Optimization · Sustainability</div>
+    <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Smart Campus Occupancy &amp; Sustainability Optimization</h1>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">A prediction model that does not stop at prediction: forecast occupancy, then let it drive waste collection, routing, transport, and emissions.</p>
+    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)"><div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#11CBCB">High</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Predictive performance</div><div style="font-size:10.5px;color:rgba(255,255,255,.55);margin-top:4px">Numeric metric not yet available</div></div></div>
+    
+  </div>
+</section>
+
+<section data-screen-label="01 — Problem" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Problem</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">A fixed schedule ignores whether anyone is there</h2></div>
+    <div data-reveal="80"><p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Campus waste collection and internal transportation demand vary according to actual building occupancy. Static schedules therefore produce unnecessary trips, energy consumption, operational cost, and emissions, and they do it invisibly, because nothing in the process measures the gap.</p>
+<p style="margin:0;font-size:1.02rem;line-height:1.65"><b style="color:#181360">Objective.</b> Predict building occupancy and use those predictions to dynamically optimize waste collection and transportation operations.</p></div>
+  </div>
+</section>
+
+<section data-screen-label="02 — Data" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Prediction inputs</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Calendar, weather, and the timetable</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Calendar</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Month</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Semester week</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Day of week</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Holidays / weekends</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Exams</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Events</span></div></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Weather</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Temperature</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Humidity</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Wind speed</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pressure</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Cloud coverage</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Rainfall</span></div></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Academic load</div><div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Lectures by building</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Lectures by time period</span></div><p style="margin:0;font-size:.96rem;line-height:1.6;margin-top:12px">Predictions are generated for every building and time period, giving hourly occupancy across eight campus buildings.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 — Architecture" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — System architecture</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Prediction, then two optimization branches</h2>
+    <div data-reveal="80" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
+      <div style="max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Calendar + weather + lectures</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Feature processing</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">CatBoost model</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Building occupancy prediction</span>
+      </div>
+      <div style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2;margin:14px 0">↓</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:clamp(14px,3vw,28px)">
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;text-align:center;margin-bottom:2px">Waste branch</div>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Waste estimation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Bin fill levels</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Bin selection</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">CVRP optimization, OR-Tools</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Route optimization</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;text-align:center;margin-bottom:2px">Transport branch</div>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Transport demand</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Required trips</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Trip scheduling</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Energy calculation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Emissions</span>
+        </div>
+      </div>
+      <div style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2;margin:14px 0">↓</div>
+      <div style="max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Energy / cost / emissions</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Streamlit dashboard + interactive map</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 — Optimization layer" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Optimization layer</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Where prediction becomes a decision</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Waste optimization</div><p style="margin:0;font-size:.96rem;line-height:1.6">Predicted occupancy is converted into estimated waste generation. Containers at 50% capacity or above are considered for collection, so a truck is dispatched against demand rather than a calendar.</p></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">CVRP with OR-Tools</div><p style="margin:0;font-size:.96rem;line-height:1.6">Collection is modelled as a Capacitated Vehicle Routing Problem against a 3000 kg truck capacity, solved with OR-Tools, with NetworkX representing the campus road network and computing shortest paths.</p></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Transport optimization</div><p style="margin:0;font-size:.96rem;line-height:1.6">Transport demand is estimated from predicted occupancy, required trips are calculated against vehicle capacity, schedules are generated, and energy consumption and emissions follow from the resulting plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="05 — Application layer" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">05 — Application layer</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">A single interface for the whole chain</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Predictions</div><p style="margin:0;font-size:.96rem;line-height:1.6">Occupancy predictions and daily occupancy across the eight buildings.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Operations</div><p style="margin:0;font-size:.96rem;line-height:1.6">Waste collection plan, optimized route on an interactive campus map, and the transportation schedule.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Impact</div><p style="margin:0;font-size:.96rem;line-height:1.6">Energy consumption, cost, and emissions, shown alongside the plan that produced them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="06 — Engineering story" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">06 — The engineering story</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Prediction is only the first quarter of the system</h2>
+    <div data-reveal="80" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,45%),1fr));gap:12px;align-items:stretch">
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px;text-align:center"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">01</div><div style="font-size:1.05rem;font-weight:700;color:#181360;letter-spacing:-.015em">Prediction</div></div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px;text-align:center"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">02</div><div style="font-size:1.05rem;font-weight:700;color:#181360;letter-spacing:-.015em">Operational decision</div></div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px;text-align:center"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">03</div><div style="font-size:1.05rem;font-weight:700;color:#181360;letter-spacing:-.015em">Optimization</div></div>
+      <div style="border:1px solid rgba(17,203,203,.55);background:rgba(17,203,203,.12);border-radius:12px;padding:24px 22px;text-align:center"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">04</div><div style="font-size:1.05rem;font-weight:700;color:#181360;letter-spacing:-.015em">Sustainability impact</div></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
+      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">The occupancy model performed well in evaluation, but no numeric metric is published for it, so none is stated. The 50% bin threshold and 3000 kg truck capacity are system parameters, not results.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">CatBoost</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Scikit-learn</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">OR-Tools</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">NetworkX</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Streamlit</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Folium</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pandas</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Optimization</span></div>
+  </div>
+</section>
+
+<footer data-screen-label="Case footer" style="background:#181360;color:#FFFFFF;padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) 40px">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:18px">You may also like</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px">
+      <a href="ICD Coding.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Clinical NLP</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Hierarchical ICD Coding</div></a>
+      <a href="Construction Cost Prediction.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Regression</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Construction Cost Prediction</div></a>
+      <a href="ETA Prediction Pipeline.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Predictive ML</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Delivery ETA Prediction</div></a>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(36px,6vh,60px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
+      <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">← Back to projects</a>
+      <a href="ETA Prediction Pipeline.dc.html" style="color:#11CBCB">Next case study →</a>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
