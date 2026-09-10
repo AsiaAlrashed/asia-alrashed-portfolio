@@ -12,9 +12,19 @@
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
 a:hover{color:#181360}
+button{font-family:Arial, Helvetica, sans-serif}
 ::selection{background:#181360;color:#fff}
+.pipeline-box{font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center}
+.pipeline-box.active{border-color:rgba(17,203,203,.55);background:rgba(17,203,203,.16);font-weight:700}
+.arrow{display:block;text-align:center;color:#11CBCB;font-size:13px;line-height:1.2}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(24,19,96,.86);display:none;align-items:center;justify-content:center;padding:clamp(16px,3vw,34px)}
+.lightbox.is-open{display:flex}
+.lightbox-inner{width:min(900px,96vw);max-height:92vh;background:#FFFFFF;border-radius:16px;border:1px solid rgba(17,203,203,.42);overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.lightbox-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:#181360;color:#FFFFFF}
+.lightbox-img{display:block;width:100%;height:auto;max-height:calc(92vh - 62px);object-fit:contain;background:#FFFFFF}
+@media (max-width:760px){.mobile-stack{grid-template-columns:1fr !important}.lightbox{padding:10px}.lightbox-inner{width:98vw}}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 </helmet>
@@ -27,76 +37,157 @@ a:hover{color:#181360}
 
 <section data-screen-label="Title" style="padding:clamp(50px,8vh,90px) clamp(20px,5vw,64px) clamp(34px,5vh,54px)">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Financial NLP · Transformers · Sentiment Analysis</div>
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Financial NLP · Transformers · Data Science</div>
     <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Financial News Sentiment &amp; Stock Ranking</h1>
-    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">Transformer sentiment classification that does not stop at the headline: signals are aggregated into weighted ranking scores and served over an API.</p>
-    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)">
-      <div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#11CBCB">89%</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Classification performance</div><div style="font-size:10.5px;color:rgba(255,255,255,.55);margin-top:4px">Exact metric not yet confirmed</div></div>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:68ch">Designed and built an end-to-end financial NLP and data science pipeline that collects market news and stock data, structures and engineers the dataset, classifies financial sentiment using DistilBERT, and aggregates article-level signals into weighted stock-level sentiment scores for comparative ranking.</p>
+    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)">
+      <div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#11CBCB">2,982</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">News records in a collection run</div></div>
+      <div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 24px"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#181360">4</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">Displayed ranked stocks</div></div>
+      <div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 24px"><div style="font-size:1.2rem;font-weight:700;line-height:1.15;letter-spacing:-.02em;color:#181360">Weighted Sentiment Score</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">Ranking signal</div></div>
     </div>
-    <div data-reveal="160" style="margin-top:22px"><a href="https://github.com/AsiaAlrashed/stock_news_analysis" target="_blank" rel="noopener" style="display:inline-block;font-size:12.5px;letter-spacing:.04em;color:#181360;border:1px solid rgba(24,19,96,.22);border-radius:8px;padding:11px 18px" style-hover="border-color:#11CBCB">View repository on GitHub ↗</a></div>
   </div>
 </section>
 
 <section data-screen-label="01 — Problem" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
-    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Problem</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">Too much news to read consistently</h2></div>
+    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Business / analytical problem</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:24ch">Convert financial news into a comparable decision-support signal</h2></div>
     <div data-reveal="80">
-      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Large volumes of financial news make it difficult to evaluate market sentiment consistently across multiple stocks. Manual reading does not scale, and it is not repeatable: the same article read twice can be scored differently.</p>
-      <p style="margin:0;font-size:1.02rem;line-height:1.65"><b style="color:#181360">Objective.</b> Create an NLP pipeline that automatically transforms financial news into structured sentiment signals and stock-ranking information.</p>
+      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Financial markets generate large volumes of unstructured news. Reading individual headlines does not directly provide a structured signal that can be compared across stocks.</p>
+      <p style="margin:0;font-size:1.02rem;line-height:1.65">The project explored how news context, stock information, market response, and NLP sentiment could be connected to produce a <b style="color:#181360">stock-level sentiment ranking</b>. The output is a comparative sentiment-ranking signal, not investment advice, trading performance, or a guaranteed recommendation.</p>
     </div>
   </div>
 </section>
 
-<section data-screen-label="02 — Pipeline" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+<section data-screen-label="02 — Data acquisition" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Pipeline</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">From headline to ranked stock</h2>
-    <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
-      <div style="display:flex;flex-direction:column;gap:7px;max-width:480px;margin:0 auto">
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Financial news</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Data processing</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">DistilBERT</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Sentiment classification</span>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:4px 0">
-          <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;padding:8px;border:1px solid rgba(17,203,203,.34);border-radius:6px;text-align:center">Positive</span>
-          <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;padding:8px;border:1px solid rgba(17,203,203,.34);border-radius:6px;text-align:center">Neutral</span>
-          <span style="font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#181360;padding:8px;border:1px solid rgba(17,203,203,.34);border-radius:6px;text-align:center">Negative</span>
-        </div>
-        <span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Weighted sentiment scoring</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Stock ranking</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">FastAPI</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Downstream applications</span>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Data acquisition</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The dataset had to be designed and collected</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Financial news</div><p style="margin:0;font-size:.96rem;line-height:1.6">Collected ticker-linked news records with headline, summary where available, publication timestamp, source, and URL where available.</p></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Stock / market data</div><p style="margin:0;font-size:.96rem;line-height:1.6">Retrieved stock price information around each news event so article timing could be connected to market response.</p></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Confirmed sources</div><p style="margin:0;font-size:.96rem;line-height:1.6">The notebook includes Alpha Vantage, Finnhub, yfinance / Yahoo Finance, and RSS-based Yahoo Finance feed collection logic.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 — Dataset engineering" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — From raw news to ML-ready data</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">News and market data aligned by ticker and time</h2>
+    <div data-reveal="80" class="mobile-stack" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:24px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">Financial News APIs</div>
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="pipeline-box">Headline</span><span class="pipeline-box">Ticker</span><span class="pipeline-box">Timestamp</span><span class="pipeline-box">Source</span></div>
+      </div>
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:24px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">Stock Market Data</div>
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="pipeline-box">Price Data</span><span class="pipeline-box">Ticker</span><span class="pipeline-box">Timestamp</span><span class="pipeline-box">Market Values</span></div>
+      </div>
+    </div>
+    <div data-reveal="120" style="max-width:520px;margin:18px auto 0;display:flex;flex-direction:column;gap:7px">
+      <span class="pipeline-box active">Data Alignment</span><span class="arrow">↓</span>
+      <span class="pipeline-box">Structured Dataset</span><span class="arrow">↓</span>
+      <span class="pipeline-box active">Feature Engineering</span><span class="arrow">↓</span>
+      <span class="pipeline-box">ML-Ready Data</span>
+    </div>
+    <p data-reveal="160" style="margin:18px auto 0;max-width:70ch;font-size:1rem;line-height:1.65;color:#5F5F7A">The notebook collection run produced 2,982 news records with ticker, headline, summary, URL, published timestamp, and source columns. That number is treated as one collection-stage data point, not as a claim about every project iteration.</p>
+  </div>
+</section>
+
+<section data-screen-label="04 — Feature and label engineering" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(22px,4vw,44px);align-items:start">
+    <div data-reveal="0">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Feature &amp; label engineering</div>
+      <h2 style="margin:0 0 16px;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Market response became an engineered feature</h2>
+      <p style="margin:0;font-size:1rem;line-height:1.65">The notebook calculates price impact by comparing price before and after a news event. That transforms raw price observations into an interpretable market-impact feature used before the NLP modeling layer.</p>
+    </div>
+    <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.28);border-radius:14px;padding:24px">
+      <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">Implemented logic</div>
+      <div style="font-size:1rem;line-height:1.6;color:#181360;background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:10px;padding:16px">Price Change (%) = (Price After News - Price Before News) / Price Before News × 100</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px">
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:12px;text-align:center"><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Positive</div><div style="font-size:.95rem;color:#181360;margin-top:6px">&gt; +1%</div></div>
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:12px;text-align:center"><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Neutral</div><div style="font-size:.95rem;color:#181360;margin-top:6px">-1% to +1%</div></div>
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:12px;text-align:center"><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A">Negative</div><div style="font-size:.95rem;color:#181360;margin-top:6px">&lt; -1%</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="03 — Model and aggregation" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+<section data-screen-label="05 — NLP and aggregation" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — Model &amp; aggregation</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The ranking is the point, not the classification</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
-      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Transformer classification</div><p style="margin:0;font-size:.96rem;line-height:1.6">Financial sentiment classified with DistilBERT, chosen as a compact transformer that can process news volume without a heavyweight serving footprint.</p></div>
-      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Weighted aggregation</div><p style="margin:0;font-size:.96rem;line-height:1.6">Individual headline labels are aggregated into weighted sentiment scores per stock. Stopping at per-article classification would leave the user with the same volume problem they started with.</p></div>
-      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Serving</div><p style="margin:0;font-size:.96rem;line-height:1.6">The workflow runs as an end-to-end pipeline with automated processing and FastAPI-based serving, so ranking output is consumable by downstream applications rather than living in a notebook.</p></div>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">05 — NLP sentiment model and ranking signal</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">DistilBERT classifies articles; aggregation ranks stocks</h2>
+    <div class="mobile-stack" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div data-reveal="60" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:24px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">NLP layer</div>
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="pipeline-box">Financial News Headline</span><span class="arrow">↓</span><span class="pipeline-box">Tokenization / NLP Preparation</span><span class="arrow">↓</span><span class="pipeline-box active">DistilBERT</span><span class="arrow">↓</span><span class="pipeline-box">Positive · Neutral · Negative</span></div>
+      </div>
+      <div data-reveal="100" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:24px">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">Article-level to stock-level signal</div>
+        <div style="display:flex;flex-direction:column;gap:7px"><span class="pipeline-box">Article 1 · Sentiment</span><span class="pipeline-box">Article 2 · Sentiment</span><span class="pipeline-box">Article N · Sentiment</span><span class="arrow">↓</span><span class="pipeline-box active">Signal Aggregation</span><span class="arrow">↓</span><span class="pipeline-box">Weighted Sentiment Score</span><span class="arrow">↓</span><span class="pipeline-box active">Stock Ranking</span></div>
+      </div>
+    </div>
+    <p data-reveal="140" style="margin:18px 0 0;font-size:1rem;line-height:1.65;max-width:72ch;color:#5F5F7A">The exact weighted-score formula was not present in the supplied notebook, so the ranking layer is described conceptually rather than with an invented equation.</p>
+  </div>
+</section>
+
+<section data-screen-label="06 — Ranking output" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(22px,4vw,44px);align-items:center">
+    <div data-reveal="0">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">06 — Stock sentiment ranking</div>
+      <h2 style="margin:0 0 16px;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Example Stock Ranking Output</h2>
+      <p style="margin:0 0 14px;font-size:1rem;line-height:1.65">Stocks are comparatively ranked according to their aggregated weighted sentiment score. In this example, AAPL has the highest score among the displayed stocks, while TSLA has the lowest.</p>
+      <p style="margin:0;font-size:.94rem;line-height:1.55;color:#5F5F7A">Negative values are not interpreted as sell signals here. The screenshot is presented as project output evidence, not as investment advice or a trading strategy.</p>
+    </div>
+    <button data-reveal="80" data-lightbox-src="assets/stock-ranking-weighted-sentiment-output.jpeg" data-lightbox-title="Example Stock Ranking Output" style="cursor:pointer;background:#181360;border:1px solid rgba(17,203,203,.45);border-radius:16px;padding:12px;text-align:left;box-shadow:0 18px 45px rgba(24,19,96,.16)" style-hover="transform:translateY(-3px);border-color:#11CBCB">
+      <img src="assets/stock-ranking-weighted-sentiment-output.jpeg" alt="Example stock ranking output with weighted sentiment scores for AAPL, AMZN, MSFT, and TSLA" style="display:block;width:100%;height:auto;border-radius:10px;background:#2f2f2f">
+      <div style="padding:14px 10px 4px;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#11CBCB;margin-bottom:6px">Weighted sentiment scores generated by the pipeline</div><div style="font-size:.92rem;color:rgba(255,255,255,.72)">Click to enlarge</div></div>
+    </button>
+  </div>
+</section>
+
+<section data-screen-label="07 — Full architecture" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">07 — Complete AI / data pipeline</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Data science + NLP + engineering</h2>
+    <div data-reveal="80" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
+      <div style="max-width:540px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span class="pipeline-box">Financial News + Stock Market Data</span><span class="arrow">↓</span>
+        <span class="pipeline-box">Data Acquisition</span><span class="arrow">↓</span>
+        <span class="pipeline-box">Data Cleaning</span><span class="arrow">↓</span>
+        <span class="pipeline-box active">Temporal Alignment</span><span class="arrow">↓</span>
+        <span class="pipeline-box active">Feature / Label Engineering</span><span class="arrow">↓</span>
+        <span class="pipeline-box active">DistilBERT</span><span class="arrow">↓</span>
+        <span class="pipeline-box">Positive · Neutral · Negative</span><span class="arrow">↓</span>
+        <span class="pipeline-box active">Sentiment Aggregation</span><span class="arrow">↓</span>
+        <span class="pipeline-box">Weighted Sentiment Score</span><span class="arrow">↓</span>
+        <span class="pipeline-box active">Stock Ranking</span><span class="arrow">↓</span>
+        <span class="pipeline-box">FastAPI</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="04 — Result" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+<section data-screen-label="08 — Orchestration and API" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Result</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">89% classification performance</h2>
-    <p data-reveal="0" style="margin:0;font-size:1.02rem;line-height:1.65;max-width:62ch">The sentiment classifier reached 89% on its evaluation. That figure is reported as classification performance rather than accuracy or F1, because the exact metric is not currently confirmed.</p>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">08 — Pipeline orchestration and application layer</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Beyond notebook-only analysis</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Mage orchestration</div><p style="margin:0;font-size:.96rem;line-height:1.6">Mage is presented as workflow orchestration: data collection, processing, feature engineering, sentiment analysis, ranking, and output. It is not the ML model.</p></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">FastAPI serving</div><p style="margin:0;font-size:.96rem;line-height:1.6">Ranking results are exposed through an API layer so external applications or dashboards can consume the analysis output.</p></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Why this matters</div><p style="margin:0;font-size:.96rem;line-height:1.6">The hard part was not only selecting a transformer model; it was defining the data structure that connects unstructured news, temporal market data, ticker identity, sentiment, and a useful stock-level output.</p></div>
+    </div>
   </div>
 </section>
 
-<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+<section data-screen-label="09 — Pillars" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
-      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
-      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">89% is stated without a metric name because the exact evaluation metric is not currently confirmed. No dataset size, market coverage, or trading result is claimed.</p>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">09 — Project differentiation</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Three layers of the work</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">Data Science</div><p style="margin:0;font-size:.96rem;line-height:1.6">Collection, cleaning, feature engineering, label engineering, and market-impact analysis.</p></div>
+      <div data-reveal="60" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">NLP / ML</div><p style="margin:0;font-size:.96rem;line-height:1.6">DistilBERT, transformer NLP, sentiment classification, and model evaluation where supported by source context.</p></div>
+      <div data-reveal="120" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:12px">Engineering</div><p style="margin:0;font-size:.96rem;line-height:1.6">Mage pipeline, signal aggregation, stock ranking, and FastAPI serving.</p></div>
     </div>
   </div>
 </section>
@@ -104,7 +195,7 @@ a:hover{color:#181360}
 <section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
   <div style="max-width:1080px;margin:0 auto">
     <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
-    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">DistilBERT</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Transformers</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">NLP</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Sentiment Analysis</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">FastAPI</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pandas</span></div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Python</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pandas</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">NumPy</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">DistilBERT</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Transformers</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Financial NLP</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Mage</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">FastAPI</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Alpha Vantage</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Finnhub</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">yfinance / Yahoo Finance</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">CSV</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">REST API</span></div>
   </div>
 </section>
 
@@ -114,7 +205,7 @@ a:hover{color:#181360}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:12px">
       <a href="ICD Coding.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Clinical NLP</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Hierarchical ICD Coding</div></a>
       <a href="ETA Prediction Pipeline.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Predictive ML</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Delivery ETA Prediction</div></a>
-      <a href="LLM Conversational AI.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Applied AI</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Production Conversational AI</div></a>
+      <a href="Construction Cost Prediction.dc.html" style="border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:20px;color:#FFFFFF" style-hover="border-color:#11CBCB;color:#FFFFFF"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px">Regression</div><div style="font-size:1.05rem;font-weight:700;letter-spacing:-.015em">Construction Prediction</div></a>
     </div>
     <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:clamp(36px,6vh,60px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:12px;color:rgba(255,255,255,.6)">
       <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:rgba(255,255,255,.75)" style-hover="color:#11CBCB">← Back to projects</a>
@@ -122,10 +213,25 @@ a:hover{color:#181360}
     </div>
   </div>
 </footer>
+
+<div class="lightbox" data-lightbox>
+  <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Stock ranking output preview">
+    <div class="lightbox-head">
+      <div data-lightbox-title style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF">Example Stock Ranking Output</div>
+      <button data-lightbox-close style="cursor:pointer;border:1px solid rgba(255,255,255,.28);background:transparent;color:#FFFFFF;border-radius:8px;padding:8px 12px;font-size:12px;letter-spacing:.04em">Close</button>
+    </div>
+    <img data-lightbox-img class="lightbox-img" src="" alt="">
+  </div>
+</div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
+    this.initReveal();
+    this.initLightbox();
+  }
+
+  initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const els = Array.from(document.querySelectorAll('[data-reveal]'));
     els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
@@ -155,10 +261,50 @@ class Component extends DCLogic {
     this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
   }
 
+  initLightbox() {
+    this.lightbox = document.querySelector('[data-lightbox]');
+    this.lightboxImg = document.querySelector('[data-lightbox-img]');
+    this.lightboxTitle = document.querySelector('[data-lightbox-title]');
+    this.openLightbox = (trigger) => {
+      if (!this.lightbox || !this.lightboxImg) return;
+      const src = trigger.getAttribute('data-lightbox-src');
+      const title = trigger.getAttribute('data-lightbox-title') || 'Example Stock Ranking Output';
+      this.lightboxImg.setAttribute('src', src);
+      this.lightboxImg.setAttribute('alt', title);
+      if (this.lightboxTitle) this.lightboxTitle.textContent = title;
+      this.lightbox.classList.add('is-open');
+    };
+    this.closeLightbox = () => {
+      if (!this.lightbox) return;
+      this.lightbox.classList.remove('is-open');
+      if (this.lightboxImg) this.lightboxImg.setAttribute('src', '');
+    };
+    this.plotTriggers = Array.from(document.querySelectorAll('[data-lightbox-src]'));
+    this.boundOpenHandlers = this.plotTriggers.map((btn) => {
+      const handler = () => this.openLightbox(btn);
+      btn.addEventListener('click', handler);
+      return [btn, handler];
+    });
+    const closeBtn = document.querySelector('[data-lightbox-close]');
+    this.boundCloseHandler = this.closeLightbox;
+    if (closeBtn) closeBtn.addEventListener('click', this.boundCloseHandler);
+    if (this.lightbox) {
+      this.boundBackdropHandler = (e) => { if (e.target === this.lightbox) this.closeLightbox(); };
+      this.lightbox.addEventListener('click', this.boundBackdropHandler);
+    }
+    this.onKeyDown = (e) => { if (e.key === 'Escape') this.closeLightbox(); };
+    window.addEventListener('keydown', this.onKeyDown);
+  }
+
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this.sweep) window.removeEventListener('scroll', this.sweep);
     clearTimeout(this.fallback);
+    if (this.boundOpenHandlers) this.boundOpenHandlers.forEach(([btn, handler]) => btn.removeEventListener('click', handler));
+    const closeBtn = document.querySelector('[data-lightbox-close]');
+    if (closeBtn && this.boundCloseHandler) closeBtn.removeEventListener('click', this.boundCloseHandler);
+    if (this.lightbox && this.boundBackdropHandler) this.lightbox.removeEventListener('click', this.boundBackdropHandler);
+    if (this.onKeyDown) window.removeEventListener('keydown', this.onKeyDown);
   }
 
   renderVals() { return {}; }

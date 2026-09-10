@@ -29,85 +29,210 @@ a:hover{color:#181360}
   <div style="max-width:1080px;margin:0 auto">
     <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">3D Deep Learning · Computer Vision · Medical Imaging</div>
     <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Neural Canal Segmentation from 3D CBCT</h1>
-    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">A volumetric segmentation pipeline for dental CBCT, from raw DICOM through manual annotation to inference on new scans.</p>
-    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)"><div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#11CBCB">~92%</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Model performance</div><div style="font-size:10.5px;color:rgba(255,255,255,.55);margin-top:4px">Exact metric not yet confirmed</div></div></div>
-  </div>
-</section>
-
-<section data-screen-label="01 — Problem" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
-  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
-    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Problem</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">Segmentation in a volume, not in a picture</h2></div>
-    <div data-reveal="80"><p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Accurate localization and segmentation of neural canals in dental CBCT volumes is an important medical imaging task, and it requires analysis of volumetric 3D image data rather than individual slices. The canal is a thin, continuous structure that only makes sense across depth.</p>
-<p style="margin:0;font-size:1.02rem;line-height:1.65"><b style="color:#181360">Objective.</b> Build a deep learning workflow capable of learning neural-canal segmentation directly from CBCT volumes.</p></div>
-  </div>
-</section>
-
-<section data-screen-label="02 — Data preparation" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
-  <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Data preparation</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Getting from scanner output to trainable volumes</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
-      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">DICOM processing</div><p style="margin:0;font-size:.96rem;line-height:1.6">CBCT DICOM series collected and processed into a consistent form before anything is trained on them.</p></div>
-      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">3D volume construction</div><p style="margin:0;font-size:.96rem;line-height:1.6">Slices assembled into volumes, so the model sees the canal as the continuous structure it is.</p></div>
-      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Manual annotation, 3D Slicer</div><p style="margin:0;font-size:.96rem;line-height:1.6">Ground truth segmented by hand in 3D Slicer, then split into training and validation sets. This is the slowest step and it determines the ceiling on everything after it.</p></div>
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:58ch">An end-to-end 3D medical imaging pipeline for dental CBCT volumes, from DICOM engineering and high-quality neural canal masks to GPU-accelerated nnU-Net training, validation, and inference on unseen scans.</p>
+    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)">
+      <div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#11CBCB">~0.92</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Dice Score</div></div>
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.34);border-radius:12px;padding:22px 24px"><div style="font-size:1.8rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#181360">~100 GB</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">per 12 CBCT samples</div></div>
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.34);border-radius:12px;padding:22px 24px"><div style="font-size:1.8rem;font-weight:700;line-height:1;letter-spacing:-.03em;color:#181360">128³</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">3D training patch</div></div>
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.34);border-radius:12px;padding:22px 24px"><div style="font-size:1.35rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;color:#181360">NVIDIA T4</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">GPU training</div></div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="03 — Pipeline" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+<section id="problem" data-screen-label="01 — Problem" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
+    <div data-reveal="0">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Problem</div>
+      <h2 style="margin:0;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:26ch">Voxel-level segmentation in a full 3D medical volume</h2>
+    </div>
+    <div data-reveal="80">
+      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">The project focused on automatically segmenting the neural canal from 3D dental CBCT volumes. Unlike standard 2D image classification, the task requires voxel-level localization of a complex anatomical structure across a full three-dimensional scan.</p>
+      <p style="margin:0;font-size:1.02rem;line-height:1.65"><b style="color:#181360">Objective.</b> Build an end-to-end pipeline capable of moving from CBCT volume to neural canal detection/localization to a 3D segmentation mask.</p>
+    </div>
+  </div>
+</section>
+
+<section id="scale" data-screen-label="02 — Data scale" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — Pipeline</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">From scan to segmentation to inference</h2>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Data scale</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">High-resolution CBCT data changed the engineering constraints</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px;align-items:stretch">
+      <div data-reveal="0" style="background:#181360;border-radius:14px;padding:clamp(26px,4vw,42px);color:#FFFFFF"><div style="font-size:clamp(2.3rem,6vw,4rem);font-weight:700;line-height:.95;letter-spacing:-.04em;color:#11CBCB">12 CBCT cases<br>≈ 100 GB</div><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-top:16px">Representative volumetric storage example</div></div>
+      <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,3vw,34px)">
+        <p style="margin:0 0 14px;font-size:1rem;line-height:1.65">This representative data point demonstrates the scale of high-resolution 3D CBCT, not the total project dataset size. Volumetric data increased storage, preprocessing, memory, and GPU compute requirements.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:7px 13px">Storage-intensive volumes</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:7px 13px">3D preprocessing</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:7px 13px">GPU memory pressure</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:7px 13px">Volumetric training</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dicom" data-screen-label="03 — DICOM preparation" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — DICOM &amp; 3D volume preparation</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The input was volumetric medical imaging, not independent 2D images</h2>
     <div data-reveal="80" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
-      <div style="display:flex;flex-direction:column;gap:7px;max-width:560px;margin:0 auto">
+      <div style="display:flex;flex-direction:column;gap:7px;max-width:620px;margin:0 auto">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Dental CBCT DICOM data</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">DICOM series processing</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">3D volume reconstruction / preparation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Volume standardization</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Segmentation preparation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="masks" data-screen-label="04 — Ground truth masks" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Ground-truth mask creation</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Annotation quality was part of the model pipeline</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,3vw,34px)">
+        <p style="margin:0 0 14px;font-size:1rem;line-height:1.65">Neural canal structures were manually segmented and carefully refined using 3D Slicer. Considerable attention went into segmentation-mask quality because the model learns directly from these annotations.</p>
+        <div style="border-left:3px solid #11CBCB;padding:8px 0 8px 16px;color:#3A3A55;font-size:.96rem;line-height:1.6"><b style="color:#181360">Engineering principle:</b> high-quality masks create cleaner supervision, which supports better segmentation learning.</div>
+      </div>
+      <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,3vw,34px)">
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#181360">
+          <span style="padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px">CBCT volume + manual neural canal annotation</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px">3D Slicer</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px">Mask refinement</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="padding:10px 12px;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.45);border-radius:8px;font-weight:700">Quality-controlled ground truth</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px">Model training</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prep" data-screen-label="05 — Data preparation" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">05 — Data preparation for deep learning</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Large 3D volumes had to be organized for train/validation workflows</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Workflow</div><p style="margin:0;font-size:.95rem;line-height:1.6">DICOM handling, volumetric data preparation, segmentation-mask preparation, dataset organization, preprocessing, and train/validation preparation.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Patch size</div><p style="margin:0;font-size:.95rem;line-height:1.6">3D full-resolution nnU-Net training used 128 × 128 × 128 patches.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Voxel spacing</div><p style="margin:0;font-size:.95rem;line-height:1.6">Configuration used approximately 0.15 × 0.15 × 0.15 mm isotropic voxel spacing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="model" data-screen-label="06 — Model architecture" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">06 — Model architecture</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">nnU-Net, 3D full resolution, PlainConvUNet configuration</h2>
+    <div data-reveal="80" style="background:#181360;border-radius:14px;padding:clamp(24px,4vw,40px);color:#FFFFFF">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:12px;letter-spacing:.04em;padding:11px 14px;border:1px solid rgba(17,203,203,.45);border-radius:8px">3D CBCT patch</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="font-size:12px;letter-spacing:.04em;padding:11px 14px;border:1px solid rgba(17,203,203,.45);border-radius:8px">Encoder</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="font-size:12px;letter-spacing:.04em;padding:11px 14px;border:1px solid rgba(17,203,203,.65);border-radius:8px;background:rgba(17,203,203,.14);font-weight:700">32 → 64 → 128 → 256 → 320 → 320</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="font-size:12px;letter-spacing:.04em;padding:11px 14px;border:1px solid rgba(17,203,203,.45);border-radius:8px">Decoder</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="font-size:12px;letter-spacing:.04em;padding:11px 14px;border:1px solid rgba(17,203,203,.45);border-radius:8px">Voxel-level prediction</span><span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="font-size:12px;letter-spacing:.04em;padding:11px 14px;background:#11CBCB;color:#181360;border-radius:8px;font-weight:700">3D neural canal mask</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-content:center">
+          <span style="font-size:11.5px;color:#FFFFFF;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.42);border-radius:999px;padding:7px 13px">3D convolutions</span>
+          <span style="font-size:11.5px;color:#FFFFFF;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.42);border-radius:999px;padding:7px 13px">6 network stages</span>
+          <span style="font-size:11.5px;color:#FFFFFF;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.42);border-radius:999px;padding:7px 13px">InstanceNorm3d</span>
+          <span style="font-size:11.5px;color:#FFFFFF;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.42);border-radius:999px;padding:7px 13px">LeakyReLU</span>
+          <span style="font-size:11.5px;color:#FFFFFF;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.42);border-radius:999px;padding:7px 13px">128 × 128 × 128 patches</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="training" data-screen-label="07 — GPU training" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">07 — GPU-accelerated 3D training</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Training high-resolution 3D volumes required balancing memory and resolution</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#181360;border-radius:12px;padding:24px 22px;color:#FFFFFF"><div style="font-size:1.6rem;font-weight:700;line-height:1;letter-spacing:-.025em;color:#11CBCB">NVIDIA T4</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">GPU-accelerated 3D training</div></div>
+      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">CUDA + batch size 2</div><p style="margin:0;font-size:.95rem;line-height:1.6">Training used CUDA acceleration with small batch sizing due to 3D memory demands.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Training balance</div><p style="margin:0;font-size:.95rem;line-height:1.6">3D resolution, GPU memory, patch size, batch size, and training efficiency had to be balanced together.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="evaluation" data-screen-label="08 — Evaluation" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">08 — Validation &amp; evaluation</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Segmentation quality was evaluated with Dice overlap</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="background:#181360;border-radius:14px;padding:clamp(26px,4vw,42px);color:#FFFFFF"><div style="font-size:clamp(2.7rem,7vw,4.7rem);font-weight:700;line-height:.9;letter-spacing:-.04em;color:#11CBCB">~0.92</div><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:12px">Dice Score</div><p style="margin:14px 0 0;color:rgba(255,255,255,.82);font-size:.95rem;line-height:1.6">Dice Similarity Coefficient measures overlap between the model-predicted neural canal segmentation and the manually prepared ground-truth mask.</p></div>
+      <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,3vw,34px)">
+        <div style="display:flex;flex-direction:column;gap:8px;color:#181360">
+          <span style="padding:11px 13px;border:1px solid rgba(17,203,203,.34);border-radius:8px;text-align:center">Ground truth mask</span>
+          <span style="text-align:center;color:#11CBCB">∩</span>
+          <span style="padding:11px 13px;border:1px solid rgba(17,203,203,.34);border-radius:8px;text-align:center">Predicted mask</span>
+          <span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="padding:11px 13px;border:1px solid rgba(17,203,203,.34);border-radius:8px;text-align:center">Dice overlap</span>
+          <span style="text-align:center;color:#11CBCB">↓</span>
+          <span style="padding:11px 13px;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.45);border-radius:8px;text-align:center;font-weight:700">~0.92</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inference" data-screen-label="09 — Inference" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">09 — Inference</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The workflow supported prediction on new CBCT volumes</h2>
+    <div data-reveal="80" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+        <span style="font-size:12px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:8px;padding:10px 13px">New CBCT</span><span style="color:#11CBCB">↓</span>
+        <span style="font-size:12px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:8px;padding:10px 13px">DICOM processing</span><span style="color:#11CBCB">↓</span>
+        <span style="font-size:12px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:8px;padding:10px 13px">3D preprocessing</span><span style="color:#11CBCB">↓</span>
+        <span style="font-size:12px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:8px;padding:10px 13px">Trained nnU-Net</span><span style="color:#11CBCB">↓</span>
+        <span style="font-size:12px;letter-spacing:.04em;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:8px;padding:10px 13px">Voxel-level prediction</span><span style="color:#11CBCB">↓</span>
+        <span style="font-size:12px;letter-spacing:.04em;color:#181360;background:rgba(17,203,203,.18);border:1px solid rgba(17,203,203,.55);border-radius:8px;padding:10px 13px;font-weight:700">3D neural canal segmentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="complete" data-screen-label="10 — Complete pipeline" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">10 — Complete pipeline</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Raw medical imaging to 3D segmentation mask</h2>
+    <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
+      <div style="display:flex;flex-direction:column;gap:7px;max-width:620px;margin:0 auto">
         <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">CBCT DICOM</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
         <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">DICOM processing</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">3D volume construction</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Manual annotation, 3D Slicer</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Training / validation preparation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">3D U-Net / nnU-Net</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Model training &amp; hyperparameter tuning</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Neural canal segmentation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Prediction / inference pipeline</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">3D volume preparation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Manual annotation [3D Slicer]</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Mask refinement</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">High-quality ground truth</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">nnU-Net preprocessing</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">3D full-resolution model training</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">NVIDIA T4</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Model validation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">~0.92 Dice Score</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Inference</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">3D neural canal segmentation</span>
       </div>
-      <p style="margin:20px auto 0;max-width:560px;font-size:.92rem;line-height:1.6;color:#5F5F7A;padding-top:16px;border-top:1px solid rgba(24,19,96,.12)">The final stage matters as much as the model: an inference pipeline means a new CBCT volume can be segmented without repeating the manual work.</p>
     </div>
   </div>
 </section>
 
-<section data-screen-label="04 — Model development" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+<section id="challenges" data-screen-label="11 — Engineering challenges" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Model development</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Architecture and tuning</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
-      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">3D U-Net / nnU-Net</div><p style="margin:0;font-size:.96rem;line-height:1.6">A segmentation architecture designed for volumetric medical data, where context above and below a slice is part of the input rather than discarded.</p></div>
-      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Hyperparameter optimization</div><p style="margin:0;font-size:.96rem;line-height:1.6">Model hyperparameters tuned against the validation split, with evaluation on held-out volumes.</p></div>
-      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Inference on new volumes</div><p style="margin:0;font-size:.96rem;line-height:1.6">A prediction pipeline that takes an unseen CBCT volume and returns the segmented neural canal.</p></div>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">11 — Engineering challenges</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">The work was more than running nnU-Net on a dataset</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Large volumetric data</div><p style="margin:0;font-size:.95rem;line-height:1.6">Representative scale: 12 CBCT samples ≈ 100 GB, requiring storage-intensive 3D data handling.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Ground-truth quality</div><p style="margin:0;font-size:.95rem;line-height:1.6">Neural canal masks required careful manual creation and refinement, not just routine preprocessing.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">3D computation</div><p style="margin:0;font-size:.95rem;line-height:1.6">Training used 3D volumetric patches rather than conventional 2D images, increasing memory and compute demands.</p></div>
+      <div data-reveal="180" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:22px 20px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Segmentation quality</div><p style="margin:0;font-size:.95rem;line-height:1.6">The model needed precise voxel-level anatomical localization rather than a single image-level class.</p></div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="05 — Result" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
-  <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">05 — Result</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Approximately 92% model performance</h2>
-    <p data-reveal="0" style="margin:0;font-size:1.02rem;line-height:1.65;max-width:62ch">The trained model reached roughly 92% on its evaluation. The specific metric behind that figure is not currently confirmed, so it is presented as model performance rather than labelled as Dice, IoU, or accuracy.</p>
-  </div>
-</section>
-
-<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
-  <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
-      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
-      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">The ~92% figure is reported without a metric name because the exact evaluation metric is not currently confirmed. No dataset size or clinical validation is claimed.</p>
-    </div>
-  </div>
-</section>
-
-<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
   <div style="max-width:1080px;margin:0 auto">
     <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
-    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">3D U-Net / nnU-Net</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">3D Slicer</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">DICOM</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">3D Segmentation</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Medical Imaging</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Deep Learning</span></div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">nnU-Net</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">PyTorch</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">3D U-Net</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">3D Slicer</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">DICOM</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">SimpleITK</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">CUDA</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">NVIDIA T4</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Medical Imaging</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">3D Segmentation</span><span style="font-size:11.5px;color:#181360;background:#FFFFFF;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Deep Learning</span></div>
   </div>
 </section>
 

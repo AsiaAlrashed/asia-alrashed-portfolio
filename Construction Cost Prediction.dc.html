@@ -12,9 +12,23 @@
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
 a:hover{color:#181360}
+button{font-family:Arial, Helvetica, sans-serif}
 ::selection{background:#181360;color:#fff}
+.plot-card{background:#FFFFFF;border:1px solid rgba(17,203,203,.24);border-radius:14px;overflow:hidden;transition:transform .2s ease,border-color .2s ease;cursor:pointer;text-align:left}
+.plot-card:hover{transform:translateY(-3px);border-color:#11CBCB}
+.plot-card img{display:block;width:100%;height:auto;background:#FFFFFF}
+.metric-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:12px;border:1px solid rgba(17,203,203,.24);background:#FFFFFF}
+.metric-table th,.metric-table td{padding:14px 16px;border-bottom:1px solid rgba(24,19,96,.09);font-size:.94rem;text-align:left}
+.metric-table th{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;background:#F4F4FA}
+.metric-table tr:last-child td{border-bottom:0}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(24,19,96,.86);display:none;align-items:center;justify-content:center;padding:clamp(16px,3vw,34px)}
+.lightbox.is-open{display:flex}
+.lightbox-inner{width:min(1200px,96vw);max-height:92vh;background:#FFFFFF;border-radius:16px;border:1px solid rgba(17,203,203,.42);overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.lightbox-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;background:#181360;color:#FFFFFF}
+.lightbox-img{display:block;width:100%;height:auto;max-height:calc(92vh - 62px);object-fit:contain;background:#FFFFFF}
+@media (max-width:760px){.metric-table th,.metric-table td{padding:12px 10px;font-size:.86rem}.lightbox{padding:10px}.lightbox-inner{width:98vw}.plot-card:hover{transform:none}}
 @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
 </style>
 </helmet>
@@ -29,76 +43,148 @@ a:hover{color:#181360}
   <div style="max-width:1080px;margin:0 auto">
     <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Data Science · Regression · Civil Engineering</div>
     <h1 data-reveal="0" style="margin:0;font-size:clamp(2.1rem,5.5vw,3.7rem);font-weight:700;line-height:1.03;letter-spacing:-.035em;color:#181360;max-width:24ch">Construction Order Arrival &amp; Activity Cost Prediction</h1>
-    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:54ch">A regression workflow for construction planning that ends in a usable interface, not a notebook.</p>
-    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)"><div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#11CBCB">Low</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Prediction error</div><div style="font-size:10.5px;color:rgba(255,255,255,.55);margin-top:4px">Numeric value not yet available</div></div></div>
-    
+    <p data-reveal="80" style="margin:20px 0 0;font-size:clamp(1.05rem,1.9vw,1.35rem);line-height:1.45;color:#181360;max-width:62ch">Built a predictive analytics workflow for construction operations, combining data preparation, regression modeling, model comparison, order-arrival prediction, activity cost estimation, and material quantity calculations to support construction planning and decision-making.</p>
+    <div data-reveal="120" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:12px;margin-top:clamp(28px,4vh,44px)">
+      <div style="background:#181360;border-radius:12px;padding:22px 24px;color:#FFFFFF"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#11CBCB">0.969</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:9px">Best R²</div></div>
+      <div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 24px"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#181360">0.756</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">Lowest MAE</div></div>
+      <div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 24px"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#181360">4</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">Regression models</div></div>
+      <div style="border:1px solid rgba(17,203,203,.4);border-radius:12px;padding:22px 24px"><div style="font-size:2.1rem;font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#181360">5-fold</div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:9px">Cross-validation</div></div>
+    </div>
   </div>
 </section>
 
 <section data-screen-label="01 — Problem" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(26px,4vw,50px)">
-    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Problem</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:22ch">Planning needs three answers at once</h2></div>
-    <div data-reveal="80"><p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Construction planning requires estimating when material orders will arrive while simultaneously coordinating activity costs and required material quantities. Those three questions are usually answered in separate places, by hand, and a change to one silently invalidates the others.</p>
-<p style="margin:0;font-size:1.02rem;line-height:1.65"><b style="color:#181360">Objective.</b> Develop a data-driven prediction and planning workflow that combines regression modeling with construction cost and material calculations.</p></div>
+    <div data-reveal="0"><div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">01 — Prediction objective</div><h2 style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360;max-width:24ch">Predict time taken for order arrival</h2></div>
+    <div data-reveal="80">
+      <p style="margin:0 0 14px;font-size:1.02rem;line-height:1.65">Construction planning depends on when orders arrive. This workflow models the target variable as <b style="color:#181360">time taken for order arrival</b>, then compares predicted values against actual observed arrival times across evaluation samples.</p>
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:20px;margin-top:18px">
+        <div style="display:flex;flex-direction:column;gap:7px;max-width:420px">
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Construction / Order Features</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700;text-align:center">Regression Model</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Predicted Arrival Time</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+          <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Compare with Actual Arrival Time</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section data-screen-label="02 — Workflow" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
   <div style="max-width:1080px;margin:0 auto">
     <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">02 — Workflow</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">From raw project data to a planning decision</h2>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Data → experimentation → model comparison → planning support</h2>
     <div data-reveal="80" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:clamp(24px,4vw,40px)">
-      <div style="display:flex;flex-direction:column;gap:7px;max-width:520px;margin:0 auto">
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Construction data</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Data analysis</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Data preprocessing</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Regression models</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Model evaluation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);display:block;text-align:center;font-weight:700">Order arrival prediction</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Activity cost estimation + material quantity calculation</span><span style="text-align:center;color:#11CBCB;font-size:13px;display:block;line-height:1.2">↓</span>
-        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;display:block;text-align:center">Interactive user interface</span>
+      <div style="max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Construction Data</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Data Cleaning &amp; Preparation</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Feature Engineering</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700;text-align:center">Model Testing</span>
       </div>
-      <p style="margin:20px auto 0;max-width:560px;font-size:.92rem;line-height:1.6;color:#5F5F7A;padding-top:16px;border-top:1px solid rgba(24,19,96,.12)">Cost estimation and material quantity calculation run off the same predicted arrival, which is what keeps the three answers consistent with each other.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr));gap:10px;margin:18px 0">
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:14px;text-align:center;background:#F4F4FA"><div style="font-size:.95rem;font-weight:700;color:#181360">Linear Regression</div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-top:7px">R² / MAE</div></div>
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:14px;text-align:center;background:#F4F4FA"><div style="font-size:.95rem;font-weight:700;color:#181360">XGBoost</div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-top:7px">R² / MAE</div></div>
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:14px;text-align:center;background:#F4F4FA"><div style="font-size:.95rem;font-weight:700;color:#181360">Random Forest</div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-top:7px">R² / MAE</div></div>
+        <div style="border:1px solid rgba(17,203,203,.3);border-radius:10px;padding:14px;text-align:center;background:#F4F4FA"><div style="font-size:.95rem;font-weight:700;color:#181360">Decision Tree</div><div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5F5F7A;margin-top:7px">R² / MAE</div></div>
+      </div>
+      <div style="max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Model Comparison</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:11px 14px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700;text-align:center">Construction Prediction</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="03 — Engineering components" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+<section data-screen-label="03 — Model comparison" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — Engineering components</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">What the workflow is made of</h2>
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">03 — Model comparison</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Four regression approaches evaluated</h2>
+    <div style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:18px;align-items:start">
+      <div data-reveal="60" style="overflow-x:auto">
+        <table class="metric-table">
+          <thead><tr><th>Model</th><th>R²</th><th>MAE</th></tr></thead>
+          <tbody>
+            <tr><td><b style="color:#181360">Linear Regression</b></td><td>0.969</td><td>0.826</td></tr>
+            <tr><td><b style="color:#181360">XGBoost</b></td><td>0.952</td><td>0.756</td></tr>
+            <tr><td><b style="color:#181360">Random Forest</b></td><td>0.902</td><td>0.920</td></tr>
+            <tr><td><b style="color:#181360">Decision Tree</b></td><td>0.712</td><td>1.271</td></tr>
+          </tbody>
+        </table>
+        <p style="margin:12px 0 0;font-size:.9rem;line-height:1.55;color:#5F5F7A">Main comparison prioritizes R² and MAE because both are available across all supplied model results. XGBoost RMSE is not visually compared against MSE values from other models.</p>
+      </div>
+      <div data-reveal="100" style="display:grid;gap:12px">
+        <div style="background:#181360;color:#FFFFFF;border-radius:12px;padding:18px 20px"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#11CBCB;margin-bottom:7px">Highest R²</div><div style="font-size:1.05rem;font-weight:700">Linear Regression — 0.969</div></div>
+        <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.28);border-radius:12px;padding:18px 20px"><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:7px">Lowest MAE</div><div style="font-size:1.05rem;font-weight:700;color:#181360">XGBoost — 0.756</div></div>
+        <p style="margin:0;font-size:.96rem;line-height:1.6">Linear Regression achieved the highest R² score, indicating the strongest explained variance among the evaluated models. XGBoost achieved the lowest MAE, demonstrating strong average prediction error in the target variable’s original units. Random Forest remained competitive, while Decision Tree showed the weakest generalization with larger prediction deviations visible in several samples.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 — Actual vs Predicted" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1180px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Actual vs Predicted</div>
+    <h2 data-reveal="0" style="margin:0 0 12px;font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Visual comparison of model predictions against observed order-arrival times across evaluation samples.</h2>
+    <p data-reveal="40" style="margin:0 0 26px;font-size:1rem;line-height:1.65;max-width:72ch;color:#5F5F7A">Click any plot to inspect the original actual-vs-predicted lines in a larger view. The plots are preserved as supplied.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:16px">
+      <button class="plot-card" data-lightbox-src="assets/construction-linear-regression-actual-vs-predicted.png" data-lightbox-title="Linear Regression — Actual vs Predicted" data-reveal="0">
+        <img src="assets/construction-linear-regression-actual-vs-predicted.png" alt="Actual versus predicted order arrival time using Linear Regression">
+        <div style="padding:16px 18px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:6px">Linear Regression</div><div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.92rem;color:#5F5F7A"><b style="color:#181360">R² 0.969</b><span>MAE 0.826</span><span>MSE 1.232</span></div></div>
+      </button>
+      <button class="plot-card" data-lightbox-src="assets/construction-xgboost-actual-vs-predicted.png" data-lightbox-title="XGBoost Regressor — Actual vs Predicted" data-reveal="60">
+        <img src="assets/construction-xgboost-actual-vs-predicted.png" alt="Actual versus predicted order arrival time using XGBoost Regressor">
+        <div style="padding:16px 18px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:6px">XGBoost Regressor</div><div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.92rem;color:#5F5F7A"><b style="color:#181360">R² 0.952</b><span>MAE 0.756</span><span>RMSE 1.951</span></div></div>
+      </button>
+      <button class="plot-card" data-lightbox-src="assets/construction-random-forest-actual-vs-predicted.png" data-lightbox-title="Random Forest — Actual vs Predicted" data-reveal="120">
+        <img src="assets/construction-random-forest-actual-vs-predicted.png" alt="Actual versus predicted order arrival time using Random Forest">
+        <div style="padding:16px 18px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:6px">Random Forest</div><div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.92rem;color:#5F5F7A"><b style="color:#181360">R² 0.902</b><span>MAE 0.920</span><span>MSE 3.953</span></div></div>
+      </button>
+      <button class="plot-card" data-lightbox-src="assets/construction-decision-tree-actual-vs-predicted.png" data-lightbox-title="Decision Tree — Actual vs Predicted" data-reveal="180">
+        <img src="assets/construction-decision-tree-actual-vs-predicted.png" alt="Actual versus predicted order arrival time using Decision Tree">
+        <div style="padding:16px 18px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:6px">Decision Tree</div><div style="display:flex;gap:10px;flex-wrap:wrap;font-size:.92rem;color:#5F5F7A"><b style="color:#181360">R² 0.712</b><span>MAE 1.271</span><span>MSE 11.620</span></div></div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="05 — Model optimization" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">05 — Model optimization</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Tree-based models tuned through cross-validation</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px">
+      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.24);border-radius:12px;padding:22px;background:#FFFFFF"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">XGBoost</div><p style="margin:0;font-size:.95rem;line-height:1.6">5-fold CV · 10 candidates · 50 fits</p><p style="margin:12px 0 0;font-size:.9rem;line-height:1.55;color:#5F5F7A">Best parameters: n_estimators=100, max_depth=15, learning_rate=0.05.</p></div>
+      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.24);border-radius:12px;padding:22px;background:#FFFFFF"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Random Forest</div><p style="margin:0;font-size:.95rem;line-height:1.6">5-fold CV · 36 candidates · 180 fits</p><p style="margin:12px 0 0;font-size:.9rem;line-height:1.55;color:#5F5F7A">Best parameters: max_depth=10, min_samples_leaf=1, min_samples_split=5, n_estimators=100.</p></div>
+      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.24);border-radius:12px;padding:22px;background:#FFFFFF"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Decision Tree</div><p style="margin:0;font-size:.95rem;line-height:1.6">5-fold CV · 54 candidates · 270 fits</p><p style="margin:12px 0 0;font-size:.9rem;line-height:1.55;color:#5F5F7A">Best parameters: max_depth=5, min_samples_leaf=1, min_samples_split=10.</p></div>
+    </div>
+    <div data-reveal="180" style="margin-top:18px;background:#F4F4FA;border:1px solid rgba(17,203,203,.22);border-radius:14px;padding:24px">
+      <div style="max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Model</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Hyperparameter Grid</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.55);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700;text-align:center">5-Fold Cross Validation</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Candidate Evaluation</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Best Parameters</span><span style="text-align:center;color:#11CBCB;font-size:13px;line-height:1.2">↓</span>
+        <span style="font-size:11.5px;letter-spacing:.04em;color:#181360;padding:10px 12px;border:1px solid rgba(17,203,203,.34);border-radius:8px;background:#FFFFFF;text-align:center">Final Evaluation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="06 — Construction support" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1080px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">06 — Construction decision support</div>
+    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Arrival prediction plus cost and material planning</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
-      <div data-reveal="0" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Data analysis &amp; preprocessing</div><p style="margin:0;font-size:.96rem;line-height:1.6">Understanding the project data and preparing it, which is where most of the real work in a regression problem lives.</p></div>
-      <div data-reveal="60" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Regression model development</div><p style="margin:0;font-size:.96rem;line-height:1.6">Models built to predict order arrival time, then evaluated rather than assumed.</p></div>
-      <div data-reveal="120" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Model evaluation</div><p style="margin:0;font-size:.96rem;line-height:1.6">Held-out evaluation to establish that the predictions are usable for planning.</p></div>
-      <div data-reveal="180" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Activity cost estimation</div><p style="margin:0;font-size:.96rem;line-height:1.6">Predicted arrival feeds cost estimation for the affected activities.</p></div>
-      <div data-reveal="240" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Material quantity calculation</div><p style="margin:0;font-size:.96rem;line-height:1.6">Required quantities computed alongside cost, from the same inputs.</p></div>
-      <div data-reveal="300" style="border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Interactive application</div><p style="margin:0;font-size:.96rem;line-height:1.6">A user interface so planners can run scenarios themselves, which is what turns a model into decision support.</p></div>
+      <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Activity cost estimation</div><p style="margin:0;font-size:.96rem;line-height:1.6">The project also included a second analytical objective: activity cost estimation from construction data, material/activity information, data processing, and cost modeling. No unsupported cost metrics are stated.</p></div>
+      <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Material quantity calculations</div><p style="margin:0;font-size:.96rem;line-height:1.6">Material quantity calculation is presented as an engineering decision-support layer: construction inputs feed quantity calculations, which then support cost and planning decisions.</p></div>
+      <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Decision support output</div><p style="margin:0;font-size:.96rem;line-height:1.6">The final story connects construction data, regression modeling, multi-model comparison, hyperparameter optimization, order-arrival prediction, cost estimation, and material calculations into planning support.</p></div>
     </div>
   </div>
 </section>
 
-<section data-screen-label="04 — Result" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
-  <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">04 — Result</div>
-    <h2 data-reveal="0" style="margin:0 0 clamp(20px,3vh,32px);font-size:clamp(1.4rem,2.8vw,2rem);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#181360">Low prediction error, delivered as a planning tool</h2>
-    <p data-reveal="0" style="margin:0;font-size:1.02rem;line-height:1.65;max-width:62ch">The final regression workflow achieved low prediction error on evaluation. The engineering result is that arrival time, activity cost, and material quantity are produced together from one model run, inside an interface a planner can actually use.</p>
-  </div>
-</section>
-
-<section data-screen-label="Scope note" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
-  <div style="max-width:1080px;margin:0 auto">
-    <div data-reveal="0" style="border-left:3px solid #11CBCB;padding:4px 0 4px 20px">
-      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:10px">Scope of this write-up</div>
-      <p style="margin:0;font-size:1rem;line-height:1.65;max-width:66ch">No MAE, RMSE, MAPE, R², or accuracy figure is published for this workflow, so none is stated. "Low prediction error" is a qualitative summary of the evaluation.</p>
-    </div>
-  </div>
-</section>
-
-<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+<section data-screen-label="Tech stack" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1)">
   <div style="max-width:1080px;margin:0 auto">
     <div data-reveal="0" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Tech stack</div>
-    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Regression</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Python</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Data Analysis</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Predictive Modeling</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Cost Estimation</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Civil Engineering</span></div>
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:8px"><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Python</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Pandas</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Scikit-learn</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">XGBoost</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Linear Regression</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Random Forest</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Decision Tree</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Regression</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">GridSearchCV</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Data Analysis</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Predictive Modeling</span><span style="font-size:11.5px;color:#181360;background:#EFEFF7;border:1px solid rgba(17,203,203,.34);border-radius:999px;padding:6px 12px">Civil Engineering</span></div>
   </div>
 </section>
 
@@ -116,10 +202,25 @@ a:hover{color:#181360}
     </div>
   </div>
 </footer>
+
+<div class="lightbox" data-lightbox>
+  <div class="lightbox-inner" role="dialog" aria-modal="true" aria-label="Actual vs predicted plot preview">
+    <div class="lightbox-head">
+      <div data-lightbox-title style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF">Actual vs Predicted</div>
+      <button data-lightbox-close style="cursor:pointer;border:1px solid rgba(255,255,255,.28);background:transparent;color:#FFFFFF;border-radius:8px;padding:8px 12px;font-size:12px;letter-spacing:.04em">Close</button>
+    </div>
+    <img data-lightbox-img class="lightbox-img" src="" alt="">
+  </div>
+</div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   componentDidMount() {
+    this.initReveal();
+    this.initLightbox();
+  }
+
+  initReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const els = Array.from(document.querySelectorAll('[data-reveal]'));
     els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
@@ -149,10 +250,41 @@ class Component extends DCLogic {
     this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
   }
 
+  initLightbox() {
+    this.lightbox = document.querySelector('[data-lightbox]');
+    this.lightboxImg = document.querySelector('[data-lightbox-img]');
+    this.lightboxTitle = document.querySelector('[data-lightbox-title]');
+    this.closeLightbox = () => {
+      if (!this.lightbox) return;
+      this.lightbox.classList.remove('is-open');
+      if (this.lightboxImg) this.lightboxImg.setAttribute('src', '');
+    };
+    this.openLightbox = (trigger) => {
+      if (!this.lightbox || !this.lightboxImg) return;
+      const src = trigger.getAttribute('data-lightbox-src');
+      const title = trigger.getAttribute('data-lightbox-title') || 'Actual vs Predicted';
+      this.lightboxImg.setAttribute('src', src);
+      this.lightboxImg.setAttribute('alt', title);
+      if (this.lightboxTitle) this.lightboxTitle.textContent = title;
+      this.lightbox.classList.add('is-open');
+    };
+    this.plotTriggers = Array.from(document.querySelectorAll('[data-lightbox-src]'));
+    this.plotTriggers.forEach((btn) => btn.addEventListener('click', () => this.openLightbox(btn)));
+    const closeBtn = document.querySelector('[data-lightbox-close]');
+    if (closeBtn) closeBtn.addEventListener('click', this.closeLightbox);
+    if (this.lightbox) {
+      this.lightbox.addEventListener('click', (e) => { if (e.target === this.lightbox) this.closeLightbox(); });
+    }
+    this.onKeyDown = (e) => { if (e.key === 'Escape') this.closeLightbox(); };
+    window.addEventListener('keydown', this.onKeyDown);
+  }
+
   componentWillUnmount() {
     if (this.io) this.io.disconnect();
     if (this.sweep) window.removeEventListener('scroll', this.sweep);
     clearTimeout(this.fallback);
+    if (this.plotTriggers && this.openLightbox) this.plotTriggers.forEach((btn) => btn.removeEventListener('click', () => this.openLightbox(btn)));
+    window.removeEventListener('keydown', this.onKeyDown);
   }
 
   renderVals() { return {}; }

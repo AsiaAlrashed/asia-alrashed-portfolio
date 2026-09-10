@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#FFFFFF;color:#3A3A55;font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none;transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease}
+a:hover{color:#181360}
+::selection{background:#181360;color:#fff}
+.map-marker{display:flex;align-items:center;justify-content:center;font-family:Arial, Helvetica, sans-serif;font-weight:700;box-sizing:border-box;box-shadow:0 8px 18px rgba(24,19,96,.18)}
+.map-marker.start{width:34px;height:34px;border-radius:9px;background:#181360;color:#fff;border:3px solid #11CBCB;font-size:14px}
+.map-marker.container{width:28px;height:28px;border-radius:50%;background:#FFFFFF;color:#181360;border:2px solid #181360;font-size:10px}
+.map-marker.selected{width:34px;height:34px;border-radius:8px;background:#11CBCB;color:#181360;border:3px solid #181360;transform:rotate(45deg);font-size:10px}
+.map-marker.selected span{transform:rotate(-45deg)}
+.map-marker.destination{width:34px;height:34px;border-radius:50% 50% 50% 6px;background:#181360;color:#FFFFFF;border:3px solid #FFFFFF;transform:rotate(-45deg);font-size:13px}
+.map-marker.destination span{transform:rotate(45deg)}
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 12px 30px rgba(24,19,96,.18)}
+.leaflet-popup-content{font-family:Arial, Helvetica, sans-serif;color:#3A3A55;line-height:1.45}
+.leaflet-container{font-family:Arial, Helvetica, sans-serif}
+@media (max-width:760px){.map-shell{grid-template-columns:1fr !important}.map-panel{order:2}.map-wrap{order:1}.map-height{height:62vh !important;min-height:420px !important}.metric-grid{grid-template-columns:1fr 1fr !important}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</helmet>
+
+<header data-screen-label="Map header" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px clamp(16px,5vw,64px);background:#181360;color:#FFFFFF">
+  <a href="Smart Campus Optimization.dc.html" style="font-size:12.5px;letter-spacing:.04em;color:#FFFFFF" style-hover="color:#11CBCB">← Smart Campus Case Study</a>
+  <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6)">Interactive optimization map</span>
+  <a href="mailto:asiaalrashed57@gmail.com" style="font-size:12.5px;letter-spacing:.04em;color:#11CBCB">Contact</a>
+</header>
+
+<section data-screen-label="Map title" style="padding:clamp(44px,7vh,78px) clamp(20px,5vw,64px) clamp(26px,4vh,44px)">
+  <div style="max-width:1180px;margin:0 auto">
+    <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Smart Campus · CVRP · NetworkX</div>
+    <h1 data-reveal="0" style="margin:0;font-size:clamp(2rem,5vw,3.4rem);font-weight:700;line-height:1.04;letter-spacing:-.035em;color:#181360;max-width:25ch">Smart Campus — Waste Collection Route Optimization</h1>
+    <p data-reveal="80" style="margin:18px 0 0;font-size:clamp(1.02rem,1.8vw,1.28rem);line-height:1.5;color:#181360;max-width:66ch">Occupancy-driven waste collection and CVRP route optimization across the campus road network.</p>
+  </div>
+</section>
+
+<section data-screen-label="Interactive map" style="padding:0 clamp(20px,5vw,64px) clamp(52px,8vh,90px)">
+  <div class="map-shell" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,360px);gap:18px;align-items:stretch">
+    <div class="map-wrap" data-reveal="0" style="background:#F4F4FA;border:1px solid rgba(17,203,203,.3);border-radius:16px;padding:10px;min-width:0">
+      <div id="smartCampusMap" class="map-height" style="height:680px;min-height:520px;border-radius:12px;background:#EFEFF7;overflow:hidden"></div>
+      <div id="mapFallback" style="display:none;padding:22px;color:#181360;font-size:.96rem;line-height:1.6">Leaflet could not load. The map data is still embedded in this page from the project source files.</div>
+    </div>
+    <aside class="map-panel" data-reveal="80" style="display:flex;flex-direction:column;gap:14px">
+      <div style="background:#181360;color:#FFFFFF;border-radius:16px;padding:22px 22px;border:1px solid rgba(17,203,203,.45)">
+        <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:12px">Example Optimization Run</div>
+        <div style="font-size:1.25rem;font-weight:700;line-height:1.25;letter-spacing:-.02em">Gate 5 → Container 3 → Container 8 → Container 9 → Waste</div>
+        <p style="margin:12px 0 0;font-size:.92rem;line-height:1.55;color:rgba(255,255,255,.72)">Confirmed from the included WasteScheduling, NetworkX, and OR-Tools source files. This is an example run, not a universal route.</p>
+      </div>
+      <div class="metric-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.28);border-radius:12px;padding:16px"><div style="font-size:1.45rem;font-weight:700;color:#181360;letter-spacing:-.03em">3</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:6px">Selected containers</div></div>
+        <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.28);border-radius:12px;padding:16px"><div style="font-size:1.45rem;font-weight:700;color:#181360;letter-spacing:-.03em">920kg</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:6px">Truck load</div></div>
+        <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.28);border-radius:12px;padding:16px"><div style="font-size:1.45rem;font-weight:700;color:#181360;letter-spacing:-.03em">1.233km</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:6px">Rendered route</div></div>
+        <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.28);border-radius:12px;padding:16px"><div style="font-size:1.45rem;font-weight:700;color:#181360;letter-spacing:-.03em">58</div><div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-top:6px">Graph edges</div></div>
+      </div>
+      <div style="background:#F4F4FA;border:1px solid rgba(17,203,203,.28);border-radius:14px;padding:20px">
+        <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">Route impact model</div>
+        <div style="display:grid;gap:9px;font-size:.94rem;line-height:1.45">
+          <div style="display:flex;justify-content:space-between;gap:12px"><span>Energy consumption</span><b style="color:#181360">2.219 kWh</b></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span>Estimated cost</span><b style="color:#181360">1.564</b></div>
+          <div style="display:flex;justify-content:space-between;gap:12px"><span>CO₂ emissions</span><b style="color:#181360">5.879 kg</b></div>
+        </div>
+        <p style="margin:12px 0 0;font-size:.82rem;line-height:1.5;color:#5F5F7A">Computed for this rendered example route using the project energy model: 1.8 kWh/km, 0.705 cost/kWh, and 2650g CO₂/kWh.</p>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(17,203,203,.28);border-radius:14px;padding:20px">
+        <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:12px">Legend</div>
+        <div style="display:grid;gap:10px;font-size:.9rem;color:#3A3A55">
+          <div style="display:flex;align-items:center;gap:9px"><span style="width:20px;height:20px;border-radius:6px;background:#181360;border:2px solid #11CBCB;display:inline-block"></span>Start: Gate 5</div>
+          <div style="display:flex;align-items:center;gap:9px"><span style="width:18px;height:18px;border-radius:50%;background:#FFFFFF;border:2px solid #181360;display:inline-block"></span>Waste container</div>
+          <div style="display:flex;align-items:center;gap:9px"><span style="width:18px;height:18px;border-radius:5px;background:#11CBCB;border:2px solid #181360;display:inline-block;transform:rotate(45deg)"></span>Selected for collection</div>
+          <div style="display:flex;align-items:center;gap:9px"><span style="width:20px;height:20px;border-radius:50% 50% 50% 4px;background:#181360;display:inline-block;transform:rotate(-45deg)"></span>Destination: Waste</div>
+          <div style="display:flex;align-items:center;gap:9px"><span style="width:28px;height:0;border-top:4px solid #11CBCB;display:inline-block"></span>Optimized route</div>
+          <div style="display:flex;align-items:center;gap:9px"><span style="width:28px;height:0;border-top:2px dashed rgba(24,19,96,.34);display:inline-block"></span>Campus road network</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section data-screen-label="Data source" style="padding:clamp(40px,6vh,70px) clamp(20px,5vw,64px);border-top:1px solid rgba(24,19,96,.1);background:#F4F4FA">
+  <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
+    <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Map data source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Coordinates are reused from the project’s <b style="color:#181360">waste.py</b> file: Gate 5, 12 waste containers, Waste endpoint, and intermediate campus graph nodes.</p></div>
+    <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Route data source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Road graph edges are reused from <b style="color:#181360">map.py</b>. NetworkX reports 48 graph nodes and 58 graph edges after duplicate edges are collapsed.</p></div>
+    <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Optimization source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Selected containers and truck load come from <b style="color:#181360">Wastescheduling.py</b>; the collection sequence is produced by the OR-Tools CVRP model.</p></div>
+  </div>
+</section>
+
+<footer data-screen-label="Map footer" style="background:#181360;color:#FFFFFF;padding:clamp(40px,7vh,72px) clamp(20px,5vw,64px) 34px">
+  <div style="max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.65)">
+    <a href="Smart Campus Optimization.dc.html" style="color:rgba(255,255,255,.8)" style-hover="color:#11CBCB">← Smart Campus Case Study</a>
+    <a href="Asia Alrashed Portfolio Simple.dc.html#projects" style="color:#11CBCB">Back to projects →</a>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this.initReveal();
+    this.initMapWhenReady();
+  }
+
+  initReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+    const pending = new Set(els);
+    const show = (el) => {
+      if (!pending.has(el)) return;
+      pending.delete(el);
+      const d = parseInt(el.getAttribute('data-reveal') || '0', 10);
+      el.style.transition = 'opacity .8s ease ' + d + 'ms, transform .8s cubic-bezier(.22,1,.36,1) ' + d + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { this.io.unobserve(e.target); show(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach((el) => this.io.observe(el));
+    this.sweep = () => {
+      if (!pending.size) return;
+      const vh = window.innerHeight;
+      Array.from(pending).forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.98 && r.bottom > 0) show(el);
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(this.sweep));
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.fallback = setTimeout(() => { Array.from(pending).forEach(show); }, 5000);
+  }
+
+  initMapWhenReady() {
+    let tries = 0;
+    const boot = () => {
+      tries += 1;
+      if (window.L) {
+        this.initMap();
+        return;
+      }
+      if (tries > 80) {
+        const fallback = document.getElementById('mapFallback');
+        if (fallback) fallback.style.display = 'block';
+        return;
+      }
+      this.mapTimer = setTimeout(boot, 100);
+    };
+    boot();
+  }
+
+  initMap() {
+    const mapEl = document.getElementById('smartCampusMap');
+    if (!mapEl || mapEl.dataset.ready === 'true') return;
+    mapEl.dataset.ready = 'true';
+
+    const nodes = {
+      "Gate 5":[31.8910781,35.8768912],"Container 1":[31.8913952,35.8758642],"Container 2":[31.8925464,35.8759749],"Container 3":[31.8916665,35.8750599],
+      "Container 4":[31.8920986,35.8751957],"Container 5":[31.8931760,35.8749278],"Container 6":[31.8923235,35.8736913],"Container 7":[31.8935088,35.8738462],
+      "Container 8":[31.8929070,35.8731941],"Container 9":[31.8932185,35.8728005],"Container 10":[31.8937938,35.8722151],"Container 11":[31.8945524,35.8722399],
+      "Container 12":[31.8946352,35.8714255],"Waste":[31.8915469,35.8788559],"A":[31.892345693703238,35.878399691931925],"B":[31.892785948986372,35.87727153260465],
+      "C":[31.89122124836834,35.87659183408072],"D":[31.891594889433588,35.876722096932625],"E":[31.892118084246384,35.876951078518374],"F":[31.89165555957346,35.87512032191471],
+      "G":[31.89193469152662,35.875677664507194],"H":[31.892484599568427,35.87593552513676],"I":[31.893146685980632,35.876270719000175],"J":[31.892183247479604,35.87480682071649],
+      "K":[31.892743031697645,35.87507542986044],"L":[31.89308335454076,35.87521898798855],"M":[31.893429502054754,35.875438929136806],"N":[31.89313201659516,35.87380853102151],
+      "P":[31.893248852355548,35.87394279259554],"Q":[31.89338331074777,35.87381007860145],"R":[31.894064225009604,35.87402388424111],"S":[31.893283,35.873688],
+      "T":[31.893629197185334,35.87274393913704],"V":[31.89455738293897,35.872092320986226],"W":[31.892039,35.875310],"X":[31.891871,35.874254],
+      "Y":[31.892580,35.873396],"Z":[31.893352,35.872598],"AA":[31.893539,35.871723],"AB":[31.893671,35.871094],"AC":[31.894535,35.871047],
+      "AD":[31.893504,35.873276],"AE":[31.892920,35.873897],"AF":[31.893269,35.874436],"AG":[31.893190,35.873921],"AH":[31.893192,35.873711],
+      "AI":[31.893339,35.873886],"AJ":[31.893329,35.873739]
+    };
+
+    const edges = [
+      ["Gate 5","C"],["Gate 5","A"],["C","Container 1"],["Container 1","F"],["C","D"],["A","B"],["B","E"],["B","I"],["D","G"],["D","E"],["E","H"],["H","K"],
+      ["H","Container 2"],["Container 2","I"],["G","H"],["G","W"],["Container 3","F"],["W","Container 4"],["Container 4","J"],["Container 3","X"],["J","K"],["K","L"],
+      ["I","M"],["L","M"],["L","Container 5"],["Container 5","AF"],["AF","P"],["Container 10","T"],["P","AI"],["AI","Q"],["N","AG"],["AG","P"],["J","AE"],["AE","N"],
+      ["AH","S"],["N","AH"],["Q","AJ"],["AJ","S"],["S","AD"],["AD","T"],["T","Z"],["Container 10","V"],["Z","AA"],["AA","AB"],["AB","AC"],["AC","Container 12"],
+      ["Container 12","V"],["V","Container 11"],["Container 11","R"],["Q","Container 7"],["Container 7","R"],["R","M"],["X","Container 6"],["Container 6","Y"],
+      ["Y","Container 8"],["Container 8","Container 9"],["Container 9","Z"],["A","Waste"]
+    ];
+
+    const routeStops = ["Gate 5","Container 3","Container 8","Container 9","Waste"];
+    const routePath = ["Gate 5","C","Container 1","F","Container 3","X","Container 6","Y","Container 8","Container 9","Z","T","AD","S","AJ","Q","AI","P","AF","Container 5","L","M","I","B","A","Waste"];
+    const selected = new Set(["Container 3","Container 8","Container 9"]);
+    const capacities = {"Container 1":384,"Container 2":384,"Container 3":384,"Container 4":384,"Container 5":384,"Container 6":384,"Container 7":384,"Container 8":384,"Container 9":576,"Container 10":384,"Container 11":384,"Container 12":384};
+    const wasteKg = {"Container 1":180,"Container 2":94.23006,"Container 3":270,"Container 4":47.45652,"Container 5":24.990906,"Container 6":23.564301,"Container 7":16.477335,"Container 8":250,"Container 9":400,"Container 10":91.978962,"Container 11":18.407175,"Container 12":75};
+
+    const map = L.map(mapEl, { scrollWheelZoom:false, zoomControl:true }).setView([31.893,35.875], 17);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 20,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    edges.forEach(([a,b]) => {
+      L.polyline([nodes[a], nodes[b]], { color:'#181360', weight:2, opacity:.28, dashArray:'5 7' }).addTo(map).bindTooltip(a + ' → ' + b);
+    });
+
+    L.polyline(routePath.map((name) => nodes[name]), { color:'#11CBCB', weight:7, opacity:.94, lineCap:'round', lineJoin:'round' }).addTo(map).bindPopup('<b>Example Optimization Run</b><br>' + routeStops.join(' → ') + '<br>Rendered on the NetworkX road path.');
+    L.polyline(routePath.map((name) => nodes[name]), { color:'#181360', weight:3, opacity:.9, lineCap:'round', lineJoin:'round' }).addTo(map);
+
+    Object.keys(nodes).forEach((name) => {
+      if (!name.startsWith('Container') && name !== 'Gate 5' && name !== 'Waste') return;
+      const point = nodes[name];
+      let iconHtml = '';
+      let className = '';
+      if (name === 'Gate 5') {
+        iconHtml = 'G';
+        className = 'map-marker start';
+      } else if (name === 'Waste') {
+        iconHtml = '<span>W</span>';
+        className = 'map-marker destination';
+      } else if (selected.has(name)) {
+        iconHtml = '<span>' + name.replace('Container ', 'C') + '</span>';
+        className = 'map-marker selected';
+      } else {
+        iconHtml = name.replace('Container ', 'C');
+        className = 'map-marker container';
+      }
+      const icon = L.divIcon({ html:'<div class="' + className + '">' + iconHtml + '</div>', className:'', iconSize:[38,38], iconAnchor:[19,19], popupAnchor:[0,-18] });
+      const marker = L.marker(point, { icon }).addTo(map);
+      marker.bindPopup(this.popupFor(name, point, selected, capacities, wasteKg));
+    });
+
+    const bounds = L.latLngBounds(routePath.map((name) => nodes[name]));
+    map.fitBounds(bounds.pad(.18));
+    setTimeout(() => map.invalidateSize(), 200);
+  }
+
+  popupFor(name, point, selected, capacities, wasteKg) {
+    if (name === 'Gate 5') {
+      return '<b>GATE 5</b><br>Starting point<br>Lat: ' + point[0] + '<br>Lon: ' + point[1];
+    }
+    if (name === 'Waste') {
+      return '<b>WASTE ENDPOINT</b><br>Final unloading / destination point<br>Lat: ' + point[0] + '<br>Lon: ' + point[1];
+    }
+    const cap = capacities[name];
+    const waste = wasteKg[name];
+    const fill = cap ? ((waste / cap) * 100).toFixed(1) : null;
+    return '<b>' + name + '</b><br>Container ID: ' + name.replace('Container ', '') +
+      '<br>Estimated waste: ' + waste.toFixed(3).replace(/\.?0+$/,'') + ' kg' +
+      '<br>Capacity: ' + cap + ' kg' +
+      '<br>Fill level: ' + fill + '%' +
+      '<br>Collection status: ' + (selected.has(name) ? 'Selected for collection' : 'Not selected in this example run') +
+      '<br>Lat: ' + point[0] + '<br>Lon: ' + point[1];
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    clearTimeout(this.fallback);
+    clearTimeout(this.mapTimer);
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
