@@ -35,10 +35,10 @@ a:hover{color:#181360}
     <p data-reveal="80" style="margin:30px 0 0;font-weight:700;font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.22;letter-spacing:-.025em;max-width:36ch">A production Arabic customer-engagement system where fine-tuning shapes behavior, RAG supplies business knowledge, and Odoo turns interactions into reusable AI data.</p>
     <p data-reveal="120" style="margin:20px 0 0;color:#3A3A55;font-size:clamp(1rem,1.35vw,1.15rem);line-height:1.6;max-width:68ch">The project combined historical WhatsApp and call-data extraction, conversational dataset preparation, LoRA/QLoRA fine-tuning, RAG retrieval, omnichannel deployment, WhatsApp Coexistence, Odoo-centered conversation capture, and response-level feedback for future AI improvement.</p>
     <div data-reveal="160" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:18px;margin-top:clamp(38px,6vh,58px);padding-top:28px;border-top:1px solid rgba(24,19,96,.14)">
-      <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">My role</div><div style="font-size:.98rem;line-height:1.5">Data extraction, fine-tuning, RAG architecture, omnichannel integration, feedback loop design</div></div>
-      <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Stack</div><div style="font-size:.98rem;line-height:1.5">Hugging Face, PyTorch, LangChain, FastAPI, vector retrieval, Odoo</div></div>
+      <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">My role</div><div style="font-size:.98rem;line-height:1.5">Data extraction, model adaptation, RAG architecture, workflow orchestration, omnichannel integration, feedback loop design</div></div>
+      <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Stack</div><div style="font-size:.98rem;line-height:1.5">Hugging Face, PyTorch, LangChain, FastAPI, n8n, vector retrieval, Odoo</div></div>
       <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Focus</div><div style="font-size:.98rem;line-height:1.5">Iraqi Arabic behavior, grounded knowledge, structured data capture</div></div>
-      <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Sections</div><div style="display:flex;flex-wrap:wrap;gap:6px;font-size:11px;text-transform:uppercase"><a href="#principle" style="color:#11CBCB">Principle</a><span style="color:#5F5F7A">/</span><a href="#data" style="color:#11CBCB">Data</a><span style="color:#5F5F7A">/</span><a href="#architecture" style="color:#11CBCB">Architecture</a><span style="color:#5F5F7A">/</span><a href="#flywheel" style="color:#11CBCB">Data Pipeline</a></div></div>
+      <div><div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:8px">Sections</div><div style="display:flex;flex-wrap:wrap;gap:6px;font-size:11px;text-transform:uppercase"><a href="#principle" style="color:#11CBCB">Principle</a><span style="color:#5F5F7A">/</span><a href="#data" style="color:#11CBCB">Data</a><span style="color:#5F5F7A">/</span><a href="#architecture" style="color:#11CBCB">AI Architecture</a><span style="color:#5F5F7A">/</span><a href="#omnichannel" style="color:#11CBCB">Automation</a><span style="color:#5F5F7A">/</span><a href="#flywheel" style="color:#11CBCB">Data Pipeline</a></div></div>
     </div>
   </div>
 </section>
@@ -153,14 +153,28 @@ a:hover{color:#181360}
   </div>
 </section>
 
-<section id="omnichannel" data-screen-label="Omnichannel and Odoo" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
+<section id="omnichannel" data-screen-label="Workflow automation and production integration" style="padding:clamp(46px,7vh,84px) clamp(20px,3.5vw,40px);border-top:1px solid rgba(24,19,96,.14)">
   <div style="max-width:1280px;margin:0 auto">
-    <div data-reveal="0" style="max-width:780px">
-      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 07 ) Omnichannel integration and WhatsApp Coexistence</div>
-      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">Channels converge into one AI/Odoo architecture</h2>
-      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">The assistant operates across WhatsApp, Instagram, and Messenger rather than as separate isolated bots. WhatsApp Coexistence allowed existing sales WhatsApp numbers to keep being used while connecting communication data back to Odoo.</p>
+    <div data-reveal="0" style="max-width:820px">
+      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:14px">( 07 ) Workflow automation &amp; production integration</div>
+      <h2 style="margin:0;font-weight:700;font-size:clamp(1.55rem,2.9vw,2.35rem);line-height:1.14;letter-spacing:-.03em">n8n orchestrates the workflow around the AI service</h2>
+      <p style="margin:16px 0 0;color:#3A3A55;font-size:1.02rem;line-height:1.6">Communication events enter through webhooks and are orchestrated in n8n. The workflow prepares data and business context, exchanges JSON payloads with the FastAPI AI service, processes structured AI outputs, and connects downstream actions to Odoo. n8n acts as integration infrastructure around the AI system; model behavior remains in the adapted model and business knowledge remains in RAG.</p>
     </div>
-    <div data-reveal="80" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:16px;margin-top:clamp(26px,4vh,42px)">
+    <div data-reveal="80" style="margin-top:clamp(26px,4vh,42px);background:#181360;color:#FFFFFF;border-radius:16px;padding:clamp(24px,3vw,38px)">
+      <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#11CBCB;margin-bottom:16px">Production workflow</div>
+      <div style="display:flex;flex-direction:column;gap:7px;max-width:720px;margin:0 auto;text-align:center">
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Communication channels</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Webhook / event intake</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.62);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700">n8n workflow orchestration</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Data &amp; context preparation · JSON exchange</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.62);border-radius:8px;background:rgba(17,203,203,.16);font-weight:700">FastAPI AI service · RAG + adapted Iraqi Arabic model</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Structured AI output</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Business logic &amp; workflow routing</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px solid rgba(17,203,203,.35);border-radius:8px">Odoo / CRM operational system</div><div style="color:#11CBCB">↓</div>
+        <div style="padding:10px 13px;border:1px dashed rgba(255,255,255,.32);border-radius:8px">Structured interaction capture → evaluation &amp; future AI improvement</div>
+      </div>
+    </div>
+    <div data-reveal="80" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:16px;margin-top:16px">
       <div style="border:1px solid rgba(24,19,96,.14);border-radius:14px;padding:24px">
         <div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#5F5F7A;margin-bottom:14px">Channel convergence</div>
         <div style="display:flex;flex-direction:column;gap:8px"><span style="padding:10px 12px;background:#F4F4FA;border:1px solid rgba(17,203,203,.3);border-radius:8px">WhatsApp ─┐</span><span style="padding:10px 12px;background:#F4F4FA;border:1px solid rgba(17,203,203,.3);border-radius:8px">Instagram ─┼──→ Conversational AI</span><span style="padding:10px 12px;background:#F4F4FA;border:1px solid rgba(17,203,203,.3);border-radius:8px">Messenger ─┘</span><span style="text-align:center;color:#11CBCB">↕</span><span style="padding:10px 12px;background:rgba(17,203,203,.14);border:1px solid rgba(17,203,203,.45);border-radius:8px;font-weight:700">Odoo</span></div>
@@ -260,6 +274,11 @@ a:hover{color:#181360}
       <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">RAG</span>
       <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">LangChain</span>
       <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">FastAPI</span>
+      <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">REST APIs</span>
+      <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Webhooks</span>
+      <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">n8n</span>
+      <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Workflow Orchestration</span>
+      <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">JSON Data Exchange</span>
       <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Arabic NLP</span>
       <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">WhatsApp</span>
       <span style="font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:#1B1A5C;background:#E6F7F7;border:1px solid rgba(24,19,96,.14);border-radius:999px;padding:6px 12px">Instagram</span>
