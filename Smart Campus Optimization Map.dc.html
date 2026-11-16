@@ -42,7 +42,7 @@ a:hover{color:#181360}
   <div style="max-width:1180px;margin:0 auto">
     <div data-reveal="0" style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#181360;margin-bottom:16px">Smart Campus · CVRP · NetworkX</div>
     <h1 data-reveal="0" style="margin:0;font-size:clamp(2rem,5vw,3.4rem);font-weight:700;line-height:1.04;letter-spacing:-.035em;color:#181360;max-width:25ch">Smart Campus — Waste Collection Route Optimization</h1>
-    <p data-reveal="80" style="margin:18px 0 0;font-size:clamp(1.02rem,1.8vw,1.28rem);line-height:1.5;color:#181360;max-width:66ch">Occupancy-driven waste collection and CVRP route optimization across the campus road network.</p>
+    <p data-reveal="80" style="margin:18px 0 0;font-size:clamp(1.02rem,1.8vw,1.28rem);line-height:1.5;color:#181360;max-width:66ch">A recorded collection-route example from the practical campus planning application: threshold/greedy container selection, NetworkX/Dijkstra road paths, and capacity-constrained OR-Tools routing.</p>
   </div>
 </section>
 
@@ -92,7 +92,7 @@ a:hover{color:#181360}
   <div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:14px">
     <div data-reveal="0" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Map data source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Coordinates are reused from the project’s <b style="color:#181360">waste.py</b> file: Gate 5, 12 waste containers, Waste endpoint, and intermediate campus graph nodes.</p></div>
     <div data-reveal="60" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Route data source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Road graph edges are reused from <b style="color:#181360">map.py</b>. NetworkX reports 48 graph nodes and 58 graph edges after duplicate edges are collapsed.</p></div>
-    <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Optimization source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Selected containers and truck load come from <b style="color:#181360">Wastescheduling.py</b>; the collection sequence is produced by the OR-Tools CVRP model.</p></div>
+    <div data-reveal="120" style="background:#FFFFFF;border:1px solid rgba(17,203,203,.22);border-radius:12px;padding:24px 22px"><div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#181360;margin-bottom:10px">Optimization source</div><p style="margin:0;font-size:.96rem;line-height:1.6">Selected containers and truck load come from <b style="color:#181360">Wastescheduling.py</b> using threshold/greedy selection. NetworkX/Dijkstra provides road-network distances; OR-Tools CVRP searches the collection sequence using PATH_CHEAPEST_ARC and GUIDED_LOCAL_SEARCH. This page visualizes a recorded run rather than executing the solver live.</p></div>
   </div>
 </section>
 
@@ -264,3 +264,4 @@ class Component extends DCLogic {
 </script>
 </body>
 </html>
+
